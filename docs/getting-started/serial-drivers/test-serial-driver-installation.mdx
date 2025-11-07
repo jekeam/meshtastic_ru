@@ -1,9 +1,9 @@
 ---
 id: test-serial-driver-installation
-title: Test Serial Driver Installation
-sidebar_label: Test Serial Driver Installation
+title: Проверка установки USB-драйвера
+sidebar_label: Проверка установки USB-драйвера
 sidebar_position: 3
-description: Instructions for testing serial driver installation on Linux, macOS, or Windows.
+description: Как проверить установку USB-драйвера в Linux, macOS и Windows.
 ---
 
 import Link from "@docusaurus/Link";
@@ -11,9 +11,9 @@ import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 import { Icon } from "@iconify/react";
 
-### Test Serial Driver Installation
+### Проверка установки USB-драйвера
 
-You can verify that you have a proper data cable (rather than a charge-only type cable) and that the appropriate drivers for your system are installed by performing the following test:
+Можно проверить, что кабель — для данных (а не только зарядки), и что в системе установлены нужные драйверы, так:
 
 <Tabs
   groupId="operating-system"
@@ -49,14 +49,14 @@ You can verify that you have a proper data cable (rather than a charge-only type
 
 #### Linux
 
-1. Connect your Meshtastic device to your USB port
-2. Open a **Terminal** and enter the following command:
+1. Подключите устройство Meshtastic к USB-порту
+2. Откройте Терминал и введите команду:
 
    ```shell
    lsusb
    ```
 
-3. You should see something like:
+3. Должно быть что-то вроде:
 
    ```shell
    ID xxxx:xxxx Silicon Labs CP210x UART Bridge
@@ -71,8 +71,8 @@ You can verify that you have a proper data cable (rather than a charge-only type
 
 #### macOS
 
-1. Navigate to `Apple Menu  > About This Mac > More Info > System Report... > Hardware > USB`.
-2. You should see similar to one of the following entries:
+1. Откройте `Apple Menu  > About This Mac > More Info > System Report... > Hardware > USB`.
+2. Должна быть одна из записей:
 
 - `CP210X USB to UART Bridge Controller`
 - `CH9102 USB to UART Bridge Controller`
@@ -84,8 +84,8 @@ You can verify that you have a proper data cable (rather than a charge-only type
 
 #### Windows
 
-1. Navigate to `Device Manager > Ports (COM & LPT)`
-2. You should see similar to one of the following entries:
+1. Откройте `Device Manager > Ports (COM & LPT)`
+2. Должна быть одна из записей:
 
 - `Silicon Labs CP210X USB to UART Bridge (COM5)`
 - `Silicon Labs CH9102 USB to UART Bridge (COM5)`
@@ -97,16 +97,16 @@ You can verify that you have a proper data cable (rather than a charge-only type
 
 :::info
 
-If you are unable to see your device:
+Если устройство не видно:
 
-- Make sure that your cable is not only for charging but also for [data transfer](/docs/getting-started#verify-data-cable).
-- It's possible that you need to [reinstall the USB serial driver](/docs/getting-started/serial-drivers).
+- Убедитесь, что кабель не только для зарядки, но и для [передачи данных](/docs/getting-started#verify-data-cable).
+- Возможно, нужно [переустановить USB-драйвер](/docs/getting-started/serial-drivers).
 
 :::
 
-## Flash Firmware
+## Прошить устройство
 
-After completing the previous steps, you can now flash the Meshtastic firmware onto your device. To proceed, select the appropriate device type for your device.
+После предыдущих шагов можно прошить устройство прошивкой Meshtastic. Выберите тип устройства ниже.
 
 <div className="indexCtasBody">
   <div className="split-container">
@@ -115,7 +115,7 @@ After completing the previous steps, you can now flash the Meshtastic firmware o
         className={"button button--outline button--lg cta--button"}
         to={"/docs/getting-started/flashing-firmware/esp32/"}
       >
-        Flash ESP32 Firmware
+        Прошить ESP32
       </Link>
     </div>
 
@@ -124,7 +124,7 @@ After completing the previous steps, you can now flash the Meshtastic firmware o
         className={"button button--outline button--lg cta--button"}
         to={"/docs/getting-started/flashing-firmware/nrf52/"}
       >
-        Flash nRF52/RP2040 Firmware
+        Прошить nRF52/RP2040
       </Link>
     </div>
   </div>

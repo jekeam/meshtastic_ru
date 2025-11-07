@@ -1,9 +1,9 @@
 ---
 id: esp32
-title: ESP32 Serial Drivers
-sidebar_label: ESP32 Drivers
+title: ESP32: USB-драйверы
+sidebar_label: Драйверы ESP32
 sidebar_position: 1
-description: Instructions for installing ESP32 USB serial drivers to interact with a Meshtastic device.
+description: Как установить USB‑драйверы для ESP32, чтобы работать с устройством Meshtastic.
 ---
 
 import Tabs from "@theme/Tabs";
@@ -11,11 +11,11 @@ import TabItem from "@theme/TabItem";
 import { Icon } from "@iconify/react";
 import Link from "@docusaurus/Link";
 
-## Install ESP32 USB to Serial Drivers
+## Установить драйверы USB‑UART для ESP32
 
-You may need to install a driver from Silicon Labs for the [CP210X USB to UART bridge](https://www.silabs.com/products/development-tools/software/usb-to-uart-bridge-vcp-drivers)
+Может понадобиться драйвер Silicon Labs для [CP210X USB‑UART Bridge](https://www.silabs.com/products/development-tools/software/usb-to-uart-bridge-vcp-drivers)
 
-Some newer boards may require the CH9102 (CH340/CH341) Driver.
+Для некоторых новых плат нужен драйвер CH9102 (CH340/CH341).
 
 <Tabs
   groupId="operating-system"
@@ -51,8 +51,8 @@ Some newer boards may require the CH9102 (CH340/CH341) Driver.
 
 #### Linux
 
-- [CP210X USB to UART bridge - Download](https://www.silabs.com/products/development-tools/software/usb-to-uart-bridge-vcp-drivers)
-- [CH9102 Driver - Linux Download](http://www.wch-ic.com/downloads/CH341SER_LINUX_ZIP.html)
+- [CP210X USB‑UART Bridge — Скачать](https://www.silabs.com/products/development-tools/software/usb-to-uart-bridge-vcp-drivers)
+- [Драйвер CH9102 — Скачать для Linux](http://www.wch-ic.com/downloads/CH341SER_LINUX_ZIP.html)
 
 </TabItem>
 
@@ -60,8 +60,8 @@ Some newer boards may require the CH9102 (CH340/CH341) Driver.
 
 #### macOS
 
-- [CP210X USB to UART bridge - Download](https://www.silabs.com/products/development-tools/software/usb-to-uart-bridge-vcp-drivers)
-- [CH9102 Driver - MacOS Download](https://github.com/WCHSoftGroup/ch34xser_macos)
+- [CP210X USB‑UART Bridge — Скачать](https://www.silabs.com/products/development-tools/software/usb-to-uart-bridge-vcp-drivers)
+- [Драйвер CH9102 — Скачать для macOS](https://github.com/WCHSoftGroup/ch34xser_macos)
 
 </TabItem>
 
@@ -69,9 +69,9 @@ Some newer boards may require the CH9102 (CH340/CH341) Driver.
 
 #### Windows
 
-- [CP210X USB to UART bridge - Download](https://www.silabs.com/products/development-tools/software/usb-to-uart-bridge-vcp-drivers)
-- [CH9102 Driver - Windows Download](http://www.wch.cn/downloads/CH343SER_ZIP.html)
-- [CH9102 Driver - Windows Download (Direct Download for Windows 7)](https://github.com/Xinyuan-LilyGO/CH9102_Driver)
+- [CP210X USB‑UART Bridge — Скачать](https://www.silabs.com/products/development-tools/software/usb-to-uart-bridge-vcp-drivers)
+- [Драйвер CH9102 — Скачать для Windows](http://www.wch.cn/downloads/CH343SER_ZIP.html)
+- [Драйвер CH9102 — Скачать для Windows (прямая ссылка для Windows 7)](https://github.com/Xinyuan-LilyGO/CH9102_Driver)
 
 </TabItem>
 
@@ -79,21 +79,21 @@ Some newer boards may require the CH9102 (CH340/CH341) Driver.
 
 :::important
 
-After installing the driver, make sure to reboot your computer to finish the installation process.
+После установки драйвера перезагрузите компьютер, чтобы завершить установку.
 
-You can also [test your serial driver installation](/docs/getting-started/serial-drivers/test-serial-driver-installation) at this step if required.
+На этом шаге при необходимости можно [проверить установку USB‑драйвера](/docs/getting-started/serial-drivers/test-serial-driver-installation).
 
 :::
 
-### Flash Firmware
+### Прошить устройство
 
-After installing the serial drivers, you can now flash the Meshtastic firmware onto your device. To proceed, select the appropriate device type for your device.
+После установки драйверов можно прошить устройство прошивкой Meshtastic. Выберите свой тип устройства.
 
 <div className="indexCtasBody">
   <Link
     className={"button button--outline button--lg cta--button"}
     to={"/docs/getting-started/flashing-firmware/esp32/"}
   >
-    Flash ESP32 Firmware
+    Прошить ESP32
   </Link>
 </div>

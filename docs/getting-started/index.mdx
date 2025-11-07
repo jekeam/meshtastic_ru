@@ -1,78 +1,78 @@
 ---
 id: getting-started
-title: Getting Started
-sidebar_label: Getting Started
+title: Быстрый старт
+sidebar_label: Быстрый старт
 slug: /getting-started
 sidebar_position: 2
-description: The official Meshtastic guide to get you started. Covers all devices and configurations.
+description: Официальный гид Meshtastic по быстрому старту. Охватывает все устройства и конфигурации.
 ---
 
 import Link from "@docusaurus/Link";
 import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 
-## Identify Hardware
+## Определите железо
 
 :::note
 
-This guide assumes that you have already purchased the devices you will be using with Meshtastic. If you haven't, you can check out our list of [supported hardware](/docs/hardware/devices/index.mdx)
-to see your options.
+Этот гид предполагает, что вы уже купили устройства для Meshtastic. Если нет — посмотрите список [поддерживаемых устройств](/docs/hardware/devices/index.mdx).
+
 :::
 
-Before you begin, it's important to determine which kind of hardware you're using. Meshtastic works with devices that have these types of Micro-Controller Units (MCU):
+Перед началом важно понять, какое железо у вас. Meshtastic работает с устройствами на таких микроконтроллерах (MCU):
 
 ### ESP32
 
-The ESP32 chip is older and consumes more power than the nRF52 chip, but is equipped with both WiFi and Bluetooth. Supported ESP32 devices include:
+Чип ESP32 старее и потребляет больше энергии, чем nRF52, но поддерживает Wi‑Fi и Bluetooth. Поддерживаемые устройства на ESP32:
 
-- LILYGO® TTGO T-Beam (>V1.1 recommended)
-- LILYGO® TTGO Lora (>V2.1 recommended)
+- LILYGO® TTGO T-Beam (>V1.1 рекомендуется)
+- LILYGO® TTGO Lora (>V2.1 рекомендуется)
 - Nano G1
 - Station G1
-- Heltec V3 and Wireless Stick Lite V3
-- RAK11200 Core module for RAK WisBlock modular boards
+- Heltec V3 и Wireless Stick Lite V3
+- Модуль RAK11200 Core для модульных плат RAK WisBlock
 
 ### nRF52
 
-The nRF52 chip is much more power efficient than the ESP32 chip and easier to update, but is only equipped with Bluetooth. Supported nRF52 devices include:
+Чип nRF52 заметно энергоэффективнее ESP32 и его проще обновлять, но он только с Bluetooth. Поддерживаемые устройства на nRF52:
 
-- RAK4631 Core module for RAK WisBlock modular boards
+- Модуль RAK4631 Core для модульных плат RAK WisBlock
 - LILYGO® TTGO T-Echo
 
 ### RP2040
 
-The RP2040 is a dual-core ARM chip developed by Raspberry Pi. Supported RP2040 devices include:
+RP2040 — двухъядерный ARM-чип от Raspberry Pi. Поддерживаемые устройства на RP2040:
 
- - Raspberry Pi Pico + Waveshare LoRa Module (Note: **Bluetooth on the Pico W is not yet supported by Meshtastic**)
- - RAK11310 Core module for RAK WisBlock modular boards
+ - Raspberry Pi Pico + Waveshare LoRa Module (Примечание: **Bluetooth на Pico W пока не поддерживается в Meshtastic**)
+ - Модуль RAK11310 Core для модульных плат RAK WisBlock
 
 :::info
 
-If your device is not listed above, please review our [supported devices](/docs/hardware/devices/index.mdx) to determine which MCU your device has or contact us in [Discord](https://discord.gg/ktMAKGBnBs) with any questions.
+Если вашего устройства нет в списке, загляните в раздел [поддерживаемых устройств](/docs/hardware/devices/index.mdx), чтобы определить, какой MCU у вашего устройства, или задайте вопрос в нашем [Discord](https://discord.gg/ktMAKGBnBs).
 
 :::
 
-:::danger STOP! Put The Power Cable Down!
+:::danger Стоп! Уберите кабель питания!
 
-Never power on the radio without attaching an antenna as doing so could damage the radio chip!
+Никогда не включайте радио без подключённой антенны — так можно повредить радиочип!
 
 :::
 
-Prior to connecting your Meshtastic device to the computer, you should perform the following basic checks.
+Перед подключением устройства Meshtastic к компьютеру выполните базовые проверки.
 
-### Verify Data Cable
+### Проверьте кабель
 
-Some cables only provide _charging_, verify that your cable is also capable of _transferring data_ before proceeding. To check if your cable can also transfer data, try connecting it to another device (like a phone) and see if you can copy a file to or from it. If the file transfer works, then your cable is also able to transfer data and you can continue.
+Некоторые кабели только для _зарядки_. Убедитесь, что ваш кабель умеет _передавать данные_. Подключите его к другому устройству (например, телефону) и попробуйте скопировать файл туда/обратно. Если передача файлов работает — кабель подходит, можно продолжать.
 
-### Install Serial Drivers
+### Установить USB-драйвер
 
 :::caution
 
-nRF52/RP2040 devices typically do not require serial drivers. They use the UF2 bootloader which makes the devices appear as flash drives.  Do _NOT_ download the USB device drivers unless required to install UF2 support.
+Устройствам nRF52/RP2040 обычно не нужны драйверы. Они используют загрузчик UF2 и определяются как флеш‑накопители. _Не_ скачивайте USB‑драйверы, если это не требуется для поддержки UF2.
 
 :::
 
-If you require serial drivers installed on your computer, please choose one of the options below and install it before continuing.
+Если на вашем компьютере нужны драйверы, выберите вариант ниже и установите перед продолжением.
 
 <div className="indexCtasBody">
   <div className="split-container">
@@ -81,7 +81,7 @@ If you require serial drivers installed on your computer, please choose one of t
         className={'button button--outline button--lg cta--button'}
         to={'/docs/getting-started/serial-drivers/esp32'}
       >
-        Install ESP32 Drivers
+        Установить драйверы ESP32
       </Link>
     </div>
 
@@ -90,15 +90,15 @@ If you require serial drivers installed on your computer, please choose one of t
         className={'button button--outline button--lg cta--button'}
         to={'/docs/getting-started/serial-drivers/nrf52'}
       >
-        Install nRF52/RP2040 Drivers
+        Установить драйверы nRF52/RP2040
       </Link>
     </div>
   </div>
 </div>
 
-### Flash Firmware
+### Прошить устройство
 
-After completing the previous steps, you can now flash the Meshtastic firmware onto your device. To proceed, select the appropriate device type for your device.
+После предыдущих шагов можно прошить Meshtastic на ваше устройство. Выберите нужный тип устройства.
 
 <div className="indexCtasBody">
   <div className="split-container">
@@ -107,7 +107,7 @@ After completing the previous steps, you can now flash the Meshtastic firmware o
         className={"button button--outline button--lg cta--button"}
         to={"/docs/getting-started/flashing-firmware/esp32/"}
       >
-        Flash ESP32 Firmware
+        Прошить ESP32
       </Link>
     </div>
 
@@ -116,21 +116,21 @@ After completing the previous steps, you can now flash the Meshtastic firmware o
         className={"button button--outline button--lg cta--button"}
         to={"/docs/getting-started/flashing-firmware/nrf52/"}
       >
-        Flash nRF52/RP2040 Firmware
+        Прошить nRF52/RP2040
       </Link>
     </div>
   </div>
 </div>
 
-### Connect and Configure Device
+### Подключить и настроить устройство
 
-After flashing the Meshtastic firmware onto your device, you can now move on to initial configuration.
+После прошивки Meshtastic переходите к первичной настройке.
 
 <div className="indexCtasBody">
   <Link
     className={"button button--outline button--lg cta--button"}
     to={"/docs/getting-started/initial-config"}
   >
-    Connect and Configure Device
+    Подключить и настроить устройство
   </Link>
 </div>

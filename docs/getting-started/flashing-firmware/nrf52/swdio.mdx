@@ -1,34 +1,34 @@
 ---
 id: swdio
-title: SWDIO using a Raspberry Pi
-sidebar_label: SWDIO using a Raspberry Pi
+title: SWDIO с Raspberry Pi
+sidebar_label: SWDIO с Raspberry Pi
 sidebar_position: 6
-description: Instructions for uploading firmware through SWDIO by using a Raspberry Pi.
+description: Инструкция по прошивке через SWDIO с Raspberry Pi.
 ---
 
-Most Meshtastic devices can be flashed simply using USB.
-However, some (eg Seeed WM1110 Dev Kit) require the use of an external device that can connect via "SWDIO".
-There are dedicated devices such as the [RAKDAP1](https://msh.to/rakdap1/) that can do this work, and there are also other devices such as the [Segger J-Link](https://msh.to/segger-jlink) or [ST-Link](https://msh.to/st-link) that can be used.
-that can do this work. However, for many people a Raspberry Pi is more convenient.
+Большинство устройств Meshtastic прошиваются по USB.
+Но некоторые (например, Seeed WM1110 Dev Kit) требуют внешнего программатора по SWDIO.
+Есть специализированные устройства вроде [RAKDAP1](https://msh.to/rakdap1/), а также [Segger J-Link](https://msh.to/segger-jlink) и [ST-Link](https://msh.to/st-link).
+Но многим удобнее использовать Raspberry Pi.
 
-This article provides instructions on how use a Raspberry Pi as a SWDIO Flash Tool.
+Здесь — как использовать Raspberry Pi как SWDIO-программатор.
 
-## Set up Wiring
+## Схема подключения
 
-The first step is to connect two wires between your Raspberry Pi and the SWDIO ports on your NRF52-based device.
+Сначала соедините два провода между Raspberry Pi и контактами SWDIO на вашем устройстве на базе nRF52.
 
-Connect GPIO pin 11 on your Raspberry Pi to the CLK pin on the Meshtastic Device.
-Connect GPIO pin 8 on your Raspberry Pi to the DIO pin on the Meshtastic Device.
+Соедините GPIO 11 на Raspberry Pi с контактом CLK на устройстве Meshtastic.
+Соедините GPIO 8 на Raspberry Pi с контактом DIO на устройстве Meshtastic.
 
-Ensure you get the GPIO numbers correct.
+Проверьте, что номера GPIO указаны верно.
 
-Plug in your Raspberry Pi to USB power.
-Plug in the Meshtastic Device to power.
+Подайте питание на Raspberry Pi по USB.
+Подайте питание на устройство Meshtastic.
 
-## Install OpenOCD
+## Установка OpenOCD
 
-You can use OpenOCD to manage the SWDIO connection with the Meshtastic Device.
-Install it on your Raspberry Pi.
+Для работы со SWDIO можно использовать OpenOCD.
+Установите его на Raspberry Pi.
 
 ```
 $ sudo apt update
@@ -41,17 +41,17 @@ $ make -j4
 $ sudo make install
 ```
 
-## Check connection
+## Проверка подключения
 
-Let's try connecting to the NRF52-based device with SWDIO before we do anything with firmware.
-All the configuration you need is in the openocd repository.
+Перед прошивкой пробуем подключиться к устройству на nRF52 по SWDIO.
+Все нужные конфиги уже есть в репозитории openocd.
 
 ```
 $ openocd -f ./openocd/tcl/interface/raspberrypi-native.cfg -c "transport select swd" -f openocd/tcl/target/nrf52.cfg -s tcl
 ```
 
-The first flag selects the Raspberry Pi as your host machine, the transport is SWDIO, and the last flag says you are connecting to a nRF52-based chip.
-You should see something like this:
+Первый флаг выбирает Raspberry Pi как хост, транспорт — SWDIO, последний флаг говорит, что подключаемся к чипу на nRF52.
+Вы увидите что-то вроде:
 
 ```
 Open On-Chip Debugger 0.12.0+dev-00633-gad87fbd1c
@@ -73,18 +73,18 @@ Info : Listening on port 3333 for gdb connections
 Info : accepting 'telnet' connection on tcp/4444
 ```
 
-If you see “Error connecting DP: cannot read IDR”, then you've probably connected the wires to the wrong place.
+Если видите “Error connecting DP: cannot read IDR”, скорее всего, провода подключены не туда.
 
-## Obtaining Firmware
+## Где взять Firmware
 
-Check the instructions for your [hardware](/docs/hardware/devices) to find the correct firmware for your device.
-For most devices following this guide, a .hex file is required.
-Then, copy the firmware file to your Raspberry Pi.
+См. инструкции для вашего устройства на странице [hardware](/docs/hardware/devices), чтобы найти подходящую прошивку.
+Для большинства устройств из этого гайда нужен .hex.
+Скопируйте файл прошивки на Raspberry Pi.
 
-## Flashing Firmware
+## Прошивка Firmware
 
-Once you have openocd running, you can connect to your Meshtastic device using telnet.
-Flashing is as simple as running a few commands inside the telnet session:
+Когда openocd запущен, подключитесь к устройству Meshtastic через telnet.
+Прошивка — это несколько команд в telnet-сессии:
 
 ```
 $ telnet 127.0.0.1 4444
@@ -101,8 +101,8 @@ Open On-Chip Debugger
 > exit 0
 ```
 
-Unplug the power and plug it back in after flashing.
+После прошивки отключите питание и снова включите.
 
-## Connecting
+## Подключение
 
-Congratulations, you should now be able to connect to your device through Bluetooth in the Meshtastic app.
+Готово! Теперь можно подключиться к устройству по Bluetooth в приложении Meshtastic.

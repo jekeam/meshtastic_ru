@@ -1,9 +1,9 @@
 ---
 id: cli-script
-title: Flashing with the CLI
-sidebar_label: CLI Script (Advanced Users)
+title: Прошивка через CLI
+sidebar_label: CLI-скрипт (для опытных)
 sidebar_position: 3
-description: Instructions for using the CLI to flash Meshtastic firmware to an ESP32 chipset device.
+description: Как прошить Meshtastic на устройства с ESP32 через CLI.
 ---
 
 import Tabs from "@theme/Tabs";
@@ -12,20 +12,20 @@ import { Icon } from "@iconify/react";
 import Link from "@docusaurus/Link";
 
 :::caution
-Make sure not to power the radio on without first attaching the antenna! You could damage the radio chip!
+Не включайте радио без подключённой антенны — можно повредить радиочип!
 :::
 
-Before you flash your device start by verifying connectivity with the device being flashed. Outlined below are steps that can be taken to verify connectivity and, if necessary, to install the appropriate drivers. If you end up needing to install drivers be sure to reboot your computer afterwards to verify the installation is complete.
+Перед прошивкой сначала проверьте подключение устройства. Ниже — шаги для проверки и, при необходимости, установки драйверов. Если пришлось ставить драйверы, после установки перезагрузите компьютер.
 
 :::note
-The [T-Beam 0.7](/docs/hardware/devices/lilygo/tbeam/?t-beam=0.7) board is an earlier version of the T-Beam board, and due to changes in the design in subsequent iterations this board uses a specific firmware file different from the other T-Beam boards.
+Плата [T-Beam 0.7](/docs/hardware/devices/lilygo/tbeam/?t-beam=0.7) — ранняя версия T-Beam. Из-за изменений в следующих ревизиях ей нужен отдельный файл firmware, отличный от других T-Beam.
 
-`firmware-tbeam0.7-X.X.X.xxxxxxx.bin` is the correct firmware. `firmware-tbeam-X.X.X.xxxxxxx.bin` is incompatible. For all other [T-Beam](/docs/hardware/devices/lilygo/tbeam) boards review the resources section for the correct selection.
+Правильный файл: `firmware-tbeam0.7-X.X.X.xxxxxxx.bin`. Файл `firmware-tbeam-X.X.X.xxxxxxx.bin` несовместим. Для остальных плат [T-Beam](/docs/hardware/devices/lilygo/tbeam) смотрите раздел ресурсов и выбирайте подходящий вариант.
 :::
 
-## Command Line Interface Instructions
+## Инструкция по CLI
 
-### Install Prerequisite Software
+### Установить необходимые инструменты
 
 <Tabs
   groupId="operating-system"
@@ -61,21 +61,21 @@ The [T-Beam 0.7](/docs/hardware/devices/lilygo/tbeam/?t-beam=0.7) board is an ea
 
 #### Linux
 
-Check if you have `python3` and `pip` installed with the following command
+Проверьте, установлены ли `python3` и `pip`, командой:
 
 ```shell
 python3 --version
 pip3 --version
 ```
 
-If `python3` is not installed, install with
+Если `python3` не установлен, поставьте:
 
 ```shell
 sudo apt-get update
 sudo apt-get install python3
 ```
 
-If `pip` is not installed, install with
+Если нет `pip`, поставьте:
 
 ```shell
 sudo apt-get install python3-pip
@@ -86,33 +86,33 @@ sudo apt-get install python3-pip
 
 #### macOS
 
-OS X comes with `Python 2.7` installed, but not `pip`. The following uses Homebrew to install `python3` which includes `pip3`. On MacOS you will use `pip3` instead > of `pip`.
+В OS X есть `Python 2.7`, но нет `pip`. Ниже показано, как через Homebrew поставить `python3`, который включает `pip3`. В macOS используйте `pip3`, а не `pip`.
 
 :::note
-Check if you have Homebrew installed with the following command
+Проверьте, установлен ли Homebrew:
 
 ```shell
 brew -v
 ```
 
-If it's not installed, follow the instructions on the [Homebrew website](https://brew.sh) before continuing.
+Если нет — следуйте инструкциям на [сайте Homebrew](https://brew.sh) перед продолжением.
 :::
 
-Check if you have `python3` and `pip` installed with the following command
+Проверьте, установлены ли `python3` и `pip`:
 
 ```shell
 python3 --version
 pip3 --version
 ```
 
-If `python3` is not installed, install with
+Если нет `python3`, установите:
 Install Python3
 
 ```shell
 brew install python3
 ```
 
-Confirm `pip3` was installed alongside `python3`
+Проверьте, что вместе с `python3` установился `pip3`:
 
 ```shell
 pip3 -v
@@ -123,11 +123,11 @@ pip3 -v
 
 #### Windows
 
-- Download and install [Python](https://www.python.org). When installing, make sure to click `Add Python X.Y to PATH`.
-- Download and install [Gitbash](https://gitforwindows.org) (or other appropriate shell) and run all subsequent commands from that shell.
+- Скачайте и установите [Python](https://www.python.org). При установке отметьте `Add Python X.Y to PATH`.
+- Скачайте и установите [Gitbash](https://gitforwindows.org) (или другой shell) и дальше выполняйте команды в нём.
 
 :::note
-Confirm installation of `python` & `pip` with the following commands.
+Проверьте установку `python` и `pip` командами:
 
 ```shell
 py --version
@@ -142,13 +142,13 @@ pip --version
   </TabItem>
 </Tabs>
 
-### Install `esptool`
+### Установить `esptool`
 
 ```shell
 pip3 install --upgrade esptool
 ```
 
-### Confirm Communication With Chip
+### Проверка связи с чипом
 
 <Tabs
   groupId="operating-system"
@@ -185,7 +185,7 @@ pip3 install --upgrade esptool
 #### Linux
 
 :::important
-On Linux, you may need to explicitly declare esptool as a .py script. Use `esptool.py chip_id`.
+В Linux может понадобиться явно вызывать esptool как .py. Используйте `esptool.py chip_id`.
 :::
 
 </TabItem>
@@ -194,7 +194,7 @@ On Linux, you may need to explicitly declare esptool as a .py script. Use `espto
 #### macOS
 
 :::important
-On macOS, you may need to explicitly declare esptool as a .py script. Use `esptool.py chip_id`.
+В macOS может понадобиться явно вызывать esptool как .py. Используйте `esptool.py chip_id`.
 :::
 
 </TabItem>
@@ -203,13 +203,13 @@ On macOS, you may need to explicitly declare esptool as a .py script. Use `espto
 #### Windows
 
 :::important
-On Windows, you must explicitly declare esptool as a .py script. Use `esptool.py chip_id`.
+В Windows нужно явно вызывать esptool как .py. Используйте `esptool.py chip_id`.
 :::
 
   </TabItem>
 </Tabs>
 
-Connect the radio to your computer using a data USB cable. Confirm your device is talking to your computer using the following command:
+Подключите радио к компьютеру USB‑кабелем для данных. Проверьте, что устройство отвечает, командой:
 
 ```shell title="Command"
 esptool chip_id
@@ -234,35 +234,33 @@ MAC: 24:6f:28:b5:36:71
 Hard resetting via RTS pin...
 ```
 
-### Download Firmware
+### Скачать Firmware
 
-1. Head to the [Meshtastic Downloads Page](/downloads) to download the latest firmware.
-2. Scroll down to the **Firmware** section and select one of the following, depending on your preferences:
+1. Откройте [страницу загрузок Meshtastic](/downloads) и скачайте свежую версию firmware.
+2. Прокрутите до раздела **Firmware** и выберите вариант под ваши задачи:
+- **Download Stable**: стабильные, проверенные релизы.
+- **Download Alpha**: свежие экспериментальные сборки с новыми фичами.
+3. На странице релиза GitHub разверните раздел "Assets". Найдите подходящую firmware по архитектуре (например, `firmware-esp32s3` для устройств на ESP32-S3, таких как Heltec V3).
+4. Скачайте файл и запомните путь (обычно `~/Downloads`).
 
-- **Download Stable**: For stable, well-tested releases.
-- **Download Alpha**: For newer, experimental releases with the latest features.
+### Перейти в каталог с Firmware
 
-3. Once redirected to the GitHub release page, scroll down to the "Assets" section and expand it. Identify the correct firmware for your device by its architecture (e.g., `firmware-esp32s3` for ESP32-S3-based devices like the Heltec V3).
-4. Download the file and take note of the download location on your system (usually in your `~/Downloads` folder).
-
-### Navigate to Firmware Directory
-
-1. Open a terminal and navigate (`cd`) to the directory where your firmware was downloaded. The folder name typically matches the architecture and firmware version from the zip file. For example:
+1. Откройте терминал и перейдите (`cd`) в папку, куда скачали firmware. Имя папки обычно совпадает с архитектурой и версией из zip. Например:
 
 ```shell title="Example"
 cd ~/Downloads/firmware-esp32s3-X.X.X.xxxxxxx/
 ```
 
 :::note
-Make sure to replace `esp32s3` and the version number with those corresponding to the file you downloaded.
+Замените `esp32s3` и номер версии на соответствующие вашему файлу.
 :::
 
-### Install/Update Firmware
+### Установка/обновление Firmware
 
-Now, proceed with the instructions below for your operating system to install or update the firmware for your specific board:
+Дальше следуйте инструкциям для вашей ОС, чтобы установить или обновить firmware для вашей платы:
 
 :::caution
-Be very careful to install the correct firmware file for your board. In particular, the popular 'T-BEAM' radio from TTGO is not called 'TTGO-Lora' (that is a different board). So don't install the 'TTGO-Lora' build on a TBEAM, it won't work correctly. If you flash the incorrect device firmware, it may appear to successfully complete, yet the device will usually become unresponsive, displaying a blank screen (if equipped). Attempt to flash the correct version. Please note, while these devices are quite resilient and damage is not always likely, there is a possibility of onboard radio and peripheral damage due to incorrect GPIO pin direction
+Внимательно выбирайте файл firmware для вашей платы. Например, популярная 'T-BEAM' от TTGO — это не 'TTGO-Lora' (это другая плата). Не ставьте сборку 'TTGO-Lora' на T-BEAM — работать не будет. Если прошить не тот файл, процесс может «успешно» завершиться, но устройство станет неотзывчивым (экран, если есть, будет пустым). Попробуйте прошить корректную версию. Учтите, что хотя устройства довольно живучие, при неверных настройках GPIO есть риск повредить радиомодуль и периферию.
 :::
 
 <Tabs
@@ -299,13 +297,13 @@ Be very careful to install the correct firmware file for your board. In particul
 
 #### Linux
 
-##### Install
+##### Установка
 
 ```shell title="Command"
 ./device-install.sh -f firmware-BOARD-VERSION.bin
 ```
 
-##### Update
+##### Обновление
 
 ```shell title="Command"
 ./device-update.sh -f firmware-BOARD-VERSION-update.bin
@@ -316,13 +314,13 @@ Be very careful to install the correct firmware file for your board. In particul
 
 #### macOS
 
-##### Install
+##### Установка
 
 ```shell title="Command"
 ./device-install.sh -f firmware-BOARD-VERSION.bin
 ```
 
-##### Update
+##### Обновление
 
 ```shell title="Command"
 ./device-update.sh -f firmware-BOARD-VERSION-update.bin
@@ -333,13 +331,13 @@ Be very careful to install the correct firmware file for your board. In particul
 
 #### Windows
 
-##### Install
+##### Установка
 
 ```shell title="Command"
 device-install.bat -f firmware-BOARD-VERSION.bin
 ```
 
-##### Update
+##### Обновление
 
 ```shell title="Command"
 device-update.bat -f firmware-BOARD-VERSION-update.bin
@@ -348,17 +346,17 @@ device-update.bat -f firmware-BOARD-VERSION-update.bin
   </TabItem>
 </Tabs>
 
-Use the `--web` option to include the embedded [Web Client](/docs/software/web-client/) during installation of the firmware.
+Используйте опцию `--web`, чтобы включить встроенный [Web Client](/docs/software/web-client/) при установке firmware.
 
-## Connect and Configure Device
+## Подключение и начальная настройка
 
-After flashing the Meshtastic firmware to the device, you can proceed with the initial configuration.
+После прошивки Meshtastic можно перейти к первичной настройке.
 
 <div className="indexCtasBody">
   <Link
     className={"button button--outline button--lg cta--button"}
     to={"/docs/getting-started/initial-config"}
   >
-    Connect and Configure Device
+    Подключить и настроить устройство
   </Link>
 </div>

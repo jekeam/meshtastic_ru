@@ -1,26 +1,26 @@
 ---
 id: flashing-nrf52-devices
-title: Flash nRF52 & RP2040 Devices
-sidebar_label: nRF52/RP2040 Device
+title: Прошивка устройств nRF52 и RP2040
+sidebar_label: Устройство nRF52/RP2040
 sidebar_position: 2
-description: Instructions to flash Meshtastic firmware to nRF52 or RP2040 chipset devices.
+description: Инструкция по прошивке Meshtastic на устройства с чипами nRF52 или RP2040.
 ---
 
-## Flashing Methods for nRF52 and RP2040 Devices
+## Способы прошивки устройств nRF52 и RP2040
 
-nRF52 and RP2040 based devices have the easiest firmware upgrade process. No driver or software install is required on any platform.
+Устройства на nRF52 и RP2040 прошиваются проще всего. Драйверы и софт ставить не нужно ни на одной платформе.
 
 ### Drag & Drop
-nRF52 and RP2040 devices use the [Drag & Drop](/docs/getting-started/flashing-firmware/nrf52/drag-n-drop) installation method to install firmware releases.
+Устройства nRF52 и RP2040 используют метод [Drag & Drop](/docs/getting-started/flashing-firmware/nrf52/drag-n-drop) для установки релизов Firmware.
 
-### Over-The-Air (OTA)
-nRF52 devices are able to accept [OTA firmware updates](/docs/getting-started/flashing-firmware/nrf52/ota) from a mobile device over bluetooth.
+### OTA (по воздуху)
+Устройства nRF52 могут принимать [OTA‑обновления Firmware](/docs/getting-started/flashing-firmware/nrf52/ota) с мобильного устройства по Bluetooth.
 
-### nRF Factory Erase
-You may wish to perform a [Factory Erase](/docs/getting-started/flashing-firmware/nrf52/nrf52-erase) prior to installing firmware to clear data that may change format and location between releases.
+### Заводской сброс nRF
+Перед установкой Firmware можно сделать [заводской сброс](/docs/getting-started/flashing-firmware/nrf52/nrf52-erase), чтобы очистить данные, формат и расположение которых может меняться между релизами.
 
-### Convert RAK4631-R to RAK4631
-If your device did not come with the Arduino bootloader you will need to [perform the conversion](/docs/getting-started/flashing-firmware/nrf52/convert-rak4631r).
+### Конвертация RAK4631‑R в RAK4631
+Если на устройстве нет загрузчика Arduino, нужно [провести конвертацию](/docs/getting-started/flashing-firmware/nrf52/convert-rak4631r).
 
-### Use Raspberry Pi as a SWDIO Flash Tool
-If your device can't be flashed through USB or Bluetooth, another option might be a [direct SWDIO connection](/docs/getting-started/flashing-firmware/nrf52/swdio).
+### Использовать Raspberry Pi как SWDIO‑программатор
+Если устройство не прошивается через USB или Bluetooth, вариант — [прямое подключение SWDIO](/docs/getting-started/flashing-firmware/nrf52/swdio).

@@ -1,23 +1,23 @@
 ---
 id: flashing-esp32-devices
-title: Flash ESP32 Devices
-sidebar_label: ESP32 Device
+title: Прошивка устройств ESP32
+sidebar_label: Устройство ESP32
 sidebar_position: 2
-description: Instructions to flash Meshtastic firmware to an ESP32 chipset device.
+description: Инструкция по прошивке устройств ESP32 (Meshtastic Firmware).
 ---
 
 :::info
-The recommended method for firmware flashing is the [Web Flasher.](https://flasher.meshtastic.org)
+Рекомендуемый способ прошивки — [Web Flasher.](https://flasher.meshtastic.org)
 :::
 
-## Flashing Method for ESP32 Devices
+## Способы прошивки для устройств ESP32
 
-1. The [Web Flasher](/docs/getting-started/flashing-firmware/esp32/web-flasher.mdx) requires either Chrome or Edge browsers but is an excellent choice for quickly flashing devices. **This method is highly recommended for firmware flashing, especially for new users of the project, as it is easy to use.**
-2. The [CLI Script](/docs/getting-started/flashing-firmware/esp32/cli-script) is considered the "manual process" for flashing firmware.
-3. Flashing your device using an [external serial adapter](/docs/getting-started/flashing-firmware/esp32/external-serial-adapter) should only be attempted as a last resort if no other method has been successful.
+1. [Web Flasher](/docs/getting-started/flashing-firmware/esp32/web-flasher.mdx) работает в браузерах Chrome и Edge и отлично подходит для быстрой прошивки устройств. Этот способ особенно рекомендуем новым пользователям — он простой и удобный.
+2. [CLI Script](/docs/getting-started/flashing-firmware/esp32/cli-script) — «ручной» способ прошивки.
+3. Прошивка через [внешний Serial-адаптер](/docs/getting-started/flashing-firmware/esp32/external-serial-adapter) — крайний вариант, если другие способы не сработали.
 
 :::info note
 
-The [web client](/docs/software/web-client) at meshtastic.local is only updated with a full wipe and reinstall of the device. If you choose a reinstall, you will get the latest (bundled) web interface.  To preserve your settings, you may [export your configuration](/docs/software/python/cli#--export-config) prior to a reinstall and load them back after.
+[веб-клиент](/docs/software/web-client) на meshtastic.local обновляется только при полном сбросе и переустановке устройства. Если выберете переустановку, получите последнюю (встроенную) версию веб-интерфейса. Чтобы сохранить настройки, [экспортируйте конфиг](/docs/software/python/cli#--export-config) перед переустановкой и загрузите его обратно после.
 
 :::
