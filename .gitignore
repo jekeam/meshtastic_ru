@@ -29,4 +29,3 @@ gen
 *.vsix
 *.code-workspace
 .trunk/
-translate_docs.py
