@@ -11,13 +11,13 @@ import TabItem from "@theme/TabItem";
 import { Icon } from "@iconify/react";
 import Link from "@docusaurus/Link";
 
-:::Осторожно
+:::caution
 Не включайте радио без подключённой антенны — можно повредить радиочип!
 :::
 
 Перед прошивкой сначала проверьте подключение устройства. Ниже — шаги для проверки и, при необходимости, установки драйверов. Если пришлось ставить драйверы, после установки перезагрузите компьютер.
 
-:::Заметка
+:::note
 Плата [T-Beam 0.7](/docs/hardware/devices/lilygo/tbeam/?t-beam=0.7) — ранняя версия T-Beam. Из-за изменений в следующих ревизиях ей нужен отдельный файл firmware, отличный от других T-Beam.
 
 Правильный файл: `firmware-tbeam0.7-X.X.X.xxxxxxx.bin`. Файл `firmware-tbeam-X.X.X.xxxxxxx.bin` несовместим. Для остальных плат [T-Beam](/docs/hardware/devices/lilygo/tbeam) смотрите раздел ресурсов и выбирайте подходящий вариант.
@@ -88,7 +88,7 @@ sudo apt-get install python3-pip
 
 В OS X есть `Python 2.7`, но нет `pip`. Ниже показано, как через Homebrew поставить `python3`, который включает `pip3`. В macOS используйте `pip3`, а не `pip`.
 
-:::Заметка
+:::note
 Проверьте, установлен ли Homebrew:
 
 ```shell
@@ -126,7 +126,7 @@ pip3 -v
 - Скачайте и установите [Python](https://www.python.org). При установке отметьте `Add Python X.Y to PATH`.
 - Скачайте и установите [Gitbash](https://gitforwindows.org) (или другой shell) и дальше выполняйте команды в нём.
 
-:::Заметка
+:::note
 Проверьте установку `python` и `pip` командами:
 
 ```shell
@@ -184,7 +184,7 @@ pip3 install --upgrade esptool
 
 #### Linux
 
-:::Важно
+:::important
 В Linux может понадобиться явно вызывать esptool как .py. Используйте `esptool.py chip_id`.
 :::
 
@@ -193,7 +193,7 @@ pip3 install --upgrade esptool
 
 #### macOS
 
-:::Важно
+:::important
 В macOS может понадобиться явно вызывать esptool как .py. Используйте `esptool.py chip_id`.
 :::
 
@@ -202,7 +202,7 @@ pip3 install --upgrade esptool
 
 #### Windows
 
-:::Внимание
+:::important
 В Windows нужно явно вызывать esptool как .py. Используйте `esptool.py chip_id`.
 :::
 
@@ -251,7 +251,7 @@ Hard resetting via RTS pin...
 cd ~/Downloads/firmware-esp32s3-X.X.X.xxxxxxx/
 ```
 
-:::Заметка
+:::note
 Замените `esp32s3` и номер версии на соответствующие вашему файлу.
 :::
 
@@ -259,7 +259,7 @@ cd ~/Downloads/firmware-esp32s3-X.X.X.xxxxxxx/
 
 Дальше следуйте инструкциям для вашей ОС, чтобы установить или обновить firmware для вашей платы:
 
-:::Осторожно
+:::caution
 Внимательно выбирайте файл firmware для вашей платы. Например, популярная 'T-BEAM' от TTGO — это не 'TTGO-Lora' (это другая плата). Не ставьте сборку 'TTGO-Lora' на T-BEAM — работать не будет. Если прошить не тот файл, процесс может «успешно» завершиться, но устройство станет неотзывчивым (экран, если есть, будет пустым). Попробуйте прошить корректную версию. Учтите, что хотя устройства довольно живучие, при неверных настройках GPIO есть риск повредить радиомодуль и периферию.
 :::
 
