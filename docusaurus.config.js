@@ -31,15 +31,15 @@ const config = {
       },
       items: [
         {
-          label: "Blog",
+          label: "Блог",
           to: "blog",
         },
         {
-          label: "Docs",
+          label: "Документация",
           to: "docs/introduction",
         },
         {
-          label: "Downloads",
+          label: "Загрузки",
           to: "downloads",
         },
         {
