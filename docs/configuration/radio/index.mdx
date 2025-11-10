@@ -1,22 +1,22 @@
 ---
-id: config
-title: Radio Configuration
-sidebar_label: Radio Config
+id: "config"
+title: "Настройки радио"
+sidebar_label: "Радио"
 sidebar_position: 1
-description: Dive into the technical specifics of configuring your Meshtastic radio settings, including frequency ranges, power limits, and channels for optimal communication.
+description: "Технические детали настройки радио в Meshtastic - диапазоны частот, лимиты мощности и Channel - для оптимальной связи."
 ---
 
-There are several config sections in the Meshtastic firmware, these are broken out so they can be sent as small admin messages over the mesh.
+В прошивке Meshtastic есть несколько разделов конфигурации — их выделили отдельно, чтобы отправлять как небольшие админ‑сообщения по Mesh.
 
-|           Name           |                                                                                        Description                                                                                        |
-| :----------------------: | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: |
-| [Bluetooth](./bluetooth) |                                                          The bluetooth config options are: Enabled, Pairing Mode and Fixed PIN.                                                           |
-|  [Channels](./channels)  |                                                                The channels config options are: Index, Role and Settings.                                                                 |
-|    [Device](./device)    |                                                  The device config options are: Device Role, Serial Output, Debug Log and Factory Reset.                                                  |
-|   [Display](./display)   |                                      The display config options are: Screen On Duration, Auto Carousel Interval, Always Point North, and GPS Format.                                      |
-|      [LoRa](./lora)      |    The LoRa config options are: Region, Modem Preset, Max Hops, Transmit Power, Bandwidth, Spread Factor, Coding Rate, Frequency Offset, Transmit Disabled and Ignore Incoming Array.     |
-|   [Network](./network)   |                                               The network config options are: WiFi Enabled, WiFi SSID, WiFi PSK, WiFi Mode and NTP Server.                                                |
-|  [Position](./position)  |            The position config options are: GPS Enabled, GPS Update Interval, GPS Attempt Time, Fixed Position, Smart Broadcast, Broadcast Interval and Position Packet Flags.            |
-|     [Power](./power)     | The power config options are: Charge Current, Power Saving, Shutdown after losing power, ADC Multiplier Override Wait Bluetooth Interval, Light Sleep Interval and Minimum Wake Interval. |
-|  [Security](./security)  |                              The security config options are: Public Key, Private Key, Admin Key, Is Managed, Serial Console, Debug Logs, and Admin Channel.                              |
-|      [User](./user)      |                                                            The user config options are: Long Name, Short Name, and Is Licensed                                                            |
+|         Раздел          |                                                                                                   Описание                                                                                                   |
+| :---------------------: | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: |
+| [Bluetooth](./bluetooth) |                                                              Параметры Bluetooth: Включено, режим привязки и фиксированный PIN.                                                                              |
+|  [Channels](./channels)  |                                                                 Параметры Channel: индекс, роль и настройки.                                                                 |
+|    [Device](./device)    |                                                  Параметры устройства: роль устройства, вывод в Serial, отладочный лог и сброс к заводским.                                                   |
+|   [Display](./display)   |                                     Параметры дисплея: время включенного экрана, интервал автокарусели, «всегда на север» и формат GPS.                                     |
+|      [LoRa](./lora)      | Параметры LoRa: регион, профиль модема, макс. переходов, мощность передачи, полоса, Spread Factor (SF), Coding Rate (CR), смещение частоты, отключить передачу и Ignore Incoming Array. |
+|   [Network](./network)   |                                                  Параметры сети: включить WiFi, WiFi SSID, WiFi PSK, режим WiFi и NTP‑сервер.                                                   |
+|  [Position](./position)  |                       Параметры позиции: включить GPS, интервал обновления GPS, время попытки GPS, фиксированная позиция, Smart Broadcast, интервал вещания и флаги пакета позиции.                       |
+|     [Power](./power)     |     Параметры питания: ток зарядки, энергосбережение, выключение после потери питания, переопределить множитель ADC, интервал ожидания Bluetooth, интервал Light Sleep и мин. интервал бодрствования.      |
+|  [Security](./security)  |                                  Параметры безопасности: публичный ключ, приватный ключ, Admin Key, Is Managed, консоль Serial, отладочные логи и Admin Channel.                                   |
+|      [User](./user)      |                                                             Параметры пользователя: полное имя, короткое имя и есть лицензия.                                                             |

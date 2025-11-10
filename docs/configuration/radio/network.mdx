@@ -1,80 +1,80 @@
 ---
 id: network
-title: Network Configuration
-sidebar_label: Network
-description: Learn about network configuration for your Meshtastic device including NTP, WiFi, and Ethernet.
+title: "Сетевая конфигурация"
+sidebar_label: "Сеть"
+description: "Как настроить сеть для устройства Meshtastic - NTP, Wi‑Fi и Ethernet."
 ---
 
 import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 import { Icon } from "@iconify/react";
 
-The Network config options are: NTP Server, WiFi Enabled, WiFi SSID, WiFi PSK, Ethernet Enabled, IPv4 Networking Mode, Static Address rsyslog Server, and Protocol Flags. Network config uses an admin message sending a `Config.Network` protobuf.
+Параметры Network: NTP Server, WiFi Enabled, WiFi SSID, WiFi PSK, Ethernet Enabled, IPv4 Networking Mode, IPv4 Static Address, rsyslog Server и Protocol Flags. Конфиг Network передаётся админ‑сообщением с protobuf `Config.Network`.
 
-:::info
-Enabling WiFi will disable Bluetooth. Only one connection method will work at a time.
+:::note заметка
+Включение Wi‑Fi отключит Bluetooth. Одновременно работает только один способ подключения.
 :::
 
-ESP32 devices have the ability to connect to WiFi as a client. SoftAP mode is not supported by the Meshtastic firmware.
+Устройства ESP32 могут подключаться к Wi‑Fi как клиент. Режим SoftAP прошивкой Meshtastic не поддерживается.
 
-## Network Config Values
+## Параметры Network {#network-config-values}
 
 ### NTP Server
 
-The NTP server used if IP networking is available.
+NTP‑сервер, если доступна IP‑сеть.
 
-Set to `meshtastic.pool.ntp.org` by default. (Max Length: 32)
+По умолчанию `meshtastic.pool.ntp.org`. (Макс. длина: 32)
 
 ### WiFi Enabled
 
-Enables or Disables WiFi.
+Включить/выключить Wi‑Fi.
 
-Set to `false` (Disabled) by default.
+По умолчанию: `false` (выключено).
 
 ### WiFi SSID
 
-This is your WiFi Network's SSID.
+SSID вашей сети Wi‑Fi.
 
-Empty `""` by default. (Case Sensitive, Max Length: 32)
+По умолчанию пусто `""`. (С учётом регистра, макс. длина: 32)
 
 ### WiFi PSK
 
-This is your WiFi Network's password.
+Пароль вашей сети Wi‑Fi.
 
-Empty `""` by default. (Case Sensitive, Max Length: 64)
+По умолчанию пусто `""`. (С учётом регистра, макс. длина: 64)
 
 ### Ethernet Enabled
 
-Enables or Disables Ethernet.
+Включить/выключить Ethernet.
 
-Set to `false` (Disabled) by default.
+По умолчанию: `false` (выключено).
 
 ### IPv4 Networking Mode
 
-Set to `DHCP` by default. Change to `STATIC` to use a static IP address. Applies to both Ethernet and WiFi.
+По умолчанию `DHCP`. Переключите на `STATIC`, чтобы использовать статический IP. Применяется к Ethernet и Wi‑Fi.
 
 ### IPv4 Static Address configuration
 
-Contains IP, Gateway, Subnet, and DNS server for a static configuration if selected in Networking Mode.
+Содержит IP, Gateway, Subnet и DNS‑сервер для статической конфигурации, если выбрано в Networking Mode.
 
 ### Rsyslog Server
 
-To configure an rsyslog Server and Port. Default logging facility is `user`.
+Настройка rsyslog Server и Port. Facility по умолчанию — `user`.
 
 ### Protocol Flags
 
-Defines which auxiliary network protocols are used to send packets. Values are stored as a bit field of boolean configuration options (bitwise OR of ProtocolFlags).
+Определяет вспомогательные сетевые протоколы для отправки пакетов. Значения хранятся как битовое поле булевых опций конфигурации (побитовое ИЛИ ProtocolFlags).
 
-|     Value     |                        Description                         |
-| :-----------: | :--------------------------------------------------------: |
-| NO_BROADCAST  |     Do not broadcast packets over any network protocol     |
-| UDP_BROADCAST | Enable broadcasting packets via UDP over the local network |
+|     Value     |                       Description                       |
+| :-----------: | :-----------------------------------------------------: |
+| NO_BROADCAST  |     Не рассылать пакеты через какие‑либо протоколы     |
+| UDP_BROADCAST | Включить широковещательную отправку по UDP в локальной сети |
 
-:::tip
-The first time your device restarts after enabling WiFi or Ethernet, it will take an additional 20-30 seconds to boot. This is to generate self-signed SSL keys. The keys will be saved for future reuse.
+:::tip совет
+Первый перезапуск после включения Wi‑Fi или Ethernet займет +20–30 секунд — генерируются самоподписанные SSL‑ключи. Они будут сохранены и переиспользованы.
 :::
 
-## Network Config Client Availability
+## Доступность клиентов для настроек Network {#network-config-client-availability}
 
 <Tabs
   groupId="settings"
@@ -118,12 +118,12 @@ The first time your device restarts after enabling WiFi or Ethernet, it will tak
 
 #### Android
 
-:::info
+:::note заметка
 
-Network Config options are available for Android.
+Параметры Network доступны на Android.
 
-1. Open the Meshtastic App
-2. Navigate to: **Vertical Ellipsis (3 dots top right) > Radio Configuration > Network**
+1. Откройте приложение Meshtastic
+2. Перейдите: **Vertical Ellipsis (3 dots top right) > Radio Configuration > Network**
 
 :::
 
@@ -133,9 +133,9 @@ Network Config options are available for Android.
 
 #### Apple
 
-:::info
+:::note заметка
 
-All Network config options are available on iOS, iPadOS and macOS at Settings > Device Configuration > Network.
+Все параметры Network доступны в iOS, iPadOS и macOS: Settings > Device Configuration > Network.
 
 :::
 
@@ -145,9 +145,9 @@ All Network config options are available on iOS, iPadOS and macOS at Settings > 
 
 #### CLI
 
-:::info
+:::note заметка
 
-All Network config options are available in the python CLI.
+Все параметры Network доступны в Python CLI.
 
 :::
 
@@ -160,35 +160,35 @@ All Network config options are available in the python CLI.
 | network.eth_enabled  |  `true`, `false`  |          `false`          |
 | network.address_mode | `DHCP`, `STATIC`  |          `DHCP`           |
 
-:::tip
+:::tip совет
 
-Because the device will reboot after each command is sent via CLI, it is recommended when setting multiple values in a config section that commands be chained together as one.
+Так как устройство перезагружается после каждой команды из CLI, при настройке нескольких значений в одном разделе удобнее объединить команды в одну строку.
 
-```shell title="Example:"
+```shell title="Пример:"
 meshtastic --set network.wifi_enabled true --set network.wifi_ssid "my network" --set network.wifi_psk mypassword
 ```
 
 :::
 
-```shell title="Set NTP Server"
+```shell title="Задать NTP Server"
 meshtastic --set network.ntp_server "meshtastic.pool.ntp.org"
 ```
 
-```shell title="Enable / Disable WiFi"
+```shell title="Включить / выключить Wi‑Fi"
 meshtastic --set network.wifi_enabled true
 meshtastic --set network.wifi_enabled false
 ```
 
-```shell title="Set WiFi SSID"
+```shell title="Задать Wi‑Fi SSID"
 
 meshtastic --set network.wifi_ssid mynetwork
-// With spaces
+// С пробелами
 meshtastic --set network.wifi_ssid "my network"
 ```
 
-```shell title="Set WiFi password"
+```shell title="Задать пароль Wi‑Fi"
 meshtastic --set network.wifi_psk mypassword
-// With spaces
+// С пробелами
 meshtastic --set network.wifi_psk "my password"
 ```
 
@@ -198,20 +198,20 @@ meshtastic --set network.wifi_psk "my password"
 
 #### Web
 
-:::info
-All Network config options are available in the Web UI.
+:::note заметка
+Все параметры Network доступны в Web UI.
 :::
 
 </TabItem>
 
 </Tabs>
 
-## Examples
+## Примеры {#examples}
 
-### WiFi Client
+### Wi‑Fi клиент {#wifi-client}
 
-With `network.wifi_ssid` & `network.wifi_psk` populated, the device will know to connect to your network. Make sure you are in range of your WiFi and it is a 2.4GHz-only network. If you have a single Meshtastic device on your local network it's easy to connect to your device with DNS `http://meshtastic.local`. If you have multiple Meshtastic devices you will need to connect using their respective IP addresses.
+При заполненных `network.wifi_ssid` и `network.wifi_psk` устройство подключится к вашей сети. Убедитесь, что вы в зоне покрытия и сеть 2.4 GHz. Если в вашей локальной сети один девайс Meshtastic, можно зайти по DNS `http://meshtastic.local`. Если устройств несколько — подключайтесь по их IP‑адресам.
 
-### Disable WiFi
+### Отключить Wi‑Fi {#disable-wifi}
 
-To disable WiFi completely, set `network.wifi_enabled` to `false`.
+Чтобы полностью отключить Wi‑Fi, установите `network.wifi_enabled` в `false`.

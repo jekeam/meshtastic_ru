@@ -1,45 +1,46 @@
 ---
 id: device
-title: Device Configuration
-sidebar_label: Device
-description: Learn about and compare device roles such as Client, Repeater, and Router as well as other Device settings.
+title: "Настройки устройства"
+sidebar_label: "Устройство"
+description: "О ролях устройства (Client, Repeater, Router и др.) и других настройках Device."
 ---
 
 import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 import { Icon } from "@iconify/react";
 
-The device config options are: Role, Rebroadcast Mode, GPIO for User Button, GPIO for PWM Buzzer, Node Info Broadcast Seconds, Double Tap as Button Press, Disable Triple Click, Timezone Definition, and LED Heartbeat Disabled. Device config uses an admin message sending a `Config.Device` protobuf.
+Опции Device: Role, Rebroadcast Mode, GPIO для кнопки, GPIO для PWM‑зуммера, Node Info Broadcast Seconds, Double Tap as Button Press, Disable Triple Click, Timezone Definition и LED Heartbeat Disabled. Настройки Device отправляются админ‑сообщением с protobuf `Config.Device`.
 
 ## Device Config Values
 
-## Roles
+## Роли
 
 | Device Role    | Description                                                                                                                                                      | Best Uses                                                                                                                                                   |
 | -------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| CLIENT         | App connected or stand alone messaging device. Rebroadcasts packets when no other node has done so.                                                              | General use for individuals needing to communicate over the Meshtastic network with support for client applications.                                        |
-| CLIENT_MUTE    | Device that does not forward packets from other devices.                                                                                                         | Situations where a device needs to participate in the network without assisting in packet routing, reducing network load.                                   |
-| CLIENT_HIDDEN  | Device that only broadcasts as needed for stealth or power savings.                                                                                              | Use in stealth/hidden deployments or to reduce airtime/power consumption while still participating in the network.                                          |
-| CLIENT_BASE    | Personal base station: always rebroadcasts packets from or to its favorited nodes. Handles all other packets like CLIENT.                                        | Use for stronger attic/roof “base station” nodes to distribute messages more widely from your own weaker, indoor, or less-well-positioned nodes.            |
-| TRACKER        | Broadcasts GPS position packets as priority.                                                                                                                     | Tracking the location of individuals or assets, especially in scenarios where timely and efficient location updates are critical.                           |
-| LOST_AND_FOUND | Broadcasts location as message to default channel regularly for to assist with device recovery.                                                                  | Used for recovery efforts of a lost device.                                                                                                                 |
-| SENSOR         | Broadcasts telemetry packets as priority.                                                                                                                        | Deploying in scenarios where gathering environmental or other sensor data is crucial, with efficient power usage and frequent updates.                      |
-| TAK            | Optimized for ATAK system communication, reduces routine broadcasts.                                                                                             | Integration with ATAK systems (via the Meshtastic ATAK Plugin) for communication in tactical or coordinated operations.                                     |
-| TAK_TRACKER    | Enables automatic TAK PLI broadcasts and reduces routine broadcasts.                                                                                             | Standalone PLI integration with ATAK systems for communication in tactical or coordinated operations.                                                       |
-| REPEATER [^4] | Infrastructure node for extending network coverage by always rebroadcasting packets once with minimal overhead. Not visible in Nodes list.                       | Best positioned in strategic locations to maximize the network's overall coverage. Device is not shown in topology.                                       |
-| ROUTER         | Infrastructure node for extending network coverage by always rebroadcasting packets once. Visible in Nodes list.                                                 | Best positioned in strategic locations to maximize the network's overall coverage. Device is shown in topology.                                             |
-| ROUTER_LATE    | Infrastructure node that always rebroadcasts packets once but only after all other modes, ensuring additional coverage for local clusters. Visible in Nodes list. | Ideal for covering dead spots or ensuring reliability for a cluster of nodes where placement doesn’t benefit the broader mesh. Device is shown in topology. |
+| CLIENT         | Приложение подключено или автономное устройство для сообщений. Ретранслирует пакеты, если этого не сделал никто другой.                                          | Универсально для личной связи в Mesh с поддержкой клиентских приложений.                                                                                    |
+| CLIENT_MUTE    | Устройство не пересылает пакеты от других.                                                                                                                       | Когда нужно участвовать в сети, но не помогать маршрутизации, снижая нагрузку на сеть.                                                                      |
+| CLIENT_HIDDEN  | Передает только по необходимости — для скрытности или экономии энергии.                                                                                          | Для скрытых/экономичных развертываний: меньше эфира/потребления, но участие в сети сохраняется.                                                             |
+| CLIENT_BASE    | Личная базовая станция: всегда ретранслирует пакеты от/к избранным узлам. Остальные пакеты обрабатывает как CLIENT.                                              | Сильные «базовые» узлы на чердаке/крыше для широкого распространения сообщений от ваших более слабых/внутренних/неудачно расположенных узлов.              |
+| TRACKER        | Приоритет на пакеты GPS‑позиции.                                                                                                                                 | Отслеживание людей или объектов, где важны своевременные и эффективные обновления местоположения.                                                           |
+| LOST_AND_FOUND | Регулярно отправляет позицию как сообщение в default channel для помощи в поиске устройства.                                                                     | Для восстановления/поиска потерянного устройства.                                                                                                           |
+| SENSOR         | Приоритет на телеметрию.                                                                                                                                         | Сбор данных от датчиков (окружающей среды и др.) с эффективным расходом энергии и частыми обновлениями.                                                     |
+| TAK            | Оптимизирован для связи с системой ATAK, снижает рутинные передачи.                                                                                              | Интеграция с ATAK (через Meshtastic ATAK Plugin) для связи в тактических/координируемых операциях.                                                          |
+| TAK_TRACKER    | Включает автоматические TAK PLI и снижает рутинные передачи.                                                                                                     | Автономная интеграция PLI с ATAK для связи в тактических/координируемых операциях.                                                                          |
+| REPEATER [^4] | Инфраструктурный узел: расширяет покрытие, всегда ретранслируя пакеты один раз с минимальными накладными. Не виден в списке узлов.                              | Ставить в стратегических местах для максимального покрытия сети. Устройство не показывается в топологии.                                                   |
+| ROUTER         | Инфраструктурный узел: расширяет покрытие, всегда ретранслируя пакеты один раз. Виден в списке узлов.                                                            | Ставить в стратегических местах для максимального покрытия сети. Устройство показывается в топологии.                                                       |
+| ROUTER_LATE    | Инфраструктурный узел: всегда ретранслирует пакеты один раз, но после всех остальных, добавляя покрытие для локальных кластеров. Виден в списке узлов.          | Для «мёртвых зон» или повышения надежности кластера узлов, если их размещение не помогает всей mesh. Устройство показывается в топологии.                   |
 
-[^4]: This role has been deprecated as of firmware version 2.7.11
-:::tip
-Still not sure which role to use? Check out our blog post: [Choosing the Right Device Role](/blog/choosing-the-right-device-role/)
+[^4]: Эта роль устарела начиная с firmware версии 2.7.11
+
+:::tip подсказка
+Не уверены, какую роль выбрать? Почитайте пост: [Choosing the Right Device Role](/blog/choosing-the-right-device-role/)
 :::
 
-Looking for ROUTER_CLIENT? This role was deprecated in firmware 2.3.15. Learn more in the [2.3.15 release notes](https://github.com/meshtastic/firmware/releases/tag/v2.3.15.deb7c27)
+Ищете ROUTER_CLIENT? Эта роль устарела в firmware 2.3.15. Подробнее в [релиз-нотах 2.3.15](https://github.com/meshtastic/firmware/releases/tag/v2.3.15.deb7c27)
 
-### Role Comparison
+### Сравнение ролей
 
-This table shows the **default** values after selecting a preset. As always, individual settings can be adjusted after choosing a preset.
+В таблице показаны значения по умолчанию после выбора пресета. Любые параметры можно изменить после выбора пресета.
 
 | Device Role    | BLE/WiFi/Serial | Screen Enabled | Power Consumption | Retransmit     | Prioritized Routing | Visible in Nodes List |
 | -------------- | --------------- | -------------- | ----------------- | -------------- | ------------------- | --------------------- |
@@ -56,70 +57,70 @@ This table shows the **default** values after selecting a preset. As always, ind
 | ROUTER_LATE    | Yes             | Yes            | High              | Yes            | No                  | Yes                   |
 | REPEATER       | Yes             | No             | High              | Yes            | Yes                 | No                    |
 
-[^1]: **Awake Only** indicates retransmissions will occur normally but not while asleep between transmission intervals.
+[^1]: **Awake Only** означает, что ретрансляция идет как обычно, но не во время сна между интервалами передач.
 
-[^2]: The `ROUTER` role enables [Power Saving](/docs/configuration/radio/power/#power-saving) by default (ESP32 only). When needing to update a `ROUTER` via BLE, it's recommended you utilize an admin channel to temporarily change the role in order to update and then revert when done.
+[^2]: Роль `ROUTER` по умолчанию включает [Power Saving](/docs/configuration/radio/power/#power-saving) (только ESP32). Если нужно обновить `ROUTER` через BLE, рекомендуется использовать админ‑канал, временно сменить роль для обновления и затем вернуть обратно.
 
-[^3]: **Favorites Only** indicates that the `CLIENT_BASE` will prioritize packets from or to any favorited nodes. From your `CLIENT_BASE`, you should favorite all of your other nodes which are typically within range of the better-positioned `CLIENT_BASE` base station.
+[^3]: **Favorites Only** означает, что `CLIENT_BASE` будет приоритизировать пакеты от/к избранным узлам. На `CLIENT_BASE` добавьте в избранные все ваши другие узлы, которые обычно в зоне уверенной связи вашей базовой станции `CLIENT_BASE`.
 
-## Notes about Power Saving + Role behavior
+## Примечания о Power Saving и поведении ролей
 
-### ESP32 Platform Only
+### Только платформа ESP32
 
-Every role except for the `TRACKER` and `SENSOR` roles are capable of traditional _sleep_ behavior using the `power.is_power_saving` setting. When a node goes to sleep, in general, the serial console, peripherals, GPS, and WiFi/Bluetooth radio are all shut down to conserve power. The CPU will enter a low power state (light sleep or deep sleep on the ESP32). The LoRA radio will be left on stand-by for receiving any packets which will _wake up_ the device to resume services and respond.
+Все роли, кроме `TRACKER` и `SENSOR`, поддерживают обычный режим _sleep_ через `power.is_power_saving`. Когда узел засыпает, как правило, консоль Serial, периферия, GPS и Wi‑Fi/Bluetooth выключаются для экономии. CPU уходит в пониженное энергопотребление (light sleep или deep sleep на ESP32). Радио LoRA остается в режиме standby для приема пакетов, которые «разбудят» устройство для возобновления работы.
 
-Timeout configurations of `display.screen_on_secs` (Screen timeout), `power.min_wake_secs` (Minimum time till sleep), and `power.wait_bluetooth_secs` (Bluetooth timeout) will delay a node's transition to a sleep state. The timeouts and subsequent transition to sleep states may also be _reset_ by external events or actions such as receiving a packet, pressing a button, or connecting via client through serial or other means.
+Таймауты `display.screen_on_secs` (таймаут экрана), `power.min_wake_secs` (минимальное время до сна) и `power.wait_bluetooth_secs` (таймаут Bluetooth) задерживают переход узла в сон. Таймауты и переход в сон также могут _сбрасываться_ внешними событиями: прием пакета, нажатие кнопки, подключение клиента по Serial и т. п.
 
-For the `ROUTER` role, the `power.is_power_saving` behavior of sleep is enabled automatically and cannot be turned off.
+Для роли `ROUTER` `power.is_power_saving` включается автоматически и его нельзя отключить.
 
-### ESP32 and NRF52 Platforms
+### Платформы ESP32 и NRF52
 
-In the `TRACKER` and `SENSOR` roles, there are special sleep behaviors when combined with `power.is_power_saving`. For `TRACKER`, the device will go to sleep for `position.position_broadcast_secs` and upon waking will send a position packet when the GPS provides a valid location and repeat the cycle. For `SENSOR`, the device will go to sleep for `telemetry.environment_update_interval` and upon waking will gather environment data and send a telemetry packet and repeat the cycle. For both of these roles, the LoRA radio does not remain in standby mode to accept packets and wake up the device. Sleep remains constrained to their respective transmission intervals.
+В ролях `TRACKER` и `SENSOR` при `power.is_power_saving` действуют особые режимы сна. Для `TRACKER` устройство засыпает на `position.position_broadcast_secs`, при пробуждении отправляет позицию при наличии валидного GPS и повторяет цикл. Для `SENSOR` устройство засыпает на `telemetry.environment_update_interval`, при пробуждении собирает данные окружения, отправляет телеметрию и повторяет цикл. В обоих случаях радио LoRA не остается в standby для приема пакетов и пробуждения устройства. Сон ограничен их интервалами передачи.
 
 ## Rebroadcast Mode
 
-This setting defines the device's behavior for how messages are rebroadcasted.
+Определяет поведение устройства при ретрансляции сообщений.
 
 |        Value         |                                                                                                  Description                                                                                                  |
 | :------------------: | :-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: |
-|        `ALL`         |               ALL (Default) - This setting will rebroadcast ALL messages from its primary mesh as well as other meshes with the same modem settings, including when encryption settings differ.               |
-| `ALL_SKIP_DECODING`  |                                  ALL_SKIP_DECODING - Same as behavior as ALL, but skips packet decoding and simply rebroadcasts them. **Only available with Repeater role.**                                  |
-|     `LOCAL_ONLY`     |             LOCAL_ONLY - Ignores observed messages from foreign meshes that are open or those which it cannot decrypt. Only rebroadcasts message on the nodes local primary / secondary channels.             |
-|     `KNOWN_ONLY`     |            KNOWN_ONLY - Ignores observed messages from foreign meshes like LOCAL_ONLY, but takes it a step further by also ignoring messages from nodenums not in the node's known list (NodeDB).             |
-|        `NONE`        |                                       NONE - Only permitted for SENSOR, TRACKER and TAK_TRACKER roles, this will inhibit all rebroadcasts, not unlike CLIENT_MUTE role.                                       |
-| `CORE_PORTNUMS_ONLY` | CORE_PORTNUMS_ONLY - Ignores packets from non-standard portnums such as: TAK, RangeTest, PaxCounter, etc. Only rebroadcasts packets with standard portnums: NodeInfo, Text, Position, Telemetry, and Routing. |
+|        `ALL`         | ALL (по умолчанию) — ретранслирует ВСЕ сообщения из основного Mesh, а также из других Mesh с теми же настройками модема, даже если отличаются настройки шифрования.                                          |
+| `ALL_SKIP_DECODING`  | ALL_SKIP_DECODING — как ALL, но пропускает декодирование пакетов и просто ретранслирует их. **Доступно только с ролью Repeater.**                                                                           |
+|     `LOCAL_ONLY`     | LOCAL_ONLY — игнорирует сообщения из чужих Mesh, которые открыты или не могут быть расшифрованы. Ретранслирует только сообщения на локальных primary/secondary каналах узла.                                 |
+|     `KNOWN_ONLY`     | KNOWN_ONLY — как LOCAL_ONLY, но дополнительно игнорирует сообщения от nodenums, которых нет в списке известных узлов (NodeDB).                                                                               |
+|        `NONE`        | NONE — разрешено только для ролей SENSOR, TRACKER и TAK_TRACKER; полностью запрещает ретрансляцию, похоже на роль CLIENT_MUTE.                                                                               |
+| `CORE_PORTNUMS_ONLY` | CORE_PORTNUMS_ONLY — игнорирует пакеты с нестандартными portnums (например: TAK, RangeTest, PaxCounter и т. п.). Ретранслирует только стандартные: NodeInfo, Text, Position, Telemetry и Routing.            |
 
-## GPIO for User Button
+## GPIO для кнопки пользователя
 
-This is the GPIO pin number that will be used for the user button, if your device does not come with a predefined user button.
+Номер GPIO, который будет использоваться для пользовательской кнопки, если на устройстве нет своей.
 
-## GPIO for PWM Buzzer
+## GPIO для PWM‑зуммера
 
-This is the GPIO pin number that will be used for the PWM buzzer, if your device does not come with a predefined buzzer.
+Номер GPIO, который будет использоваться для PWM‑зуммера, если на устройстве нет своего.
 
-## Node Info Broadcast Seconds
+## Интервал трансляции NodeInfo (сек)
 
-This is the number of seconds between NodeInfo message (containing i.a. long and short name) broadcasts from the device. The device will still respond ad-hoc to NodeInfo messages when a response is wanted. When the device hears any packet from a node it doesn't know yet, it will send its NodeInfo and ask for a response automatically.
+Число секунд между передачами NodeInfo (содержит, в т. ч., короткое и длинное имя). Устройство также отвечает на запросы NodeInfo по требованию. Когда устройство слышит пакет от неизвестного узла, оно отправляет свой NodeInfo и автоматически запрашивает ответ.
 
-## Double Tap as Button Press
+## Двойной тап = нажатие кнопки
 
-This option will enable a double tap, when a supported accelerometer is attached to the device, to be treated as a button press.
+Позволяет считать двойной тап (если к устройству подключен поддерживаемый акселерометр) нажатием кнопки.
 
-## Disable Triple Click
+## Отключить тройное нажатие
 
-Disables the triple-press of user button to enable or disable GPS.
+Отключает тройное нажатие кнопки пользователя для включения/выключения GPS.
 
-## TZDEF (Timezone Definition)
+## TZDEF (часовой пояс)
 
-The `tzdef` setting allows the local offset to be defined for the device. It uses the TZ Database format to display the correct local time on the device display and in its logs.
+Параметр `tzdef` задает локальное смещение для устройства. Используется формат базы TZ Database, чтобы правильно показывать локальное время на дисплее и в логах.
 
-To set the timezone, use the POSIX TZ Database string for the relevant region. Here is a list of [supported timezones](https://github.com/nayarsystems/posix_tz_db/blob/master/zones.csv). For example, if your region is `America/Los_Angeles`, you would input `PST8PDT,M3.2.0,M11.1.0` as the timezone.
+Чтобы задать часовой пояс, используйте строку POSIX TZ Database для нужного региона. Список [поддерживаемых таймзон](https://github.com/nayarsystems/posix_tz_db/blob/master/zones.csv). Например, для региона `America/Los_Angeles` задайте `PST8PDT,M3.2.0,M11.1.0`.
 
-## LED Heartbeat Disabled
+## Отключить мигание LED
 
-If true, disable the default blinking LED (LED_PIN) behavior on the device.
+Если true — отключает стандартное мигание LED (LED_PIN) на устройстве.
 
-## Device Config Client Availability
+## Доступность в клиентах
 
 <Tabs
   groupId="settings"
@@ -163,12 +164,12 @@ If true, disable the default blinking LED (LED_PIN) behavior on the device.
 
 #### Android
 
-:::info
+:::info заметка
 
-Device Config is available for Android.
+Настройки Device доступны на Android.
 
-1. Open the Meshtastic App
-2. Navigate to: **Vertical Ellipsis (3 dots top right) > Radio Configuration > Device**
+1. Откройте приложение Meshtastic
+2. Перейдите: **Vertical Ellipsis (3 точки сверху справа) > Radio Configuration > Device**
 
 :::
 
@@ -177,8 +178,8 @@ Device Config is available for Android.
 
 #### Apple
 
-:::info
-All device config options other than NTP Server are available on iOS, iPadOS and macOS at Settings > Device Configuration > Device.
+:::info заметка
+Все настройки Device, кроме NTP Server, доступны на iOS, iPadOS и macOS: Settings > Device Configuration > Device.
 :::
 
 </TabItem>
@@ -186,9 +187,9 @@ All device config options other than NTP Server are available on iOS, iPadOS and
 
 #### CLI
 
-:::info
+:::info заметка
 
-All device config options are available in the python CLI. Example commands are below:
+Все опции Device доступны в python CLI. Примеры ниже:
 
 :::
 
@@ -198,25 +199,25 @@ All device config options are available in the python CLI. Example commands are 
 | device.rebroadcast_mode           | `ALL`, `ALL_SKIP_DECODING`, `LOCAL_ONLY`                           | `ALL`             |
 | device.button_gpio                | `0` - `34`                                                         | `0`               |
 | device.buzzer_gpio                | `0` - `34`                                                         | `0`               |
-| device.node_info_broadcast_secs   | `3600` - `UINT MAX`                                                | `10800` (3 hours) |
+| device.node_info_broadcast_secs   | `3600` - `UINT MAX`                                                | `10800` (3 часа)  |
 | device.double_tap_as_button_press | `false`, `true`                                                    | `false`           |
 | device.disable_triple_click       | `false`, `true`                                                    | `false`           |
 
-:::tip
+:::tip подсказка
 
-Because the device will reboot after each command is sent via CLI, it is recommended when setting multiple values in a config section that commands be chained together as one.
+Так как устройство перезагружается после каждой команды из CLI, при настройке нескольких значений в одном разделе удобнее связать их в одну команду.
 
-```shell title="Example:"
+```shell title="Пример:"
 meshtastic --set device.role CLIENT --set device.tzdef UTC0
 ```
 
 :::
 
-```shell title="Set the role to client"
+```shell title="Назначить роль CLIENT"
 meshtastic --set device.role CLIENT
 ```
 
-```shell title="Set tzdef"
+```shell title="Задать tzdef"
 meshtastic --set device.tzdef UTC0
 ```
 
@@ -225,8 +226,8 @@ meshtastic --set device.tzdef UTC0
 
 #### Web
 
-:::info
-All device config options are available in the Web UI.
+:::info заметка
+Все параметры Device доступны в Web UI.
 :::
 
 </TabItem>
