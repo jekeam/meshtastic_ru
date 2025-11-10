@@ -1,163 +1,163 @@
----
-id: bluetooth
-title: Bluetooth Settings
-sidebar_label: Bluetooth
-description: Configure Bluetooth settings on your Meshtastic device for connectivity with smartphones and other devices.
----
-
-import Tabs from "@theme/Tabs";
-import TabItem from "@theme/TabItem";
-import { Icon } from "@iconify/react";
-
-The Bluetooth config options are: Enabled, Pairing Mode and Fixed PIN Value. Bluetooth config uses an admin message sending a `Config.Bluetooth` protobuf.
-
-:::info
-ESP32 Devices: Bluetooth will be disabled if WiFi is enabled. The WiFi setting takes precedence.
-:::
-
-## Bluetooth Config Values
-
-### Enabled
-
-Enables Bluetooth.
-
-### Pairing Mode
-
-Specify pairing mode.
-
-`RANDOM_PIN` generates a random PIN during runtime.
-`FIXED_PIN` uses the fixed PIN that should then be additionally specified.
-Finally, `NO_PIN` disables PIN authentication.
-
-### Default Pairing Mode
-
-The default pairing mode will be determined based on whether the device has or does not have a screen attached to it during the first boot (or with a stale device state) unless manually configured via the Bluetooth config options.
-
-- **Screen Attached:** If your device boots up for the first time (or with a stale device state), and a screen is detected, the default pairing mode will be set to `RANDOM_PIN`. Should the attached screen be removed after the device has already been booted, the default pairing mode of `RANDOM_PIN` will remain unless manually changed to `FIXED_PIN` or `NO_PIN`. It is recommended the pairing mode be updated prior to removing the attached screen.
-- **No Screen Attached:** If your device boots up for the first time (or with a stale device state), and no screen is detected, the default paring mode will be set to `FIXED_PIN` with the default value listed below unless manually configured to a custom value.
-
-### Fixed PIN
-
-If your pairing mode is set to `FIXED_PIN`, the default value is **123456**. For all other pairing modes, this number is ignored. A custom integer (6 digits) can be set via the Bluetooth config options.
-
-:::danger Warning
-It is strongly recommended that you change the default `FIXED_PIN` code on your device. Leaving the default code in place can pose a significant security risk.
-:::
-
-## Bluetooth Config Client Availability
-
-<Tabs
-  groupId="settings"
-  defaultValue="apple"
-  values={[
-    {
-      label: (
-        <>
-          <Icon icon="mdi:android" height="1.5rem" style={{ marginRight: "0.25rem" }} /> Android
-        </>
-      ),
-      value: "android",
-    },
-    {
-      label: (
-        <>
-          <Icon icon="mdi:apple" height="1.5rem" style={{ marginRight: "0.25rem" }} /> Apple
-        </>
-      ),
-      value: "apple",
-    },
-    {
-      label: (
-        <>
-          <Icon icon="mdi:terminal" height="1.5rem" style={{ marginRight: "0.25rem" }} /> CLI
-        </>
-      ),
-      value: "cli",
-    },
-    {
-      label: (
-        <>
-          <Icon icon="mdi:internet" height="1.5rem" style={{ marginRight: "0.25rem" }} /> Web
-        </>
-      ),
-      value: "web",
-    },
-  ]}>
-
-<TabItem value="android">
-
-#### Android
-
-:::info
-
-All Bluetooth config options are available for Android.
-
-1. Open the Meshtastic App
-2. Navigate to: **Vertical Ellipsis (3 dots top right) > Radio Configuration > Bluetooth**
-
-:::
-
-</TabItem>
-<TabItem value="apple">
-
-#### Apple
-
-:::info
-
-All bluetooth config options are available on iOS, iPadOS and macOS at Settings > Device Configuration > Bluetooth.
-
-:::
-
-</TabItem>
-<TabItem value="cli">
-
-#### CLI
-
-:::info
-
-All Bluetooth config options are available in the python CLI. Example commands are below:
-
-:::
-
-|       Setting        |          Acceptable Values          |   Default    |
-| :------------------: | :---------------------------------: | :----------: |
-| `bluetooth.enabled`  |           `true`, `false`           |    `true`    |
-|   `bluetooth.mode`   | `RANDOM_PIN`, `FIXED_PIN`, `NO_PIN` | `RANDOM_PIN` |
-| `bluetooth.fixed_pin` |        `integer` (6 digits)         |   `123456`   |
-
-:::tip
-
-Because the device will reboot after each command is sent via CLI, it is recommended when setting multiple values in a config section that commands be chained together as one.
-
-```shell title="Example:"
-meshtastic --set bluetooth.enabled true  --set bluetooth.fixed_pin 111111
-```
-
-:::
-
-```shell title="Enable/Disable Bluetooth Module"
-meshtastic --set bluetooth.enabled true
-meshtastic --set bluetooth.enabled false
-```
-
-```shell title="Set a fixed pin"
-meshtastic --set bluetooth.mode FIXED_PIN
-meshtastic --set bluetooth.fixed_pin 111111
-```
-
-</TabItem>
-<TabItem value="web">
-
-#### Web
-
-:::info
-
-All Bluetooth module config options are available for the Web UI.
-
-1. Open the Meshtastic Web UI.
-2. Navigate to: **Radio Config > Bluetooth**
-
-:::
-
-</TabItem>
+---
+id: bluetooth
+title: "Настройки Bluetooth"
+sidebar_label: "Bluetooth"
+description: "Настройка Bluetooth на устройстве Meshtastic для подключения к смартфонам и другим устройствам."
+---
+
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+import { Icon } from "@iconify/react";
+
+Параметры Bluetooth: Enabled, Pairing Mode и Fixed PIN. Настройка Bluetooth отправляется админ‑сообщением `Config.Bluetooth` (protobuf).
+
+:::note заметка
+ESP32: Bluetooth отключается, если включен Wi‑Fi. Приоритет у Wi‑Fi.
+:::
+
+## Параметры Bluetooth {#bluetooth-config-values}
+
+### Включено {#enabled}
+
+Включает Bluetooth.
+
+### Режим привязки {#pairing-mode}
+
+Выберите режим привязки.
+
+`RANDOM_PIN` генерирует случайный PIN во время работы.
+`FIXED_PIN` использует фиксированный PIN, который нужно задать отдельно.
+`NO_PIN` отключает проверку PIN.
+
+### Режим привязки по умолчанию {#default-pairing-mode}
+
+Режим по умолчанию выбирается в зависимости от того, подключён ли к устройству экран при первом запуске (или со сброшенным состоянием устройства), если вручную не задан через настройки Bluetooth.
+
+- **Экран подключён:** Если устройство загружается впервые (или со сброшенным состоянием) и обнаружен экран, режим по умолчанию будет `RANDOM_PIN`. Если экран снять после загрузки, режим `RANDOM_PIN` останется, пока вы вручную не смените его на `FIXED_PIN` или `NO_PIN`. Рекомендуется изменить режим до снятия экрана.
+- **Экрана нет:** Если устройство загружается впервые (или со сброшенным состоянием) и экран не обнаружен, режим по умолчанию будет `FIXED_PIN` со значением ниже, если вручную не задать другое.
+
+### Фиксированный PIN {#fixed-pin}
+
+Если выбран `FIXED_PIN`, значение по умолчанию — **123456**. Для других режимов это число игнорируется. Можно задать свой 6‑значный PIN в настройках Bluetooth.
+
+:::danger предупреждение
+Настоятельно рекомендуется сменить PIN по умолчанию для `FIXED_PIN`. Дефолтный код — серьёзный риск для безопасности.
+:::
+
+## Доступность настройки Bluetooth в клиентах {#bluetooth-config-client-availability}
+
+<Tabs
+  groupId="settings"
+  defaultValue="apple"
+  values={[
+    {
+      label: (
+        <>
+          <Icon icon="mdi:android" height="1.5rem" style={{ marginRight: "0.25rem" }} /> Android
+        </>
+      ),
+      value: "android",
+    },
+    {
+      label: (
+        <>
+          <Icon icon="mdi:apple" height="1.5rem" style={{ marginRight: "0.25rem" }} /> Apple
+        </>
+      ),
+      value: "apple",
+    },
+    {
+      label: (
+        <>
+          <Icon icon="mdi:terminal" height="1.5rem" style={{ marginRight: "0.25rem" }} /> CLI
+        </>
+      ),
+      value: "cli",
+    },
+    {
+      label: (
+        <>
+          <Icon icon="mdi:internet" height="1.5rem" style={{ marginRight: "0.25rem" }} /> Web
+        </>
+      ),
+      value: "web",
+    },
+  ]}>
+
+<TabItem value="android">
+
+#### Android
+
+:::note заметка
+
+Все параметры Bluetooth доступны на Android.
+
+1. Откройте приложение Meshtastic
+2. Перейдите: **Vertical Ellipsis (3 dots, сверху справа) > Radio Configuration > Bluetooth**
+
+:::
+
+</TabItem>
+<TabItem value="apple">
+
+#### Apple
+
+:::note заметка
+
+Все параметры Bluetooth доступны на iOS, iPadOS и macOS: **Settings > Device Configuration > Bluetooth**.
+
+:::
+
+</TabItem>
+<TabItem value="cli">
+
+#### CLI
+
+:::note заметка
+
+Все параметры Bluetooth доступны в Python CLI. Примеры команд ниже:
+
+:::
+
+|      Параметр       |        Допустимые значения          | По умолчанию |
+| :-----------------: | :----------------------------------: | :----------: |
+| `bluetooth.enabled` |           `true`, `false`            |    `true`    |
+|  `bluetooth.mode`   | `RANDOM_PIN`, `FIXED_PIN`, `NO_PIN`  | `RANDOM_PIN` |
+| `bluetooth.fixed_pin` |        `integer` (6 digits)         |   `123456`   |
+
+:::tip подсказка
+
+Так как устройство перезагружается после каждой команды из CLI, при изменении нескольких значений удобнее объединять их в одну команду.
+
+```shell title="Пример:"
+meshtastic --set bluetooth.enabled true  --set bluetooth.fixed_pin 111111
+```
+
+:::
+
+```shell title="Включить/выключить модуль Bluetooth"
+meshtastic --set bluetooth.enabled true
+meshtastic --set bluetooth.enabled false
+```
+
+```shell title="Задать фиксированный PIN"
+meshtastic --set bluetooth.mode FIXED_PIN
+meshtastic --set bluetooth.fixed_pin 111111
+```
+
+</TabItem>
+<TabItem value="web">
+
+#### Web
+
+:::note заметка
+
+Все параметры модуля Bluetooth доступны в Web UI.
+
+1. Откройте Meshtastic Web UI.
+2. Перейдите: **Radio Config > Bluetooth**
+
+:::
+
+</TabItem>
 </Tabs>
