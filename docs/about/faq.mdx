@@ -1,9 +1,9 @@
 ---
 id: faq
-title: FAQs
+title: FAQ
 slug: /faq
 sidebar_position: 3
-description: "Find answers to your Meshtastic questions: from getting started, device setup, to advanced features. Learn about app compatibility, channel sharing, and ham license benefits. Dive into our comprehensive FAQ."
+description: "Ответы на ваши вопросы по Meshtastic: от начала работы и настройки устройств до продвинутых фич. Совместимость приложений, обмен Channel, плюсы лицензии радиолюбителя и многое другое. Полный FAQ."
 ---
 
 import { FaqAccordion } from "/src/components/FaqAccordion";
@@ -14,251 +14,251 @@ export const Faq = {
   general: [
     {
       title:
-        "Where can I get additional help, ask questions, or bond with the Meshtastic community?",
-      content: `This site (which has a great search function) is the preferred place for up-to-date documentation. Many of our users and developers hang out on the [Meshtastic Discord](https://discord.gg/ktMAKGBnBs) server where you may connect with like-minded people.`,
+        "Где получить помощь, задать вопросы и пообщаться с сообществом Meshtastic?",
+      content: `Этот сайт (с отличным поиском) — основное место с актуальной документацией. Многие пользователи и разработчики общаются на сервере [Meshtastic Discord](https://discord.gg/ktMAKGBnBs), где можно найти единомышленников.`,
     },
     {
-      title: "How can I contribute to Meshtastic?",
+      title: "Как я могу помочь проекту Meshtastic?",
       content:
-        "Everyone contributes in a different way. Join the [Meshtastic Discord](https://discord.gg/ktMAKGBnBs) and introduce yourself. We're all very friendly. If you'd like to pitch in some code, check out the [Development](/docs/developers) menu on the left. If you'd like to contribute financially, please visit our page on [Open Collective](https://opencollective.com/meshtastic) or you may choose to [sponsor a developer](https://github.com/sponsors/meshtastic). Check out [Contributing](/docs/contributing/) for more details.",
+        "Вариантов много. Присоединяйтесь к [Meshtastic Discord](https://discord.gg/ktMAKGBnBs) и представьтесь — здесь дружно. Хотите внести код — загляните в раздел [Development](/docs/developers) слева. Хотите поддержать финансово — посетите наш [Open Collective](https://opencollective.com/meshtastic) или можете [поддержать разработчика](https://github.com/sponsors/meshtastic). Подробнее — в [Contributing](/docs/contributing/).",
     },
   ],
   firmware: [
     {
-      title: "Can I update my node's firmware over the mesh?",
-      content: `No, Meshtastic does not support OTA updates over LoRa.  Please visit [Flash Firmware](/docs/getting-started/flashing-firmware/) for update options.`,
+      title: "Можно обновить прошивку узла по Mesh?",
+      content: `Нет, OTA по LoRa не поддерживается. См. [Прошить устройство](/docs/getting-started/flashing-firmware/) для вариантов обновления.`,
     },
     {
-      title: "Which version of firmware should I use?",
-      content: `Currently, there are two types of Meshtastic firmware releases, "Alpha" and "Beta". Firmware releases are labeled with the version number, commit hash and the type. Installing the latest beta release recommended for most cases. Alpha release are geared towards users interested in testing the new features, fixes or enhancements with the understanding there are additional risks and potential for instability compared to running a beta release.`,
+      title: "Какую версию прошивки использовать?",
+      content: `Сейчас есть два типа релизов прошивки Meshtastic: "Alpha" и "Beta". Релизы помечены номером версии, хэшем коммита и типом. В большинстве случаев ставьте последнюю Beta. Alpha — для тех, кто хочет тестировать новые фичи/фиксы/улучшения, понимая дополнительные риски и возможную нестабильность по сравнению с Beta.`,
     },
     {
-      title: "How often should I update firmware?",
-      content: `Firmware should be kept up to date. While it is not necessary to update whenever a new release comes out it's a good idea to follow the Discord Server and Forums linked in the [Introduction](/docs/introduction/#contributors) where developers may advise the community about important updates.  The Meshtastic [firmware releases page](https://github.com/meshtastic/firmware/releases) on Github has a summary of what has changed in each release.`,
+      title: "Как часто обновлять прошивку?",
+      content: `Держите прошивку актуальной. Не обязательно обновляться на каждый релиз, но полезно следить за Discord и форумом из [Introduction](/docs/introduction/#contributors) — там разработчики сообщают о важных апдейтах. На странице [релизов прошивки](https://github.com/meshtastic/firmware/releases) в GitHub есть список изменений для каждого релиза.`,
     },
   ],
   android: [
     {
       title:
-        "What versions of Android does the Meshtastic Android App require?",
-      content: `Minimum requirement is Android 8 (Oreo August 2017). A good resource to use when researching affordable devices is the [LineageOS Supported Devices List](https://wiki.lineageos.org/devices/).`,
+        "Какие версии Android поддерживает приложение Meshtastic?",
+      content: `Минимум — Android 8 (Oreo, август 2017). При выборе недорогих устройств поможет [список поддерживаемых устройств LineageOS](https://wiki.lineageos.org/devices/).`,
     },
     {
-      title: "What does the icon next to the message mean?",
+      title: "Что значит иконка рядом с сообщением?",
       content: `
-  - Cloud with an up arrow - Queued on the app to be sent to your device.
-  - Cloud only - Queued on the device to be sent over the mesh.
-  - Cloud with a check mark - At least one other node on the mesh acknowledged the message.
-  - Person with a check mark - The intended recipient of your direct message acknowledged the message.
-  - Cloud crossed out - Not acknowledged or message error.`,
+  - Облако со стрелкой вверх — сообщение в очереди в приложении, будет отправлено на устройство.
+  - Просто облако — в очереди на устройстве для отправки в Mesh.
+  - Облако с галочкой — хотя бы один узел в Mesh подтвердил получение.
+  - Человечек с галочкой — получатель вашего личного сообщения подтвердил получение.
+  - Зачёркнутое облако — нет подтверждения или ошибка.`,
     },
     {
-      title: "How can I clear the message history?",
-      content: `Long press any message to select and show the menu with "delete" and "select all" buttons.`,
+      title: "Как очистить историю сообщений?",
+      content: `Зажмите любое сообщение — появится меню с кнопками «удалить» и «выбрать всё».`,
     },
     {
       title:
-        "After a fresh firmware install, my node is not connecting via Bluetooth. What should I do?",
-      content: `Try forgetting the Bluetooth connection from the Android Bluetooth Settings menu. Re-pair and try again. This is a security measure and there is no workaround for it. It prevents apps and other accessories from spoofing an existing accessory by un-pairing and "re-pairing" themselves without the users' knowledge.`,
+        "После чистой установки прошивки узел не подключается по Bluetooth. Что делать?",
+      content: `В настройках Bluetooth на Android удалите сопряжение. Привяжите заново и попробуйте ещё раз. Это мера безопасности: она не даёт приложениям и аксессуарам подменять уже привязанное устройство без ведома пользователя.`,
     },
   ],
   apple: [
     {
       title:
-        "What version of iOS/iPadOS/macOS does the Meshtastic App Require?",
-      content: `The Meshtastic Apple app supports the last two major versions of iOS, iPadOS or macOS.`,
+        "Какие версии iOS/iPadOS/macOS поддерживает приложение Meshtastic?",
+      content: `Поддерживаются две последние мажорные версии iOS, iPadOS и macOS.`,
     },
     {
-      title: "How do I get the Apple Meshtastic App?",
-      content: `See [Apple Apps](/docs/software/apple/installation)`,
-    },
-    {
-      title:
-        "After a fresh firmware install, my node is not connecting via Bluetooth. What should I do?",
-      content: `Try forgetting the Bluetooth connection from the iOS/iPadOS/macOS System Settings. Re-pair and try again. This is a security measure and there is no workaround for it. It prevents apps and other accessories from spoofing an existing accessory by un-pairing and "re-pairing" themselves without the users' knowledge.`,
+      title: "Как установить приложение Meshtastic для Apple?",
+      content: `См. [Apple Apps](/docs/software/apple/installation)`,
     },
     {
       title:
-        "Do the Apple applications provide an indication if the message was acknowledged on the mesh?",
+        "После чистой установки прошивки узел не подключается по Bluetooth. Что делать?",
+      content: `В Системных настройках iOS/iPadOS/macOS удалите сопряжение по Bluetooth. Привяжите заново и попробуйте ещё раз. Это мера безопасности: она не даёт приложениям и аксессуарам подменять уже привязанные устройства без ведома пользователя.`,
+    },
+    {
+      title:
+        "Показывают ли приложения для Apple, что сообщение подтверждено в Mesh?",
       content:
-        "Yes, when the message is sent you will first see a `Waiting to be acknowledged...` status beneath the message. If the message is acknowledged by a node on the mesh this will update to `Acknowledged` in orange, which turns into grey when sending a direct message and the intended recipient acknowledged it. If no nodes have responded it will indicate `Max Retransmission Reached`. If there is an error, the status will update to the appropriate error. Additionally, you can long press on the message and select `Message Details` to view the date/time sent, if ack was received and the time ack was received or the error (if there was one).",
+        "Да. После отправки под сообщением появится статус `Waiting to be acknowledged...`. Если узел в Mesh подтвердил, статус сменится на `Acknowledged` (оранжевым), а при отправке личного сообщения и подтверждении адресатом станет серым. Если никто не ответил, будет `Max Retransmission Reached`. При ошибке статус обновится на соответствующую ошибку. Также можно зажать сообщение и выбрать `Message Details`, чтобы посмотреть дату/время отправки, получил ли ack и время ack, либо ошибку (если была).",
     },
   ],
   channels: [
     {
-      title: "How do I share my Meshtastic Channel with other people?",
-      content: `Your Meshtastic client (Android, Apple, Web, or Python) will provide you a URL or QR code. You can email, text or print this URL or QR code and share it with people you want to join your Meshtastic Channel.`,
+      title: "Как поделиться своим Channel в Meshtastic с другими?",
+      content: `Клиент Meshtastic (Android, Apple, Web или Python) сгенерирует URL или QR‑код. Отправьте его по почте/в мессенджере или распечатайте — и поделитесь с теми, кого хотите пригласить в ваш Channel.`,
     },
   ],
   python: [
     {
       title:
-        "How do I find out more about installing (and using) Meshtastic via command line?",
-      content: `[See our guide here](/docs/software/python/cli/installation).`,
+        "Где почитать про установку и работу Meshtastic из CLI?",
+      content: `[См. наш гайд здесь](/docs/software/python/cli/installation).`,
     },
     {
-      title: "How do I find out more about using python to interact?",
-      content: `[See our guide here](/docs/software/python/cli/usage).`,
+      title: "Где почитать про работу через Python?",
+      content: `[См. наш гайд здесь](/docs/software/python/cli/usage).`,
     },
     {
-      title: "What if I'm still having issues on Windows 10?",
+      title: "Что делать, если на Windows 10 всё ещё проблемы?",
       content:
-        "It's been reported that `App execution aliases` might conflict with one another and prevent python3 from being able to run properly. There is an example of a fix located [here](https://github.com/meshtastic/Meshtastic-gui-installer/issues/154).",
+        "Сообщалось, что `App execution aliases` могут конфликтовать и мешать нормальному запуску python3. Пример решения — [здесь](https://github.com/meshtastic/Meshtastic-gui-installer/issues/154).",
     },
   ],
   devices: [
     {
-      title: "How do I turn off an ESP32 T-Beam based device?",
-      content: `Hold down the left PWR button for about 10 seconds and the display should turn off.`,
+      title: "Как выключить устройство на ESP32 T‑Beam?",
+      content: `Зажмите левую кнопку PWR на ~10 секунд — экран погаснет.`,
     },
     {
-      title: "How do I turn on an ESP32 T-Beam based device?",
-      content: `Push the left PWR button for about 1 second.`,
+      title: "Как включить устройство на ESP32 T‑Beam?",
+      content: `Нажмите левую кнопку PWR на ~1 секунду.`,
     },
     {
-      title: "Functionality of the T-Beam Buttons",
-      content: `[T-Beam Buttons](/docs/hardware/devices/tbeam/buttons) explained here`,
+      title: "Назначения кнопок T‑Beam",
+      content: `[Кнопки T‑Beam](/docs/hardware/devices/tbeam/buttons) описаны здесь`,
     },
     {
-      title: "Where do I purchase the device hardware?",
-      content: `Each [supported device](/docs/hardware/devices/index.mdx) has a "Purchase Link".`,
-    },
-    {
-      title:
-        "I have my hardware. How do I install the firmware and any required drivers?",
-      content: `[See our guide here](/docs/getting-started).`,
-    },
-    {
-      title: "How do I update the firmware to the latest version?",
-      content: `Updating firmware varies with hardware. See [Flashing Firmware](/docs/getting-started/flashing-firmware).`,
-    },
-    {
-      title: "My device has gone to sleep. Are received messages lost?",
-      content: `The LoRa radio on the node is still active and will wake up the CPU when the device is sleeping. If your phone is in range, the node will relay any messages your phone may have missed. If you're in range and your device is active, messages have not been lost.`,
-    },
-    {
-      title: "My device has gone to sleep and I can't send any messages.",
-      content: `Once the node wakes up from sleep, your phone will relay any delayed messages through your node and to the mesh network. Give it a few minutes and it'll do the right thing.`,
-    },
-    {
-      title: "How can I tell the device not to sleep?",
-      content: `See [Device Power Configuration](/docs/configuration/radio/power) options.`,
+      title: "Где купить устройства?",
+      content: `У каждого [поддерживаемого устройства](/docs/hardware/devices/index.mdx) есть ссылка «Purchase Link».`,
     },
     {
       title:
-        "I am in Europe and my device seems to stop transmitting after a while, what is going on?",
-      content: `Europe has an hourly duty cycle limit of 10% in the frequency band that Meshtastic uses. It might be that you hit this limit if you are sending a lot. You can confirm this by checking whether you see duty cycle limit errors in the serial log, Mesh Log (Apple apps) or Debug Panel (Android).
-  To limit traffic, you can consider setting the device metrics and position update intervals higher. Alternatively, the device can be configured to override the duty cycle limit, but then you will violate the regulations.`,
+        "Железо есть. Как поставить прошивку и нужные драйверы?",
+      content: `[См. наш гайд здесь](/docs/getting-started).`,
+    },
+    {
+      title: "Как обновить прошивку до последней версии?",
+      content: `Процесс зависит от железа. См. [Прошить устройство](/docs/getting-started/flashing-firmware).`,
+    },
+    {
+      title: "Устройство уснуло. Принятые сообщения потерялись?",
+      content: `LoRa‑радио на узле остаётся активным и будит CPU во сне. Если телефон в зоне действия, узел перешлёт любые пропущенные сообщения. Если вы в зоне и устройство активно — сообщения не потеряны.`,
+    },
+    {
+      title: "Устройство уснуло, и я не могу отправить сообщения.",
+      content: `Когда узел проснётся, телефон отправит отложенные сообщения через него в Mesh. Подождите пару минут — всё дойдёт.`,
+    },
+    {
+      title: "Как запретить устройству засыпать?",
+      content: `См. опции [Настройки питания устройства](/docs/configuration/radio/power).`,
     },
     {
       title:
-        "Why does only one RAK Meshtastic Starter kit show up in my node list?",
+        "Я в Европе, и устройство через какое‑то время перестаёт передавать. Что происходит?",
+      content: `В Европе в используемом диапазоне действует почасовой лимит duty cycle 10%. Если вы много отправляете, могли упереться в этот лимит. Проверьте ошибки по duty cycle в serial log, Mesh Log (приложения Apple) или Debug Panel (Android).
+  Чтобы снизить трафик, увеличьте интервалы отправки метрик и позиции. Также можно отключить ограничение duty cycle в настройках устройства, но это будет нарушением регуляторных требований.`,
+    },
+    {
+      title:
+        "Почему в списке узлов виден только один RAK Meshtastic Starter Kit?",
       content:
-        "There was a bug where Meshtastic Starter kits were sent out with the same MAC address. With a single MAC address the devices all report as being the same device. Without the battery connected, flash the starter kit device(s) to any firmware > 1.2.59 and then do a factory reset, disconnect and reconnect the board and run `meshtastic --info`.",
+        "Был баг: Meshtastic Starter Kit отправлялись с одинаковым MAC‑адресом. Из‑за одного MAC все устройства определялись как одно. Без батареи прошейте устройство прошивкой > 1.2.59, затем сделайте сброс к заводским, отключите и снова подключите плату и выполните `meshtastic --info`.",
     },
   ],
   ham: [
     {
-      title: "What is the benefit of using a ham license with Meshtastic?",
+      title: "Какие плюсы лицензии радиолюбителя (ham) в Meshtastic?",
       content: `
-If you use your ham radio license with Meshtastic, consider both the privileges and restrictions:
-#### Privileges
-- Increased Transmit Power
-  - Up to 10W transmit power in the United States! [47 CFR 97.313(j)](<https://www.ecfr.gov/current/title-47/chapter-I/subchapter-D/part-97#p-97.313(j)>)
-- Higher Gain Antennas
-#### Restrictions
-- Plain-Text Only
-  - On amateur radio bands, encryption is illegal. [FCC Part 97.113.A.4](<https://www.ecfr.gov/current/title-47/chapter-I/subchapter-D/part-97/subpart-B/section-97.113#p-97.113(a)(4)>)
-- Lack of Privacy
-  - As a ham operator, it is a requirement that you identify yourself by your call sign periodically when transmitting. Your call sign will be publicly transmitted at least once every 10 minutes at minimum. [FCC Part 97.119.A](<https://www.ecfr.gov/current/title-47/chapter-I/subchapter-D/part-97/subpart-B/section-97.119#p-97.119(a)>)
+Если вы используете лицензию радиолюбителя с Meshtastic, учитывайте и преимущества, и ограничения:
+#### Преимущества
+- Повышенная мощность передачи
+  - До 10 Вт в США! [47 CFR 97.313(j)](<https://www.ecfr.gov/current/title-47/chapter-I/subchapter-D/part-97#p-97.313(j)>)
+- Антенны с большим усилением
+#### Ограничения
+- Только открытый текст
+  - В любительских диапазонах шифрование запрещено. [FCC Part 97.113.A.4](<https://www.ecfr.gov/current/title-47/chapter-I/subchapter-D/part-97/subpart-B/section-97.113#p-97.113(a)(4)>)
+- Отсутствие приватности
+  - Оператор обязан периодически идентифицировать себя позывным при передаче. Ваш позывной будет передаваться публично не реже одного раза в 10 минут. [FCC Part 97.119.A](<https://www.ecfr.gov/current/title-47/chapter-I/subchapter-D/part-97/subpart-B/section-97.119#p-97.119(a)>)
     `,
     },
     {
-      title: "How do I set my  call sign?",
+      title: "Как указать свой позывной?",
       content: `
-- On Android navigate to Radio configuration -> User and set Long name to your ham radio callsign, then activate the slider for 'Licensed amateur radio'.
-- On iPhone navigate to Settings -> User and set Long Name to your ham radio callsign, then activate the slider for 'Licensed Operator'.
-- Instructions for enabling ham license from the Python CLI can be found [here](/docs/software/python/cli/usage#ham-radio-support).
+- На Android откройте Radio configuration -> User и установите Long name в ваш позывной, затем включите переключатель 'Licensed amateur radio'.
+- На iPhone откройте Settings -> User и установите Long Name в ваш позывной, затем включите переключатель 'Licensed Operator'.
+- Инструкции по включению режима для радиолюбителей в Python CLI — [здесь](/docs/software/python/cli/usage#ham-radio-support).
   `,
     },
     {
-      title: "Why aren’t licensed and unlicensed modes interoperable? Is this a planned feature?",
+      title: "Почему режимы с лицензией и без неё не совместимы? Планируется ли совместимость?",
       content: `
-Amateur radio regulations differ significantly across countries, with many prohibiting the use of encryption. Additionally, regulations in some countries restrict licensed operators from relaying messages from unlicensed stations or transmitting messages from licensed stations without including a call sign. These restrictions make interoperability highly impractical, if not impossible. Consequently, interoperability between these modes is not a planned feature.`,
+Правила для любительской радиосвязи сильно различаются по странам; во многих запрещено шифрование. Кроме того, в некоторых странах лицензированным операторам нельзя ретранслировать сообщения от нелицензированных станций или передавать сообщения от лицензированных без включения позывного. Эти ограничения делают совместимость крайне затруднительной, если вообще возможной. Поэтому поддержка совместимости не планируется.`,
     },
   ],
   mesh: [
     {
-      title: "Does Meshtastic use LoRaWAN?",
-      content: `No, Meshtastic uses LoRa peer to peer (p2p), which allows much more flexibility in how LoRa is utilized compared to LoraWan. Our messaging and position updates are far too "random" compared to LoRaWAN requirements.`,
+      title: "Использует ли Meshtastic LoRaWAN?",
+      content: `Нет, Meshtastic использует LoRa peer‑to‑peer (p2p), что даёт гораздо больше гибкости по сравнению с LoRaWAN. Наши сообщения и обновления позиции слишком «случайны» для требований LoRaWAN.`,
     },
     {
-      title: "Will Meshtastic work with (insert LoRa service)",
-      content: `Meshtastic uses LoRa peer to peer (p2p), which has allowed us to customize how we use the protocol. Likely it will not work with the service you have in mind, but it may be possible to build a bridge between services using MQTT. That will require further development outside the scope of this project to implement.`,
+      title: "Будет ли Meshtastic работать с (каким‑нибудь LoRa‑сервисом)?",
+      content: `Meshtastic использует LoRa p2p и мы сильно кастомизировали протокол под себя. Скорее всего, это не будет работать напрямую с задуманным сервисом, но можно сделать мост через MQTT. Для этого потребуется отдельная разработка вне рамок проекта.`,
     },
     {
-      title: "Can I locate a device via triangulation?",
-      content: `There is a [community project](https://github.com/a-f-G-U-C/Meshtastic-ZPS) that has worked out how to accomplish this.`,
+      title: "Можно ли найти устройство триангуляцией?",
+      content: `Есть [проект сообщества](https://github.com/a-f-G-U-C/Meshtastic-ZPS), где это реализовано.`,
     },
   ],
   modules: [
     {
-      title: "What are Modules?",
-      content: `Modules are features that expand the basic device functionality and/or integrate with other services.`,
+      title: "Что такое модули?",
+      content: `Модули — это фичи, которые расширяют базовую функциональность устройства и/или интегрируются с другими сервисами.`,
     },
     {
-      title: "What modules do we have available?",
-      content: `A list of available modules is available [here](/docs/configuration/module).`,
+      title: "Какие модули доступны?",
+      content: `Список доступных модулей — [здесь](/docs/configuration/module).`,
     },
     {
-      title: "I'd like to write a module. How do I get started?",
-      content: `API documentation for creating modules is available [here](/docs/development/device/module-api).`,
+      title: "Хочу написать модуль. С чего начать?",
+      content: `Документация API для создания модулей — [здесь](/docs/development/device/module-api).`,
     },
   ],
 };
 
 <FaqStructuredData faqs={Faq} />
 
-## Overview
+## Обзор {#overview}
 
 <FaqAccordion rows={Faq.general} />
 
-## Firmware
+## Прошивка {#firmware}
 
 <FaqAccordion rows={Faq.firmware} />
 
-## Android Client
+## Клиент Android {#android-client}
 
 <FaqAccordion rows={Faq.android} />
 
-## Apple Clients
+## Клиенты Apple {#apple-clients}
 
 <FaqAccordion rows={Faq.apple} />
 
-## Channels[^1]
+## Channels {#channels}[^1]
 
 [^1]: <QRCode />
 
 <FaqAccordion rows={Faq.channels} />
 
-## Python CLI
+## Python CLI {#python-cli}
 
 <FaqAccordion rows={Faq.python} />
 
-## Devices
+## Устройства {#devices}
 
 <FaqAccordion rows={Faq.devices} />
 
-## Amateur Radio (ham)
+## Радиолюбители (ham) {#amateur-radio-ham}
 
-Meshtastic can be used by both unlicensed people and licensed ham operators.
+Meshtastic можно использовать и без лицензии, и с лицензией радиолюбителя.
 
 <FaqAccordion rows={Faq.ham} />
 
-## Mesh
+## Mesh {#mesh}
 
 <FaqAccordion rows={Faq.mesh} />
 
-## Modules
+## Модули {#modules}
 
 <FaqAccordion rows={Faq.modules} />

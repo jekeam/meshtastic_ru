@@ -1,28 +1,27 @@
 ---
-title: Overview
-sidebar_label: Overview
+title: Обзор
+sidebar_label: Обзор
 slug: /overview
 sidebar_position: 2
-description: "Discover the basics of Meshtastic's operation, from sending messages via the companion app to the network's intelligent rebroadcast system for extended reach."
+description: "Основы работы Meshtastic: от отправки сообщений через приложение до умной ретрансляции для увеличения дальности."
 ---
 
-## How it works
+## Как это работает {#how-it-works}
 
-When you send a message on your Meshtastic companion app, it is relayed to the radio using Bluetooth, Wi-Fi/Ethernet or serial connection. That message is then broadcasted by the radio. If it hasn't received a confirmation from any other device after a certain timeout, it will retransmit the message up to three times.
+Когда вы отправляете сообщение в приложении Meshtastic, оно передаётся на радио по Bluetooth, Wi‑Fi/Ethernet или по Serial. Затем радио передаёт сообщение в эфир. Если в течение таймаута не получено подтверждение от другого устройства, сообщение будет повторно отправлено до трёх раз.
 
-When a receiving radio captures a packet, it checks to see if it has heard that message before. If it has it ignores the message. If it hasn't heard the message, it will rebroadcast it.
+Приёмник, получив пакет, проверяет, видел ли он это сообщение раньше. Если да — игнорирует. Если нет — ретранслирует.
 
-For each message a radio rebroadcasts, it marks the "hop limit" down by one. When a radio receives a packet with a hop limit of zero, it will not rebroadcast the message.
+При каждой ретрансляции радио уменьшает «hop limit» на единицу. Если приходит пакет с нулевым hop limit, сообщение больше не ретранслируется.
 
-The radio will store a small amount of packets (around 30) in its memory for when it's not connected to a client app. If it's full, it will replace the oldest packets with newly incoming text messages only.
+Радио хранит небольшой буфер пакетов (около 30) на случай отсутствия подключения к клиентскому приложению. Если буфер заполнен, самые старые пакеты заменяются только новыми текстовыми сообщениями.
 
-## What is a mesh?
+## Что такое Mesh? {#what-is-a-mesh}
 
-At the radio level a Meshtastic mesh is a set of nodes that share the same LoRa spreading factor, center frequency, and bandwidth. A node can only be in one radio mesh; it will not see or respond to messages from nodes using different values for these settings. For a mesh to form, nodes need to share the same values. 
+На радиоуровне Mesh в Meshtastic — это набор Nodes, использующих одинаковые параметры LoRa: spreading factor, центральную частоту и полосу. Одна Node может находиться только в одном радиомеше; она не видит и не обрабатывает сообщения от Nodes с другими значениями этих параметров. Чтобы сформировать Mesh, Nodes должны использовать одинаковые значения.
 
-These values are grouped into "presets" that can be easily chosen in the LoRa configuration section. Presets make it easy for nodes to configure the same radio parameters.
+Эти значения объединены в «presets», которые можно выбрать в разделе настроек LoRa. Presets упрощают настройку одинаковых радиопараметров для всех Nodes.
 
-Sitting on top of this radio mesh are Channels. A logical mesh is formed by a Channel with a particular name and encryption key. The default channel in a radio mesh is Channel 0 with a blank "name" and an encryption key of AQ==. 
+Сверху над этим радиомешем находятся Channels. Логический Mesh образуется Channel с определённым именем и ключом шифрования. Канал по умолчанию в радиомеше — Channel 0 с пустым «name» и ключом шифрования AQ==.
 
-Nodes can belong to a maximum of 8 Channels in the radio mesh. A custom Channel can be created for use by a specific group. Only nodes configured with the same Channel name and encryption key will be able to read and display messages on that Channel. However, all nodes in the radio mesh will receive and may retransmit messages (depending on their Role) regardless of the Channel settings for the message.
-
+Одна Node может состоять максимум в 8 Channels внутри радиомеша. Можно создать свой Channel для конкретной группы. Только Nodes, настроенные с тем же именем Channel и ключом шифрования, смогут читать и показывать сообщения в этом Channel. Однако все Nodes в радиомеше получают и могут ретранслировать сообщения (в зависимости от их Role) независимо от настроек Channel для сообщения.

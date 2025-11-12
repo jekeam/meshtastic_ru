@@ -1,77 +1,77 @@
 ---
 id: comments
-title: Comments on Meshtastic's Encryption
-sidebar_label: Comments
+title: Комментарии к шифрованию Meshtastic
+sidebar_label: Комментарии
 sidebar_position: 2
 description: "Explore community insights and expert opinions on Meshtastic's encryption, including AES256 implementation, security tips, and potential vulnerabilities."
 ---
 
 import QRCode from "@site/docs/blocks/_qr-code.mdx";
 
-This page compiles community feedback and expert reviews on Meshtastic's encryption approach. We value these insights and aim to improve our encryption implementation where feasible. Explore key details, practical tips, and understand the strengths and potential limitations of Meshtastic's AES256 encryption.
+Эта страница собирает отзывы сообщества и экспертные обзоры по подходу Meshtastic к шифрованию. Мы ценим эти замечания и улучшаем реализацию там, где это возможно. Узнайте ключевые детали, практические советы и поймите сильные и слабые стороны шифрования AES256 в Meshtastic.
 
-## Comments
+## Комментарии {#comments}
 
-Cryptography is tricky, so we've tried to 'simply' apply standard crypto solutions to our implementation. However, the project developers are not cryptography experts.
+Криптография сложна, поэтому мы постарались просто применить стандартные решения. Однако разработчики проекта не являются криптографами.
 
-Based on comments from reviewers (see below), here are some tips for using these radios, so that you may know the level of protection offered:
+С учётом комментариев ревьюеров (см. ниже), вот советы по использованию этих радиостанций, чтобы понимать уровень защиты:
 
-- It is likely that the AES256 security is implemented 'correctly' and an observer will not be able to decode your messages.
-- **Warning:** If an attacker is able to get one of the radios in their possession, they could either a) extract the channel key from that device, or b) use that radio to listen to new communications.
-- **Warning:** If an attacker is able to get the "Channel QR[^1] code/URL" that you share with others, that attacker could then be able to read any messages sent on the channel (either tomorrow or in the past - if they kept a raw copy of those broadcast packets).
+- Скорее всего, безопасность AES256 реализована корректно, и наблюдатель не сможет декодировать ваши сообщения.
+- Внимание: если атакующий получит одно из радио, он сможет: а) извлечь ключ канала с устройства, или б) использовать это радио для прослушивания новых сообщений.
+- Внимание: если атакующий получит "Channel QR[^1] code/URL", которым вы делитесь с другими, он сможет читать любые сообщения в канале (как будущие, так и прошедшие — если у него сохранены сырые копии тех широковещательных пакетов).
 
 [^1]:
     <QRCode />
 
-The current implementation provides optional confidentiality to members of a configured network:
+Текущая реализация обеспечивает опциональную конфиденциальность для участников настроенной сети:
 
-- Encryption is implemented in devices/nodes with network-wide encryption keys.
-- Encryption is optional and is turned off when devices are in 'Ham mode'.
-- There is no encryption supported in the clients (iOS, Android) to facilitate distribution as mass-market software.
-- Pairing from client-to-device is by:
-  - Direct USB cable
-  - BT pairing
-- Devices are 'promiscuous' and will pair with any nearby client. Network confidentiality requires physical protection of all nodes.
+- Шифрование выполняется на устройствах/узлах с общесетевыми ключами шифрования.
+- Шифрование опционально и отключается в 'Ham mode'.
+- В клиентах (iOS, Android) шифрования нет — для упрощения распространения как массового ПО.
+- Привязка клиент→устройство выполняется через:
+  - Прямое USB-подключение
+  - Паринг по Bluetooth
+- Устройства "promiscuous" и привязываются к любому ближайшему клиенту. Конфиденциальность сети требует физической защиты всех узлов.
 
-Always keep in mind [xkcd's note on encryption](https://xkcd.com/538).
+Всегда помните о заметке xkcd про шифрование: https://xkcd.com/538.
 
-- If you are a cryptography expert, please review these notes and our questions below. Can you help us by reviewing our notes below and offering advice? We will happily give as much or as little credit as you wish ;-).
-- Consider our existing solution 'alpha' and probably fairly secure against a not particularly aggressive adversary (but we can't yet make a more confident statement).
+- Если вы эксперт по криптографии, посмотрите наши заметки и вопросы ниже. Готовы принять советы и указать авторство в любом объёме ;-).
+- Считайте текущую реализацию стадией 'alpha', вероятно достаточно защищённой от не слишком агрессивного противника (но более уверенно пока сказать не можем).
 
-## Notes for reviewers
+## Заметки для ревьюеров {#notes-for-reviewers}
 
-If you are reviewing our implementation, this is a brief statement of our method.
+Если вы проверяете нашу реализацию, кратко о методе:
 
-- We do all crypto at the SubPacket (payload) level only, so that all Meshtastic nodes will route for others - even those channels which are encrypted with a key the node does not possess.
-- Mostly based on reading [Wikipedia](<https://en.wikipedia.org/wiki/Block_cipher_mode_of_operation#Counter_(CTR)>) and using the modes the ESP32 provides support for in hardware.
-- We use AES256-CTR as a stream cypher (with zero padding on the last BLOCK) because it is well supported with hardware acceleration.
-- Our AES key is 128 or 256 bits, shared as part of the 'Channel' specification.
-- The node number concatenated with the packet number is used as the NONCE. This nonce will be stored in flash in the device and should essentially never repeat. If the user makes a new 'Channel' (i.e. picking a new random 256 bit key), the packet number will start at zero.
-- The packet number is sent in cleartext with each packet. The node number can be derived from the "from" field of each packet. (Cleartext is acceptable because it merely provides IV for each encryption run)
-- Each 16 byte BLOCK for a packet has an incrementing COUNTER. COUNTER starts at zero for the first block of each packet.
-- The IV for each block is constructed by concatenating the NONCE as the upper 96 bits of the IV and the COUNTER as the bottom 32 bits. Since our packets are small the counter portion will really never be higher than 32 (five bits).
+- Вся криптография — только на уровне SubPacket (payload), чтобы все узлы Meshtastic могли маршрутизировать чужие пакеты — даже каналы, зашифрованные ключом, которого у узла нет.
+- В основном опираемся на [Wikipedia](https://en.wikipedia.org/wiki/Block_cipher_mode_of_operation#Counter_(CTR)) и режимы, которые ESP32 аппаратно поддерживает.
+- Используем AES256-CTR как поточный шифр (с нулевым дополнением последнего BLOCK), потому что он хорошо ускоряется железом.
+- Ключ AES — 128 или 256 бит, распространяется как часть спецификации 'Channel'.
+- В качестве NONCE используем конкатенацию номера узла и номера пакета. NONCE хранится во flash и по сути не должен повторяться. Если пользователь создаёт новый 'Channel' (то есть выбирает новый случайный 256‑битный ключ), номер пакета стартует с нуля.
+- Номер пакета отправляется в открытом виде в каждом пакете. Номер узла можно получить из поля "from" каждого пакета. (Открытый вид допустим, потому что это лишь IV для каждого запуска шифрования)
+- Каждый 16‑байтный BLOCK пакета имеет инкрементируемый COUNTER. COUNTER начинается с нуля для первого блока каждого пакета.
+- IV для каждого блока строится конкатенацией: верхние 96 бит — это NONCE, нижние 32 бита — COUNTER. Так как пакеты у нас маленькие, счётчик практически никогда не превысит 32 (5 бит).
 
-### Comments from reviewer #1
+### Комментарии от ревьюера №1 {#comments-from-reviewer-1}
 
-This reviewer is a cryptography professional, but would like to remain anonymous. We thank them for their comments ;-):
+Этот ревьюер — криптограф-практик, но хочет остаться анонимным. Спасибо за комментарии ;-):
 
-I'm assuming that meshtastic is being used to hike in places where someone capable is trying to break it - like you were going to walk around DefCon using these. I spent about an hour reviewing the encryption, and have the following notes:
+Предположу, что Meshtastic используют в походах и местах, где кто-то способный может пытаться её ломать — как если бы вы ходили с ней по DefCon. Я потратил около часа на обзор шифрования и вот мои заметки:
 
-- The write-up isn't quite as clear as the code.
-- The code is using AES-CTR mode correctly to ensure confidentiality.
-- The comment for initNonce really covers the necessary information.
-- I think the bigger encryption question is "what does the encryption need to do"? As it stands, an attacker who has yet to capture any of the devices cannot reasonably capture text or location data. An attacker who captures any device in the channel/mesh can read everything going to that device, everything stored on that device, and any other communication within the channel that they captured in encrypted form. If that capability basically matches your expectations, it is suitable for whatever adventures this was intended for, then, based on information publicly available or widely disclosed, the encryption is good. If those properties are distressing (like, device history is deliberately limited and you don't want a device captured today to endanger the information sent over the channel yesterday) we could talk about ways to achieve that (most likely synchronizing time and replacing the key with its own SHA256 every X hours, and ensuring the old key is not retained unnecessarily).
-- Two other things to keep in mind are that AES-CTR does not itself provide authenticity (e.g. an attacker can flip bits in replaying data and scramble the resulting plaintext), and that the current scheme gives some hints about transmission in the size. So, if you worry about an adversary deliberately messing-up messages or knowing the length of a text message, it looks like those might be possible.
+- Описание менее ясное, чем код.
+- Код корректно использует режим AES-CTR для обеспечения конфиденциальности.
+- Комментарий к initNonce действительно содержит необходимую информацию.
+- Важнее вопрос "что именно должно обеспечивать шифрование"? Пока устройство не захвачено, атакующий вряд ли сможет получить текст или координаты. Захватив любое устройство в канале/mesh, атакующий сможет читать всё, что идёт на это устройство, всё, что на нём сохранено, и любую другую связь в канале, которую он перехватил в зашифрованном виде. Если это соответствует вашим ожиданиям и задачам — на основе публичной информации шифрование ок. Если эти свойства нежелательны (например, история устройства нарочно ограничена, и вы не хотите, чтобы устройство, захваченное сегодня, ставило под угрозу данные, отправленные вчера), можно обсудить пути решения (скорее всего синхронизация времени и замена ключа на его SHA256 каждые X часов, гарантируя, что старый ключ не хранится без надобности).
+- Ещё два момента: AES-CTR сам по себе не даёт аутентичности (например, атакующий может флипать биты при повторе пакета и портить расшифрованный текст), и текущая схема выдаёт некоторые подсказки о передаче по размеру. Если вас волнует преднамеренная порча сообщений или раскрытие длины текста, это, похоже, возможно.
 
-I'm guessing that the network behaves somewhat like a store-and-forward network - or, at least, that the goal is to avoid establishing a two-way connection to transmit data. I'm afraid I haven't worked with mesh networks much, but remember studying them briefly in school about ten years ago.
+Полагаю, сеть работает примерно как сеть store-and-forward — или, по крайней мере, цель — избегать установки двустороннего соединения для передачи данных. С mesh‑сетями я мало работал, лишь немного изучал их в вузе лет десять назад.
 
-### Comments from @Jorropo
+### Комментарии от @Jorropo {#comments-from-jorropo}
 
-- The IV initialization only use 31 random bits per reboot, it then increment messages sequentially. This is not high, it makes duplicate unlikely but probable given the complete scale of the network. Thankfully IV include lower 32 bits of the MAC address which should be unique per node, so each node is it's own birthday paradox, we aren't looking for network wide birthday paradox which would be easy to hack. See [`#4031`](https://github.com/meshtastic/firmware/issues/4031).
-  Could be fixed.
-- The lack of [integrity wasn't properly considered](https://github.com/meshtastic/firmware/issues/4030), the remote administration module implements privileged RPC calls over AES-CTR without any MAC or AEAD.
-  Could be fixed.
-- The AES-CTR implementation looks like it protects Confidentiality assuming IVs are not duplicated.
-- The lack of Forward Secrecy is a bit worrying for a chat messenger when new users lack the paranoid and annoying key management practice that would be required for safe operation.
-- IMO the clients should have a big red box the first time you open a Direct-Message indicating theses are not private and not E2E. This was not clear to me without reading the code.
-- This project is completely fine for chatting with strangers, using the default key and understanding everything is public, I would not trust it with anything private without some other layer or significant reworks. For example I would consider SSH or Signal over Meshtastic safe. Yet Meshtastic does not choose to have worse crypto for bad reasons, they make the network significantly more usable over the unreliable slow LoRa backhaul it is using.
+- Инициализация IV использует лишь 31 случайный бит на перезагрузку, дальше сообщения инкрементируются последовательно. Это немного: дубликаты маловероятны, но возможны в масштабе всей сети. К счастью, IV включает младшие 32 бита MAC‑адреса, которые должны быть уникальны на узел, так что у каждого узла свой "парадокс дней рождения", а не сетевой — который было бы легко атаковать. См. [`#4031`](https://github.com/meshtastic/firmware/issues/4031).
+  Можно исправить.
+- Отсутствие [контроля целостности учтено недостаточно](https://github.com/meshtastic/firmware/issues/4030): модуль удалённого администрирования выполняет привилегированные RPC поверх AES-CTR без MAC или AEAD.
+  Можно исправить.
+- Реализация AES-CTR, похоже, защищает конфиденциальность при условии отсутствия повторов IV.
+- Отсутствие Forward Secrecy немного тревожит для чат‑мессенджера, особенно когда у новых пользователей нет параноидальной и занудной практики управления ключами, которая требуется для безопасной работы.
+- ИМХО, клиенты должны показывать большой красный баннер при первом открытии Direct-Message: это не приватно и не E2E. Без чтения кода это было неочевидно.
+- Проект отлично подходит для общения с незнакомцами, используя дефолтный ключ и понимая, что всё публично. Я бы не доверял ему что‑то приватное без дополнительного слоя или серьёзных доработок. Например, SSH или Signal поверх Meshtastic я бы считал безопасными. И да, Meshtastic не делает крипту хуже "без причины" — так сеть становится заметно более удобной поверх ненадёжного и медленного LoRa backhaul.

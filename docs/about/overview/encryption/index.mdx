@@ -1,115 +1,115 @@
 ---
 id: encryption
-title: Meshtastic Encryption
-sidebar_label: Encryption
+title: Шифрование в Meshtastic
+sidebar_label: Шифрование
 slug: /overview/encryption
 sidebar_position: 3
-description: "Understand Meshtastic's encryption: optional network-wide AES256 security for off-grid communication, ensuring confidentiality against passive eavesdropping."
+description: "Как работает шифрование в Meshtastic: опциональная AES256‑защита на уровне всей сети для связи без инфраструктуры, защищает от пассивной прослушки."
 ---
 
-## Explanation
+## Объяснение {#explanation}
 
-Meshtastic provides AES256-CTR encryption for the payload of each packet when sending via LoRa, with a different key for each [channel](/docs/configuration/radio/channels/). The [packet header](/docs/overview/mesh-algo/#layer-1-unreliable-zero-hop-messaging) is always sent unencrypted, which allows nodes to relay packets they can't decrypt as well. One can disable this by setting a different [rebroadcast mode](/docs/configuration/radio/device#rebroadcast-mode).
+Meshtastic шифрует полезную нагрузку каждого пакета (AES256‑CTR) при передаче по LoRa, ключ свой для каждого [Channel](/docs/configuration/radio/channels/). [Заголовок пакета](/docs/overview/mesh-algo/#layer-1-unreliable-zero-hop-messaging) всегда отправляется открытым — это позволяет узлам ретранслировать пакеты, даже если они не могут их расшифровать. Это можно отключить, выбрав другой [режим ретрансляции](/docs/configuration/radio/device#rebroadcast-mode).
 
-By default, you have one primary channel, which is encrypted with a simple known key ("AQ=="), so to use proper encryption, you **must change** this key first, or create a new channel and share it with the ones you want to communicate with. However, without a channel using the default key, communication with devices still using it will not be possible.
+По умолчанию у вас один основной Channel, он зашифрован простым известным ключом ("AQ=="), поэтому для нормального шифрования вы должны сначала изменить этот ключ или создать новый Channel и поделиться им с теми, с кем хотите общаться. Но без Channel с дефолтным ключом вы не сможете общаться с устройствами, которые всё ещё на нём.
 
-Direct messages to a specific node are now encrypted using Public Key Cryptography (PKC). Each node is equipped with a unique public/private key pair, and direct messages are encrypted with the recipient's public key. This ensures that only the recipient can decrypt the message using their private key. Additionally, messages are signed with the sender's private key, allowing the recipient to verify the sender's identity and ensuring the message's integrity.
+Direct Messages (DM) теперь шифруются с использованием Public Key Cryptography (PKC). У каждого Node есть уникальная пара открытого/закрытого ключей, и DM шифруется публичным ключом получателя. Это гарантирует, что расшифровать может только получатель своим приватным ключом. Дополнительно сообщения подписываются приватным ключом отправителя, что позволяет проверять подлинность отправителя и целостность сообщения.
 
-All periodic broadcasts (position, telemetry, traceroutes, etc.) the device sends out itself are sent over the primary channel and thus encrypted with that key.
+Все периодические широковещательные сообщения (позиция, телеметрия, traceroute и т.п.), которые устройство отправляет само, идут через основной Channel и шифруются его ключом.
 
-The device will decrypt the payload before sending it to a client app via BLE, serial, Wi-Fi/Ethernet. For MQTT, you can [specify](/docs/configuration/module/mqtt#encryption-enabled) whether you want to send an encrypted or unencrypted payload.
+Перед отправкой в клиентское приложение по BLE, Serial, Wi‑Fi/Ethernet устройство расшифровывает полезную нагрузку. Для MQTT можно [выбрать](/docs/configuration/module/mqtt#encryption-enabled), отправлять зашифрованный или открытый payload.
 
-## Is it as secure as Wi-Fi WPA3, HTTPS TLS1.3, or Signal?
+## Это так же безопасно, как Wi‑Fi WPA3, HTTPS TLS 1.3 или Signal? {#is-it-as-secure-as-wi-fi-wpa3-https-tls1-3-or-signal}
 
-**No**.
+**Нет**.
 
-[WPA3](https://en.wikipedia.org/wiki/WPA3), [TLS1.3](https://en.wikipedia.org/wiki/TLS1.3), [Signal](https://en.wikipedia.org/wiki/Signal_Protocol), and Meshtastic can all use AES256. Yet AES is one of the many cogs required in a modern encryption system. Below are the main features "missing" in Meshtastic.
+[WPA3](https://en.wikipedia.org/wiki/WPA3), [TLS1.3](https://en.wikipedia.org/wiki/TLS1.3), [Signal](https://en.wikipedia.org/wiki/Signal_Protocol) и Meshtastic могут использовать AES256. Но AES — это лишь одна шестерёнка в современной системе шифрования. Ниже — основные функции, которых нет в Meshtastic.
 
-### Perfect-Forward-Secrecy
+### Perfect Forward Secrecy (PFS) {#perfect-forward-secrecy}
 
-[**P**erfect-**F**orward-**S**ecrecy, also known as **PFS**](https://en.wikipedia.org/wiki/Forward_secrecy), means _previous_ communications and more generally anything _passively captured_ cannot be decrypted **_even when the key is compromised_**.
+[**P**erfect-**F**orward-**S**ecrecy, также **PFS**](https://en.wikipedia.org/wiki/Forward_secrecy) означает, что _прошлые_ коммуникации и вообще всё, что было _пассивно перехвачено_, нельзя расшифровать **_даже если ключ скомпрометирован_**.
 
-This means Meshtastic is vulnerable to [**« Harvest now, Decrypt later »**](https://en.wikipedia.org/wiki/Harvest_now,_decrypt_later) attacks. **This attack itself is not enough to decrypt messages**; it relies on another failure leaking the channel key, such as:
+Это значит, что Meshtastic уязвим к атакам [**« Harvest now, Decrypt later »**](https://en.wikipedia.org/wiki/Harvest_now,_decrypt_later). **Одна эта атака не позволяет расшифровать сообщения**; она опирается на другой сбой, при котором утечёт ключ Channel, например:
 
-- Accidentally sharing the channel key with the wrong person.
-- One of your nodes being stolen.
-- Any unknown bug revealing the channel key to an attacker.
+- Случайно поделились ключом Channel не с тем человеком.
+- Один из ваших узлов украден.
+- Неизвестная ошибка раскрыла ключ Channel атакующему.
 
-Other protocols, such as _misconfigured TLS1.2_, are far more impacted by Harvest now, Decrypt later attacks because their keys will be broken by near-future Quantum-Computers, yet they do not provide PFS either.
+Другие протоколы, например _неправильно настроенный TLS1.2_, сильнее страдают от Harvest now, Decrypt later, потому что их ключи будут сломаны в ближайшем будущем квантовыми компьютерами, и при этом они тоже не обеспечивают PFS.
 
-Meshtastic's AES256 encryption is considered quantum-resistant[^1], but the public/private key exchange for DMs is not, as current quantum-resistant cryptography schemes don't fit in LoRa packets or our IoT hardware; realistic attack vectors include accidental mishandling of channel keys, nodes being lost, and potential future quantum attacks on DM key exchanges.
+AES256 в Meshtastic считается квантоустойчивым[^1], но обмен ключами для DM — нет, потому что текущие квантоустойчивые схемы не помещаются в LoRa‑пакеты или наше IoT‑железо; реалистичные векторы атак — случайная утечка ключей Channel, потеря узлов и возможные будущие квантовые атаки на обмен ключами для DM.
 
-[^1]: On the Quantum-Resistance of AES256, see [this stackoverflow question, containing a bit of debate and two good answers](https://crypto.stackexchange.com/q/6712) and the [NIST's Post-Quantum FAQ](https://csrc.nist.gov/projects/post-quantum-cryptography/faqs) section "To protect against the threat of quantum computers, should we double the key length for AES now? (added 11/18/18)"
+[^1]: О квантовой стойкости AES256 см. [этот вопрос на stackoverflow с обсуждением и двумя хорошими ответами](https://crypto.stackexchange.com/q/6712) и раздел [FAQ NIST по Post-Quantum](https://csrc.nist.gov/projects/post-quantum-cryptography/faqs) «To protect against the threat of quantum computers, should we double the key length for AES now? (added 11/18/18)»
 
-#### Recommendations for users using private channels
+#### Рекомендации для пользователей приватных Channel {#recommendations-for-users-using-private-channels}
 
-- **Do not configure private channels on unattended nodes**. Nodes will relay Meshtastic traffic even if they are not able to decrypt it. Your unattended routers should not have the private PSK configured as it is easy to gain physical access and extract the channel key.
-- Keep in mind that everything sent on a channel can be stored and decrypted later by anyone who gains access to the key, even if you locally delete the messages.
-- Change your Channel Keys from time to time.
+- Не настраивайте приватные Channel на узлах без присмотра. Узлы ретранслируют трафик Meshtastic, даже если не могут его расшифровать. Ваши автономные роутеры не должны иметь приватный PSK, так как получить физический доступ и вытащить ключ Channel легко.
+- Помните, всё, что отправлено в Channel, можно сохранить и расшифровать позже любым, кто получит доступ к ключу, даже если вы удалили сообщения локально.
+- Периодически меняйте ключи Channel.
 
-#### Changes since 2.5.0 Firmware release
+#### Изменения с релиза Firmware 2.5.0 {#changes-since-2-5-0-firmware-release}
 
-- Direct Messages are now protected with PKC when messaging between devices on v2.5.0 or newer and key exchange has taken place, messaging to legacy 2.4.3 or older firmware versions are not protected.
-- Admin Messages between two v2.5.0 or newer nodes are now protected and additional relay attack protection is in place.
+- Direct Messages теперь защищены PKC при обмене между устройствами на v2.5.0 или новее и после обмена ключами; переписка с прошивками 2.4.3 и старше не защищена.
+- Admin Messages между двумя узлами на v2.5.0 или новее теперь защищены, добавлена защита от relay‑атак.
 
-### Integrity
+### Целостность {#integrity}
 
-Integrity means ensuring messages cannot be modified without the key.
+Целостность — это гарантия, что сообщения нельзя изменить без ключа.
 
-Meshtastic does not verify the integrity of channel messages to check if they have been tampered with (see [issue #4030](https://github.com/meshtastic/firmware/issues/4030) for details).
+Meshtastic не проверяет целостность сообщений Channel на предмет подмены (подробности в [issue #4030](https://github.com/meshtastic/firmware/issues/4030)).
 
-#### Recommendations
+#### Рекомендации {#recommendations}
 
-- Keep in mind that by applying a known plaintext attack, anyone _could_ send messages on a channel even if the channel key is private and secure.
-- For developers of third-party applications integrating Meshtastic, include a cryptographic MAC over the message content and PSK. We are also considering an [AEAD secured channel mode which would provide this natively](https://github.com/meshtastic/firmware/issues/4030).
+- Помните, что при применении атаки известного открытого текста любой _может_ отправлять сообщения в Channel, даже если ключ Channel приватный и защищён.
+- Разработчикам сторонних приложений, интегрирующих Meshtastic: добавляйте криптографический MAC поверх содержимого сообщения и PSK. Мы также рассматриваем [режим Channel на AEAD, который обеспечит это нативно](https://github.com/meshtastic/firmware/issues/4030).
 
-#### Changes since 2.5.0 Firmware release
+#### Изменения с релиса Firmware 2.5.0 {#changes-since-2-5-0-firmware-release-1}
 
-- Message integrity is checked for Direct Messages or Admin Control when communication is between v2.5.0 or newer firmware.
+- Целостность сообщений проверяется для Direct Messages и Admin Control при обмене между устройствами на прошивке v2.5.0 или новее.
 
-### Authentication
+### Аутентификация {#authentication}
 
-Authentication means nodes say who they are on the network. Meshtastic does not implement this, so it is trivial to impersonate anyone else if you have access to the channel key
+Аутентификация — это когда узлы заявляют, кто они в сети. В Meshtastic этого нет, поэтому, имея доступ к ключу Channel, легко выдавать себя за другого.
 
-This is because node IDs are based on hardware [MAC address](https://en.wikipedia.org/wiki/MAC_address), which are hardcoded by the manufacturer.
+Так как ID узлов основаны на аппаратном [MAC‑адресе](https://en.wikipedia.org/wiki/MAC_address), который зашит производителем.
 
-Some other networks like [Yggdrasil](https://yggdrasil-network.github.io/), [cjdns](https://github.com/cjdelisle/cjdns), or [libp2p](https://libp2p.io/) use [public/private key pairs](https://en.wikipedia.org/wiki/Public-key_cryptography), and the Public Key becomes the Node Identity. This makes all messages bigger and/or requires an interactive handshake process.
+Некоторые сети, такие как [Yggdrasil](https://yggdrasil-network.github.io/), [cjdns](https://github.com/cjdelisle/cjdns) или [libp2p](https://libp2p.io/), используют [пары открытый/закрытый ключ](https://en.wikipedia.org/wiki/Public-key_cryptography), где публичный ключ — это идентичность узла. Это увеличивает размер сообщений и/или требует интерактивного рукопожатия.
 
-#### Recommendations
+#### Рекомендации {#recommendations-1}
 
-- Keep in mind that the sender field is indicative, and anyone with access to the channel key can trivially lie.
+- Помните, поле отправителя носит справочный характер, и любой с доступом к ключу Channel может легко его подделать.
 
-#### Changes since 2.5.0 Firmware release
+#### Изменения с релиза Firmware 2.5.0 {#changes-since-2-5-0-firmware-release-2}
 
-- The above now only relates to group chats/channels as DM's are protected when messaging between devices on 2.5 or newer, messaging to legacy 2.4 or older devices are not afforded this addition authentication.
+- Вышеописанное теперь относится только к группам/Channel, т.к. DM защищены при обмене между устройствами на 2.5 или новее; переписка с устройствами на 2.4 и старше не получает эту дополнительную аутентификацию.
 
-## Direct Messages
+## Direct Messages {#direct-messages}
 
-Direct Messages (DMs) are now implemented using Public Key Cryptography (PKC). This provides a significant upgrade in security compared to the previous channel-based encryption:
+Direct Messages (DM) теперь реализованы с использованием Public Key Cryptography (PKC). Это существенно повышает безопасность по сравнению с прежним шифрованием на уровне Channel:
 
-- **Message Encryption:** Each DM is encrypted using the recipient's public key, ensuring that only the recipient can decrypt the message with their private key.
-- **Digital Signatures:** Messages are signed with the sender's private key, allowing the recipient to verify the sender's identity and ensuring the integrity of the message.
+- Шифрование сообщений: каждый DM шифруется публичным ключом получателя, так что расшифровать может только он своим приватным ключом.
+- Цифровые подписи: сообщения подписываются приватным ключом отправителя, получатель может проверить подлинность отправителя и целостность сообщения.
 
-### Prior to 2.5.0 Firmware Release
+### До релиза Firmware 2.5.0 {#prior-to-2-5-0-firmware-release}
 
-Previously, DMs were implemented as channel messages with a `to` protobuf field set. This meant anyone in the channel could read all your direct messages. With PKC, this issue is resolved, as only the intended recipient can decrypt and read the message.
+Ранее DM были обычными сообщениями Channel с установленным protobuf‑полем `to`. Это означало, что любой в Channel мог читать ваши прямые сообщения. С PKC эта проблема решена — прочитать их может только адресат.
 
-### Recommendations
+### Рекомендации {#recommendations-2}
 
-- While PKC significantly enhances the security of DMs, it's still advisable to avoid sharing sensitive information in direct messages without proper verification of the recipient's public key.
+- Хотя PKC заметно усиливает безопасность DM, всё равно не стоит делиться чувствительной информацией без проверки публичного ключа получателя.
 
-## Admin Messages
+## Admin Messages {#admin-messages}
 
-Admin Messages/Control are now protected by enhanced security features, making sure that critical operations within the network are more secure than ever before.
+Admin Messages/Control теперь защищены улучшенными средствами безопасности, чтобы критические операции в сети были ещё надёжнее.
 
-- **Stronger Encryption:** Admin Messages now use advanced encryption methods to ensure that only the intended recipients can access and read them.
-- **Session IDs:** Each administrative session is assigned a unique Session ID, which helps prevent unauthorized access and ensures that messages are not tampered with or replayed.
+- Более сильное шифрование: Admin Messages теперь используют продвинутые методы шифрования, доступ к ним получают только адресаты.
+- Session ID: каждая административная сессия получает уникальный Session ID, который помогает предотвратить несанкционированный доступ и исключает подмену/повтор сообщений.
 
-### Prior to 2.5.0 Firmware Release
+### До релиза Firmware 2.5.0 {#prior-to-2-5-0-firmware-release-1}
 
-Previously, admin messages were not as secure, but with these updates, they are now much better protected against potential attacks and replay attacks.
+Ранее админ‑сообщения были менее защищены, теперь же они значительно лучше защищены от потенциальных и replay‑атак.
 
-### Recommendations
+### Рекомендации {#recommendations-3}
 
-- Always ensure that your devices are using the latest firmware to benefit from these improved security features.
-- Regularly monitor your network for any unusual activity to maintain a high level of security.
+- Держите устройства на последней прошивке, чтобы получить улучшенную защиту.
+- Регулярно мониторьте сеть на необычную активность для поддержания высокого уровня безопасности.

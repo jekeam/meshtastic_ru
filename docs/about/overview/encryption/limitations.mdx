@@ -1,56 +1,55 @@
 ---
 id: limitations
-title: Known Limitations and Future Plans of Meshtastic's Encryption
-sidebar_label: Limitations and Future
+title: Известные ограничения и планы развития шифрования Meshtastic
+sidebar_label: Ограничения и планы
 sidebar_position: 3
-description: "Notes on the Meshtastic encryption and security model, exploring the known limitations that result from the various requirements of the project, and discussing some future plans."
+description: "Заметки о модели шифрования и безопасности Meshtastic, разбор известных ограничений, вытекающих из требований проекта, и планы на будущее."
 ---
 
 import QRCode from "@site/docs/blocks/_qr-code.mdx";
 
-Meshtastic’s security model sits at the intersection of multiple conflicting requirements. This document explains the requirements, the tradeoffs they represent, and characterizes the current limitations chosen to make Meshtastic usable. It also covers recent changes and upcoming fixes.
+Модель безопасности Meshtastic находится на пересечении противоречивых требований. Этот документ объясняет эти требования, компромиссы между ними и описывает текущие ограничения, выбранные ради удобства использования Meshtastic. Также здесь отражены недавние изменения и запланированные исправления.
 
-This information is not new, but until now was spread through Discord discussions, GitHub issues, and comments in the Meshtastic codebase. This document is an effort to plainly lay it out in one place.
+Эта информация не нова, но до сих пор была раскидана по обсуждениям в Discord, задачам на GitHub и комментариям в коде Meshtastic. Этот документ собирает всё в одном месте.
 
-## History
+## История {#history}
 
-First, Meshtastic was originally designed to work with closed, trusted groups only. Meshtastic channels are encrypted with a Pre-Shared Key (PSK) and AES-CTR. This encryption type does not include authentication, and as such, anyone with the PSK can send a message as any other user on that channel.
+Изначально Meshtastic был рассчитан только на закрытые доверенные группы. Каналы Meshtastic шифруются с помощью Pre-Shared Key (PSK) и AES-CTR. Такой тип шифрования не включает аутентификацию, поэтому любой, у кого есть PSK, может отправлять сообщения от имени любого пользователя на этом канале.
 
-AES-CTR does have another weakness, in that it produces a cipher stream for a given Initialization Vector (IV), and the actual encryption step is done by XOR’ing the plaintext with that stream. In Meshtastic Channel messages, this IV is a combination of the sender’s Nodenum and the PacketID of the given message. This does mean that if an attacker can deduce the exact plaintext of an encrypted message, an attacker can re-use the Nodenum and PacketID combination to send spoofed messages, even without knowing the PSK of the channel. This is of limited use due to the requirement for PacketID and source NodeNum reuse, to get a matching IV.
+У AES-CTR есть ещё одна слабость: для заданного Initialization Vector (IV) формируется поток шифрования, а само шифрование — это операция XOR над открытым текстом и этим потоком. В сообщениях канала Meshtastic IV — это комбинация Nodenum отправителя и PacketID данного сообщения. Это означает, что если атакующий может восстановить точный открытый текст зашифрованного сообщения, он может переиспользовать комбинацию Nodenum и PacketID, чтобы отправлять поддельные сообщения, даже не зная PSK канала. Польза от такого приема ограничена требованием повторного использования PacketID и исходного NodeNum для получения совпадающего IV.
 
-In its first iteration, Meshtastic handled Direct Messages (DMs) by simply using the existing channel PSK, and marking DMs as only directed to the target node. This approach was acceptable when Meshtastic only being used by small groups, but the advent of public meshes with the potential for bad actors has changed the equation significantly. For about a year, Meshtastic has been intentionally adding features to harden it against this scenario, but with minimal compatibility breaks.
+В первой итерации Meshtastic обрабатывал Direct Messages (DM) с использованием существующего PSK канала, помечая DM как адресованные конкретной ноде. Это было приемлемо для маленьких групп, но с появлением публичных Mesh-сетей и возможных злоумышленников ситуация изменилась. Около года Meshtastic целенаправленно добавляет функции для усиления защиты в этом сценарии, минимально ломая совместимость.
 
-The PSK DMs in particular were recognized as a problem, and the new DM system was rolled out with Meshtastic 2.5. This system uses x25519 public key cryptography and AES-CCM to encrypt and authenticate DMs sent between nodes. These public keys are sent inside User packets encrypted with the existing channel PSKs.
+DM через PSK были признаны проблемой, и в Meshtastic 2.5 появился новый DM. Эта система использует x25519 и AES-CCM для шифрования и аутентификации DM между нодами. Публичные ключи передаются внутри пакетов User, зашифрованных текущими PSK канала.
 
-## Limitations
+## Ограничения {#limitations}
 
-This system, by necessity, uses a Trust On First Use (TOFU) model. There is no central authority to sign user keys, and so nodes will store and retain the first public key announced for a given node number. This is essentially a hard requirement of a decentralized mesh network.
+Эта система вынужденно использует модель Trust On First Use (TOFU). Нет центрального авторитета, подписывающего пользовательские ключи, поэтому ноды сохраняют и используют первый объявленный публичный ключ для данного номера ноды. Для децентрализованной mesh-сети это фактически жесткое требование.
 
-This issue is compounded by the limited memory for storing nodes on a Meshtastic node. The NodeDB is limited to 100 nodes on most hardware, and when more Nodes are seen on a network, the oldest and least interesting node rolls off the NodeDB to make room for new nodes. The exception to this is that favorited nodes are guaranteed not to be removed from the NodeDB.
+Проблему усугубляет ограниченная память для хранения нод на устройстве Meshtastic. NodeDB ограничен 100 нодами на большинстве железа; когда в сети появляется больше нод, самая старая и наименее интересная вытесняется из NodeDB, чтобы освободить место. Исключение — ноды, отмеченные как избранные: они гарантированно не удаляются из NodeDB.
 
-The combination of the TOFU model and constrained hardware leads to a problem. When a node rolls off the NodeDB, the Meshtastic firmware has no way to confirm that a future User packet isn’t a spoof of that Node Number, with a different public key. This problem is made worse by the possibility that an attacker on the channel can quickly create fake nodes, and cause legitimate nodes to roll off the NodeDB sooner.
+Сочетание TOFU и ограниченного железа приводит к проблеме. Когда нода «выпадает» из NodeDB, прошивка Meshtastic не может подтвердить, что будущий пакет User — не подмена этого Node Number с другим публичным ключом. Ситуацию ухудшает то, что атакующий в канале может быстро создавать фейковые ноды и заставлять легитимные ноды раньше выталкиваться из NodeDB.
 
-This attack was anticipated when the DM system was designed, and accepted as an inevitable result of building an ad-hoc, decentralized mesh. Again, there is no central authority to sign keys. As a result, multiple mitigations were built in to the system to minimize the actual usefulness of this attack.
+Эта атака была учтена при проектировании DM и принята как неизбежный результат построения ad-hoc, децентрализованного mesh’а. Снова: нет центрального авторитета для подписи ключей. Поэтому в систему встроили несколько мер, уменьшающих практическую пользу такой атаки.
 
-## Intended Behavior
+## Ожидаемое поведение {#intended-behavior}
 
-First, while the NodeDB is limited to 100 nodes on embedded hardware, a connected mobile client has the ability to store information about many more nodes, and flag to the user when one of those nodes shows up with a different public key. This is what happens when a node on a client shows up with a red key icon. The firmware has seen a different public key for that node, and the mobile client knows that it has changed.
+Во‑первых, хотя NodeDB на встроенном железе ограничен ~100 нодами, подключённый мобильный клиент может хранить данные о гораздо большем числе нод и предупреждать пользователя, если у знакомой ноды появился другой публичный ключ. Так появляется иконка красного ключа рядом с нодой в клиенте: прошивка увидела другой публичный ключ для этой ноды, и клиент знает, что он изменился.
 
-The second major mitigation is that nodes that are marked as favorite are never dropped from the NodeDB. Clients have now automatically mark nodes as favorite when a DM is sent to that node, further ensuring that the node a user was chatting with is still the same node.
+Вторая важная мера: ноды, помеченные как избранные, никогда не удаляются из NodeDB. Клиенты теперь автоматически помечают ноды как избранные при отправке им DM, что дополнительно гарантирует, что собеседник — та же самая нода.
 
-The meshtastic firmware does also support falling back to the old DM behavior. This is tightly controlled via the use of the “pki_encrypted” boolean and the “public_key” byte field. When the firmware receives a packet from the mesh, if that packet is sent using the DM PKI encryption, the bool is marked true, and the source public key is copied into the bytes field. DMs using the old channel PSK method will still be received and processed, but the pki_encrypted field is set false.
+Прошивка meshtastic также поддерживает откат к старому поведению DM. Это строго контролируется через булево поле “pki_encrypted” и байтовое поле “public_key”. Когда прошивка получает пакет из mesh-сети, если пакет отправлен с использованием PKI-шифрования DM, флаг устанавливается в true, а публичный ключ источника копируется в байтовое поле. DM по старой схеме через PSK канала по‑прежнему принимаются и обрабатываются, но pki_encrypted устанавливается в false.
 
-Packets sent from a connected client may set the “pki_encrpyted” boolean to true, and populate the public_key byte field on a packet sent through the local API. If the boolean is set to true, then the packet will only be sent via a PKI DM. If the bytes are populated, the packet will only be sent if the public key in the API message matches the public key for that node in the local NodeDB. If the boolean is not set to true, the firmware will send the packet as a PKI DM if it is indeed sent to a single target, and the firmware has a public key for that target. Outgoing messages will fall back to using the less secure channel encryption if no public key is known for the remote node and the pki_encrypted bool is unset
+Пакеты, отправляемые подключённым клиентом, могут выставлять булево “pki_encrpyted” в true и заполнять байтовое поле public_key в пакете, отправляемом через локальный API. Если булево поле true, пакет будет отправлен только как PKI DM. Если байты заполнены, пакет будет отправлен только в том случае, если публичный ключ в сообщении API совпадает с публичным ключом этой ноды в локальном NodeDB. Если булево не установлено в true, прошивка отправит пакет как PKI DM, если он действительно адресован одному получателю и прошивка знает публичный ключ цели. Если публичный ключ удалённой ноды неизвестен и флаг pki_encrypted не установлен, исходящие сообщения откатятся к менее безопасному шифрованию канала.
 
+## Будущее с ED25519 {#the-ed25519-future}
 
-## The ED25519 Future
+Часть слабых мест Meshtastic можно закрыть добавлением подписи сообщений каналов. Поскольку место в NodeDB ограничено, а пакеты LoRa ограничены максимумом в 256 байт, на практике требуется переиспользовать существующие пары public/private ключей и делать подписи как можно короче.
 
-A few weaknesses of the Meshtastic system can be addressed by adding a message signing system to channel messages. As we still have limited NodeDB storage space and LoRa packets are still limited to 256 byte maximum size, it’s a virtual requirement that this signing system reuse the existing public/private key pairs, and the signatures be as small as possible.
+Также неоднократно предлагалось выводить nodeNum из publicKey, чтобы снизить возможность подмены пакета User с существующим nodenum и новым публичным ключом. Команда безопасности Meshtastic в целом согласна с этим подходом, но внедрить его как ломающее совместимость изменение было непрактично. Добавление подписанных сообщений даёт возможность закрепить новый источник nodenum, сохраняя обратную совместимость со старой системой.
 
-There has been an additional suggestion repeatedly made, that the nodeNum should be derived from the publicKey, to minimize the ability of an attacker to spoof a User packet from an existing nodenum with a new public key. While the Meshtastic security team has generally agreed with the wisdom of this suggestion, it has been impractical to implement as a breaking change to the mesh. The addition of signed messages actually presents an opportunity to enforce this new nodenum source, while still remaining backwards compatible with the older system. 
+Поддержка ED25519 всё ещё финализируется на момент написания, но текущий прототип использует XEdDSA из Signal, чтобы использовать существующие подписи X25519 в виде подписей ED25519. Это серьёзно улучшает гарантии безопасности в Meshtastic, но такие подписи имеют размер 64 байта, что заметно при ограниченном размере сообщений LoRa.
 
-The ED25519 support is still being finalized as of the writing of this document, but the current prototype code uses the XEdDSA system from Signal to take existing X25519 signatures and re-use them as ED25519 signatures. While this does significantly improve the security assurances of the Meshtastic system, these signatures are 64 bytes long, which is significant given the LoRa message size.
+После того как нода успешно подпишет сообщение User по этой схеме, в битовом поле NodeInfoLite устанавливается бит HAS_XEDDSA_SIGNED, который транслируется в булево has_xeddsa_signed в сообщении NodeInfo.
 
-Once a node has successfully signed a User message with this scheme, the HAS_XEDDSA_SIGNED bit is set on the NodeInfoLite bitfield, which is translated to the has_xeddsa_signed bool on a NodeInfo message.
-
-Once this bit is set, unsigned user packets from this source will be dropped. To be determined is how other unsigned packets will be treated. At this point, the recommendation is that short packets, that could be signed, should be dropped when unsigned.
+Как только этот бит установлен, неподписанные user‑пакеты от этого источника будут отбрасываться. Остаётся определить, как поступать с другими неподписанными пакетами. На данный момент рекомендация: короткие пакеты, которые могут быть подписаны, следует отбрасывать, если они не подписаны.

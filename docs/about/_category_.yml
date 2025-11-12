@@ -1,7 +1,7 @@
 position: 1 # float position is supported
-label: About
+label: Об Meshtastic
 collapsible: true # make the category collapsible
 link:
   type: generated-index
-  title: About Meshtastic
+  title: Что такое Meshtastic
   slug: /about
