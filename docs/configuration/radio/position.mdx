@@ -1,6 +1,6 @@
 ---
 id: position
-title: "Настройки Position"
+title: "Настройки местоположения"
 sidebar_label: "Position"
 description: "Настройки GPS‑позиции для устройства Meshtastic - интервалы обновления, broadcast и GPIO."
 ---
@@ -11,7 +11,7 @@ import { Icon } from "@iconify/react";
 
 Данные позиции из GPS приходят либо с радио, либо с привязанного телефона. Для Meshtastic это не обязательно, но для расчёта времени нужен хотя бы один узел в mesh с GPS, RTC или интернетом для NTP.
 
-Настройки Position отправляются админ-сообщением с protobuf `Config.Position`. Доступные опции: GPS Mode, GPS Update Interval, Fixed Position, Smart Broadcast, Smart Broadcast Minimum Distance, Smart Broadcast Minimum Interval, Broadcast Interval, Position Flags и GPS RX/TX/EN Pins.
+Настройки местоположения отправляются админ-сообщением с protobuf `Config.Position`. Доступные опции: GPS Mode, GPS Update Interval, Fixed Position, Smart Broadcast, Smart Broadcast Minimum Distance, Smart Broadcast Minimum Interval, Broadcast Interval, Position Flags и GPS RX/TX/EN Pins.
 
 ## Значения настроек Position {#position-config-values}
 
@@ -134,7 +134,7 @@ Smart broadcast дополняет broadcast interval (не переопреде
 
 :::note заметка
 
-Настройки Position доступны на Android.
+Настройки местоположения доступны на Android.
 
 1. Откройте приложение Meshtastic
 2. Перейдите: **Vertical Ellipsis (3 точки справа вверху) > Radio Configuration > Position**
@@ -230,7 +230,7 @@ meshtastic --pos-fields UNSET
 #### Web {#web}
 
 :::note заметка
-Все настройки Position доступны в Web UI.
+Все Настройки местоположения доступны в Web UI.
 :::
 
 </TabItem>
