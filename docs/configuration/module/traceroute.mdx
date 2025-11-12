@@ -1,8 +1,8 @@
 ---
 id: traceroute
-title: Traceroute Module Usage
+title: Использование модуля Traceroute
 sidebar_label: Traceroute
-description: The traceroute module allows you to understand the path a message took to reach the final destination over the mesh.
+description: Модуль traceroute помогает понять маршрут сообщения до конечного узла по Mesh
 ---
 
 import Tabs from "@theme/Tabs";
@@ -10,15 +10,15 @@ import TabItem from "@theme/TabItem";
 import ReactPlayer from "react-player";
 import { Icon } from "@iconify/react";
 
-## Overview
+## Обзор {#overview}
 
-Due to the limited bandwidth of LoRa, Meshtastic does not keep track of the nodes a message used to hop to the destination. However, from firmware 2.0.8 on, there is a Traceroute Module that can show you this.
+Из-за ограниченной пропускной способности LoRa Meshtastic не хранит путь сообщения по узлам до назначения. Начиная с прошивки 2.0.8, есть модуль Traceroute, который это показывает.
 
-Only nodes that know the encryption key of the channel you use can be tracked. Also note that a message may arrive via multiple routes due to duplication because of rebroadcasting. This module will only track the hops of the first packet containing the traceroute request that arrived at the destination.
+Отслеживаются только те узлы, которые знают ключ шифрования вашего Channel. Учтите, из-за ретрансляций сообщение может прийти по разным маршрутам. Модуль фиксирует хопы первого пакета с запросом traceroute, который дошёл до узла-получателя.
 
-In order to use it, make sure your devices use firmware version 2.0.8 or higher.
+Для работы нужна прошивка 2.0.8 или новее.
 
-From firmware version ≥ 2.5, the route back to the origin is recorded, along with the Signal-to-Noise Ratio (SNR) for each link. Nodes with older firmware or those unable to decrypt the traceroute will be shown as "Unknown" (represented by an ID equal to 4294967295 or 0xFFFFFFFF in hexadecimal) if all nodes in the route are using at least firmware version 2.3.12.
+Начиная с версии прошивки ≥ 2.5, записывается маршрут обратно к источнику, а также отношение сигнал/шум (SNR) для каждого звена. Узлы со старой прошивкой или те, что не могут расшифровать traceroute, будут показаны как "Unknown" (ID равен 4294967295 или 0xFFFFFFFF в hex), если все узлы на пути используют прошивку не ниже 2.3.12.
 
 <div style={{ maxWidth: "800px", margin: "auto" }}>
   <ReactPlayer
@@ -29,11 +29,11 @@ From firmware version ≥ 2.5, the route back to the origin is recorded, along w
   />
 </div>
 
-## Repeater Behavior
+## Поведение репитеров {#repeater-behavior}
 
-Repeater nodes will appear in the traceroute log if they have the encryption key, but if they are not in the node list they might appear as "Unknown" depending on the app.
+Репитеры появятся в логе traceroute, если у них есть ключ шифрования, но если их нет в списке узлов, в некоторых приложениях они могут отображаться как "Unknown".
 
-## Traceroute Module Client Availability
+## Поддержка Traceroute в клиентах {#traceroute-module-client-availability}
 
 <Tabs
   groupId="settings"
@@ -77,29 +77,29 @@ Repeater nodes will appear in the traceroute log if they have the encryption key
 
 #### Android
 
-Within the node list, long hold a destination node and select 'Traceroute' to send the request. Depending on the amount of hops that is needed, this might take a while. The result will be shown using a pop-up.
+В списке узлов сделайте долгое нажатие на целевом узле и выберите 'Traceroute' — запрос отправится. В зависимости от числа хопов это может занять время. Результат появится во всплывающем окне.
 
 </TabItem>
 <TabItem value="apple">
 
 #### Apple
 
-Within the node list, long hold a destination node and select 'Trace Route' to send the request. Depending on the amount of hops, this might take a while. On iOS/iPadOS 17 and macOS 14+, the results will be shown in the node's Trace Route Log in the node details. For earlier versions, check Settings > Logging > Mesh Log.
+В списке узлов сделайте долгое нажатие на целевом узле и выберите 'Trace Route' — запрос отправится. В зависимости от числа хопов это может занять время. На iOS/iPadOS 17 и macOS 14+ результаты будут в Trace Route Log этого узла в его карточке. В ранних версиях смотрите Settings > Logging > Mesh Log.
 
 </TabItem>
 <TabItem value="cli">
 
 #### CLI
 
-Make sure the CLI is at least version 2.0.6. Then use this command:
+Убедитесь, что версия CLI не ниже 2.0.6. Затем выполните команду:
 
-```shell title="CLI traceroute command"
+```shell title="Команда CLI для traceroute"
 meshtastic --traceroute 'destinationId'
 ```
 
-Where for `destinationId` you have to fill in the ID of the destination you want to track the hops to, which you can get from running `meshtastic --nodes`. Depending on your OS, you might need quotation marks around the ID. Then it will send a specific message to track the hops. For example, this is what you will get:
+В параметре `destinationId` укажите ID нужного узла назначения — его можно получить из `meshtastic --nodes`. В зависимости от ОС могут понадобиться кавычки вокруг ID. Будет отправлено специальное сообщение для трассировки хопов. Например, вывод может быть таким:
 
-```shell title="Traceroute from !25048234 to !bff18ce4"
+```shell title="Traceroute от !25048234 до !bff18ce4"
 meshtastic --traceroute '!bff18ce4'
 Connected to radio
 Sending traceroute request to !bff18ce4 (this could take a while)
@@ -109,14 +109,14 @@ Route traced back to us:
 !bff18ce4 --> !ba4bf9d0 (-2.75dB) --> !25048234 (5.25dB)
 ```
 
-The first ID shown is the origin device connected via the CLI. As demonstrated in the image above, the packet traveled through one additional node to reach its destination and return.
+Первый ID — это исходное устройство, к которому подключён CLI. Как показано выше, пакет прошёл через один промежуточный узел до назначения и обратно.
 
 </TabItem>
 <TabItem value="web">
 
 #### Web
 
-After selecting a node from the list, click the "route" button in the top-right corner to send a traceroute request to the selected node. The result will be displayed on the node’s message page.
+Выберите узел в списке и нажмите кнопку "Route" в правом верхнем углу — отправится запрос traceroute к выбранному узлу. Результат будет показан на странице сообщений этого узла.
 
 </TabItem>
 </Tabs>

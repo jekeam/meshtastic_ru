@@ -1,8 +1,8 @@
 ---
 id: canned-message
-title: Canned Message Module Configuration
-sidebar_label: Canned Message
-description: Configuration details for canned (predefined) messages on your Meshtastic device.
+title: Настройка модуля шаблонных сообщений
+sidebar_label: Шаблонные сообщения
+description: Настройка шаблонных предопределённых сообщений на устройстве Meshtastic
 ---
 
 import Tabs from "@theme/Tabs";
@@ -10,9 +10,9 @@ import TabItem from "@theme/TabItem";
 import { Icon } from "@iconify/react";
 import ReactPlayer from "react-player";
 
-The Canned Message Module will allow you to send messages to the mesh network from the device without using the phone app. You can predefine text messages to choose from.
+Модуль шаблонных сообщений позволяет отправлять сообщения в Mesh прямо с устройства, без приложения на телефоне. Можно заранее задать тексты и выбирать из них.
 
-The canned message module config options are: Enabled, Send Bell, Messages, Input Source, Rotary Encoder Enabled, Up Down Encoder Enabled, Input Broker Pin A, Input Broker Pin B, Input Broker Pin Press, Input Broker Event Clockwise, Input Broker Event Counter Clockwise, and Input Broker Event Press. Canned Message config uses an admin message sending a `ConfigModule.CannedMessage` protobuf.
+Варианты настроек модуля: Enabled, Send Bell, Messages, Input Source, Rotary Encoder Enabled, Up Down Encoder Enabled, Input Broker Pin A, Input Broker Pin B, Input Broker Pin Press, Input Broker Event Clockwise, Input Broker Event Counter Clockwise и Input Broker Event Press. Настройка Canned Message использует admin‑сообщение с protobuf `ConfigModule.CannedMessage`.
 
 <div style={{ maxWidth: "800px", margin: "auto" }}>
   <ReactPlayer
@@ -23,69 +23,69 @@ The canned message module config options are: Enabled, Send Bell, Messages, Inpu
   />
 </div>
 
-## Canned Message Module Config Values
+## Параметры модуля шаблонных сообщений {#canned-message-module-config-values}
 
-### Enabled
+### Включено {#enabled}
 
-Enables the canned message module.
+Включает модуль шаблонных сообщений.
 
-### Send Bell
+### Отправлять звонок {#send-bell}
 
-Sends a bell character with each message.
+Отправлять символ звонка вместе с каждым сообщением.
 
-The [External Notification Module](external-notification.mdx) can be set up to beep when a new message arrives.
-This module can also be configured to beep only when a message contains the bell character.
+Модуль [External Notification Module](external-notification.mdx) можно настроить на звуковой сигнал при получении нового сообщения.
+Также его можно настроить так, чтобы он пищал только если в сообщении есть символ звонка.
 
-### Messages
+### Сообщения {#messages}
 
-The list of pre-set messages as configured by the user. Messages should be separated by pipes `|`. The total byte count for the message list can be up to 200 bytes
+Список заготовок, заданный пользователем. Сообщения разделяются символом вертикальной черты `|`. Общий размер списка — до 200 байт.
 
-### Input Source
+### Источник ввода {#input-source}
 
-Input event sources accepted by the canned message module.
+Источники событий ввода, которые принимает модуль шаблонных сообщений.
 
-|      Value      |                             Description                              |
+| Значение | Описание |
 | :-------------: | :------------------------------------------------------------------: |
-|     `_any`      | Default. Allows any peripheral input device connected to the device. |
-|    `rotEnc1`    |                         Basic Rotary Encoder                         |
-|  `upDownEnc1`   |     Up Down Encoder (use this also for RAK14006 Rotary Encoder)      |
-| `scanAndSelect` |              Single push-button (short and long press)               |
-|    `cardkb`     |           M5 Stack CardKB (this covers RAK14004 Keymatrix)           |
-|   `serialkb`    |                        Chatter serial keypad                         |
+|     `_any`      | По умолчанию. Любые периферийные устройства ввода, подключённые к устройству. |
+|    `rotEnc1`    | Обычный Rotary Encoder |
+|  `upDownEnc1`   | Up/Down Encoder (также для RAK14006 Rotary Encoder) |
+| `scanAndSelect` | Одна кнопка (короткое и длинное нажатие) |
+|    `cardkb`     | M5Stack CardKB (также RAK14004 Keymatrix) |
+|   `serialkb`    | Chatter serial keypad |
 
-### Rotary Encoder Enabled
+### Rotary Encoder включён {#rotary-encoder-enabled}
 
-Enable the default rotary encoder.
+Включить стандартный rotary encoder.
 
-### Up Down Encoder Enabled
+### Up/Down Encoder включён {#up-down-encoder-enabled}
 
-Enable the up / down encoder.
+Включить up/down encoder.
 
-### Input Broker Pin A
+### Input Broker Pin A {#input-broker-pin-a}
 
-GPIO Pin Value (1-39) For encoder port A
+Номер GPIO (1–39) для входа A энкодера
 
-### Input Broker Pin B
+### Input Broker Pin B {#input-broker-pin-b}
 
-GPIO Pin Value (1-39) For encoder port B
+Номер GPIO (1–39) для входа B энкодера
 
-### Input Broker Pin Press
+### Input Broker Pin Press {#input-broker-pin-press}
 
-GPIO Pin Value (1-39) For encoder Press port
+Номер GPIO (1–39) для входа Press
 
-### Input Broker Event Clockwise
+### Input Broker Event Clockwise {#input-broker-event-clockwise}
 
-Generate the rotary clockwise event.
+Генерировать событие поворота по часовой стрелке.
 
-### Input Broker Event Counter Clockwise
+### Input Broker Event Counter Clockwise {#input-broker-event-counter-clockwise}
 
-Generate the rotary counter clockwise event.
+Генерировать событие поворота против часовой стрелки.
 
-### Input Broker Event Press
+### Input Broker Event Press {#input-broker-event-press}
 
-Generate input event on Press of this kind.
+Генерировать событие при нажатии.
 
-## Canned Message Module Config Client Availability
+## Доступность настроек модуля на клиентах {#canned-message-module-config-client-availability}
 
 <Tabs
   groupId="settings"
@@ -128,12 +128,12 @@ Generate input event on Press of this kind.
 
 #### Android
 
-:::info
+:::note заметка
 
-Canned Message Config options are available for Android.
+Настройки Canned Message доступны на Android.
 
-1. Open the Meshtastic App
-2. Navigate to: **Vertical Ellipsis (3 dots top right) > Radio Configuration > Canned Message**
+1. Откройте приложение Meshtastic
+2. Перейдите: **Вертикальное многоточие (3 точки справа вверху) > Radio Configuration > Canned Message**
 
 :::
 
@@ -142,8 +142,8 @@ Canned Message Config options are available for Android.
 
 #### Apple
 
-:::info
-All canned message module config options are available on iOS, iPadOS and macOS at Settings > Module Configuration > Canned Messages.
+:::note заметка
+Все параметры модуля шаблонных сообщений доступны на iOS, iPadOS и macOS: Settings > Module Configuration > Canned Messages.
 :::
 
 </TabItem>
@@ -151,15 +151,15 @@ All canned message module config options are available on iOS, iPadOS and macOS 
 
 #### CLI
 
-:::info
+:::note заметка
 
-All canned message module config options are available in the python CLI.
+Все параметры модуля доступны в python CLI.
 
 :::
 
-Example commands are below:
+Примеры команд ниже:
 
-|                Setting                 |             Acceptable Values             |           Default           |
+| Параметр | Допустимые значения | По умолчанию |
 | :------------------------------------: | :---------------------------------------: | :-------------------------: |
 |         canned_message.enabled         |              `true`, `false`              |           `false`           |
 |        canned_message.send_bell        |              `true`, `false`              |           `false`           |
@@ -172,65 +172,65 @@ Example commands are below:
 |    canned_message.inputbroker_pin_b    |                 `integer`                 |        (not defined)        |
 |  canned_message.inputbroker_pin_press  |                 `integer`                 |        (not defined)        |
 
-:::tip
+:::tip совет
 
-Because the device will reboot after each command is sent via CLI, it is recommended when setting multiple values in a config section that commands be chained together as one.
+Так как устройство перезагружается после каждой команды из CLI, при установке нескольких значений в одном разделе удобнее объединить команды в одну.
 
-```shell title="Example:"
+```shell title="Пример:"
 meshtastic --set canned_message.enabled true --set canned_message.send_bell true
 ```
 
 :::
 
-```shell title="Enable/Disable the Canned Message Module"
+```shell title="Включить/выключить модуль шаблонных сообщений"
 meshtastic --set canned_message.enabled true
 meshtastic --set canned_message.enabled false
 ```
 
-```shell title="Enable/Disable send bell character"
+```shell title="Включить/выключить отправку символа звонка"
 meshtastic --set canned_message.send_bell true
 meshtastic --set canned_message.send_bell false
 ```
 
-```shell title="Set Messages"
+```shell title="Задать сообщения"
 meshtastic --set-canned-message "I need an alpinist!|Call Me|Roger Roger|Keep Calm|On my way"
 ```
 
-```shell title="Set Input Source"
+```shell title="Выбрать источник ввода"
 meshtastic --set canned_message.allow_input_source "_any"
 meshtastic --set canned_message.allow_input_source "rotEnc1"
 ```
 
-```shell title="Enable/Disable rotary1"
+```shell title="Включить/выключить rotary1"
 meshtastic --set canned_message.rotary1_enabled 1
 ```
 
-```shell title="Set/Unset Encoder Pin A"
+```shell title="Задать/сбросить пин энкодера A"
 meshtastic --set canned_message.inputbroker_pin_a 17
 meshtastic --set canned_message.inputbroker_pin_a 0
 ```
 
-```shell title="Set/Unset Encoder Pin B"
+```shell title="Задать/сбросить пин энкодера B"
 meshtastic --set canned_message.inputbroker_pin_b 39
 meshtastic --set canned_message.inputbroker_pin_b 0
 ```
 
-```shell title="Set/Unset Encoder Pin Press"
+```shell title="Задать/сбросить пин Press"
 meshtastic --set canned_message.inputbroker_pin_press 21
 meshtastic --set canned_message.inputbroker_pin_press 0
 ```
 
-```shell title="Set/Unset Input Broker CW Event"
+```shell title="Задать/сбросить событие CW"
 meshtastic --set canned_message.inputbroker_event_cw UP
 meshtastic --set canned_message.inputbroker_event_cw ""
 ```
 
-```shell title="Set/Unset Input Broker CCW Event"
+```shell title="Задать/сбросить событие CCW"
 meshtastic --set canned_message.inputbroker_event_ccw DOWN
 meshtastic --set canned_message.inputbroker_event_ccw ""
 ```
 
-```shell title="Set/Unset Input Broker Press Event"
+```shell title="Задать/сбросить событие Press"
 meshtastic --set canned_message.inputbroker_event_press SELECT
 meshtastic --set canned_message.inputbroker_event_press ""
 ```
@@ -240,62 +240,62 @@ meshtastic --set canned_message.inputbroker_event_press ""
 
 #### Web
 
-:::info
-All canned message module config options are available in the Web UI.
+:::note заметка
+Все параметры модуля доступны в Web UI.
 :::
 
 </TabItem>
 </Tabs>
 
-:::warning
-GPIO access is fundamentally dangerous because invalid options can physically damage or destroy your hardware. Ensure that you fully understand the schematic for your particular device before trying this as we do not offer a warranty. Use at your own risk.
+:::warning предупреждение
+Доступ к GPIO потенциально опасен: неверные параметры могут физически повредить или уничтожить ваше устройство. Перед настройкой убедитесь, что вы понимаете схему именно вашего устройства. Гарантия не предоставляется. Используйте на свой риск.
 
-This module requires attaching a peripheral accessory to your device. It will not work without one.
+Для работы модуля требуется подключённое периферийное устройство. Без него он не работает.
 :::
 
-## Hardware
+## Железо {#hardware}
 
-To navigate through messages and select one, you will require some hardware attached to your device. Currently, the module is tested with a generic rotary encoder, an up/down/select 3 button logic and several I2C Keyboards. Further input methods will be added in the future.
+Чтобы пролистывать и выбирать сообщения, к устройству нужно подключить железо. Сейчас модуль протестирован с обычным rotary encoder, логикой из трёх кнопок up/down/select и несколькими I2C‑клавиатурами. В дальнейшем будут добавлены другие методы ввода.
 
-### I2C Keymatrix
+### I2C Keymatrix {#i2c-keymatrix}
 
-This is tested with the RAK14004 Keyboard. A keypress will immediately send the message attached to the button number. Buttons are numbered from upper left to lower right on the keypanels. So pressing the upper left button will send the first message. The second button will send the second message and so on.
+Протестировано с клавиатурой RAK14004. Нажатие сразу отправляет сообщение, привязанное к номеру кнопки. Кнопки на панели нумеруются слева сверху направо вниз. То есть верхняя левая — первое сообщение, вторая — второе и т. д.
 
-**Caveat:** the RAK 3x4 keymatrix is missing the 4th button row while scanning, so you have to skip every 4th message slot. Button 1 sends message 1 and button 4 will send message 5
-Example: 1|2|3||5|6|7||9|10|11||13|14|15 - the slots 4,8 and 12 can not be used.
+**Особенность:** у RAK 3x4 при сканировании отсутствует 4‑я строка, поэтому каждый 4‑й слот сообщения нужно пропустить. Кнопка 1 отправляет сообщение 1, а кнопка 4 — сообщение 5.
+Пример: 1|2|3||5|6|7||9|10|11||13|14|15 — слоты 4, 8 и 12 использовать нельзя.
 
-### CardKB
+### CardKB {#cardkb}
 
-The CardKB is fully supported in freetext mode and select mode. Use UP/DOWN/ENTER to select a predefined message and send it. For a freetext message, just type it in and press ENTER to send it.
+CardKB полностью поддерживается в режимах freetext и select. Используйте UP/DOWN/ENTER, чтобы выбрать заготовку и отправить её. Для свободного текста просто наберите его и нажмите ENTER для отправки.
 
-If you don't want to broadcast your freetext message, you can use the CardKB to send it to a specific node. Just press TAB and select the target node with the LEFT/RIGHT keys. The message will be sent to the node with the matching name and node number. The target node will be remembered for your next message.
+Если не хотите отправлять freetext в broadcast, можно отправить его на конкретный Node. Нажмите TAB и выберите целевой узел клавишами LEFT/RIGHT. Сообщение уйдёт на Node с совпадающими именем и номером. Выбранный Node запомнится для следующего сообщения.
 
-### 3 Button up/down and RAK rotary encoder
+### 3 кнопки up/down и RAK rotary encoder {#3-button-updown-and-rak-rotary-encoder}
 
-Just use UP/DOWN/ENTER to select a predefined message and send it.
+Просто используйте UP/DOWN/ENTER, чтобы выбрать заготовку и отправить её.
 
-### Scan and Select
+### Scan and Select {#scan-and-select}
 
-Use a single push-button to select and send predefined messages.
+Одна кнопка для прокрутки и отправки заготовок.
 
-#### Setup
+#### Настройка {#setup}
 
-- Connect a normally-open push-button between ground and a GPIO pin of your choice
-- Configure the canned messages module
-  - Set [Input Source](#input-source) to `scanAndSelect`
-  - Set [Input Broker Pin Press](#input-broker-pin-press) to your chosen GPIO
-  - Define a [list of pre-set messages](#messages)
+- Подключите нормально‑разомкнутую кнопку между землёй и выбранным GPIO
+- Настройте модуль шаблонных сообщений
+  - Установите [Input Source](#input-source) в `scanAndSelect`
+  - Задайте [Input Broker Pin Press](#input-broker-pin-press) на выбранный GPIO
+  - Задайте [список заготовок](#messages)
 
-#### Usage
+#### Использование {#usage}
 
-- Short press: scroll through messages
-- Long press: send the currently highlighted message to your primary channel
+- Короткое нажатие: прокрутка сообщений
+- Долгое нажатие: отправить текущее сообщение в основной Channel
 
-### Rotary encoder
+### Rotary encoder {#rotary-encoder}
 
-Meshtastic supports hardwired rotary encoders as input devices.
+Meshtastic поддерживает проводные rotary encoder как устройства ввода.
 
-You will need a generic rotary encoder. The types listed below has five legs where two is dedicated to a "press" action, but any other types will likely do the job. You can also use a three-legged version, where the "press" action should be wired from an independent switch.
+Понадобится обычный rotary encoder. Варианты ниже имеют пять выводов, два из которых — для действия «press», но подойдут и другие типы. Можно использовать и трёхвыводной вариант, где «press» подключается отдельной кнопкой.
 
 <!--- TODO move links to hardware section --->
 
@@ -305,7 +305,7 @@ You will need a generic rotary encoder. The types listed below has five legs whe
 - [Aliexpress link2](https://www.aliexpress.com/item/32946444853.html?spm=a2g0o.productlist.0.0.1afe21a50SLvi2&algo_pvid=a19c4182-08aa-406d-bfdf-132582ef5ebb&aem_p4p_detail=2022011523263276283624312400022072680&algo_exp_id=a19c4182-08aa-406d-bfdf-132582ef5ebb-6&pdp_ext_f=%7B%22sku_id%22%3A%2266223434642%22%7D&pdp_pi=-1%3B1.91%3B-1%3B-1%40salePrice%3BUSD%3Bsearch-mainSearch)
 - [Aliexpress link3](https://www.aliexpress.com/item/10000056483250.html?spm=a2g0o.productlist.0.0.1afe21a50SLvi2&algo_pvid=a19c4182-08aa-406d-bfdf-132582ef5ebb&algo_exp_id=a19c4182-08aa-406d-bfdf-132582ef5ebb-9&pdp_ext_f=%7B%22sku_id%22%3A%2220000000116682147%22%7D&pdp_pi=-1%3B2.51%3B-1%3B-1%40salePrice%3BUSD%3Bsearch-mainSearch)
 
-Connect your rotary encoder as follows. The rotary encoder has two rows of legs. One of the rows contains two legs, the other contains three legs. Bottom side view:
+Подключение rotary encoder. У энкодера два ряда выводов: в одном ряду два вывода, в другом — три. Вид снизу:
 
 ```text
   B o --- o PRESS
@@ -313,9 +313,9 @@ GND o | |
   A o --- o GND
 ```
 
-The two legs is to sense the press action (or push). Connect one of the two to GROUND and the other to a GPIO pin. (No matter which one goes where.) Let's call this connected ports 'PRESS'.
+Два вывода — для фиксации нажатия (press). Подключите один из них к GND, другой — к GPIO (не важно, какой куда). Этот вход назовём «PRESS».
 
-The three legs is to sense the rotation action. Connect the middle leg to GROUND and the ones on the side to GPIO pins. Let's call these ports 'A' and 'B', according to the scheme below.
+Три вывода — для фиксации вращения. Средний подключите к GND, крайние — к GPIO. Обозначим их «A» и «B» по схеме ниже.
 
 ```text
 A   --||
@@ -323,25 +323,25 @@ GND --||]========
 B   --||
 ```
 
-Recommended GPIO pins for connecting a rotary encoder.
+Рекомендуемые GPIO для подключения rotary encoder:
 
 - TTGO LoRa V1:
-  - A - GPIO-22
-  - B - GPIO-23
-  - PRESS - GPIO-21
+  - A — GPIO‑22
+  - B — GPIO‑23
+  - PRESS — GPIO‑21
 
-There is a reference case 3D-design utilizing the rotary encoder for TTGO LoRa V1:
+Есть референсный 3D‑корпус с rotary encoder для TTGO LoRa V1:
 [Case for TTGO-ESP32-LORA-OLED-v1.0 with rotary encoder](https://www.thingiverse.com/thing:5178495)
 
-## Examples
+## Примеры {#examples}
 
-- Attach a compatible peripheral device. Take note of the GPIO numbers you use, as they will be used in the following step.
+- Подключите совместимое периферийное устройство. Запомните номера GPIO — они понадобятся на следующем шаге.
 
-:::note
-Replace each `GPIO` (x3) below with the GPIO numbers from your hardware setup.
+:::note заметка
+Замените каждое `GPIO` (x3) ниже на номера GPIO из вашей схемы.
 :::
 
-```shell title="Canned Message Module - Required Rotary Encoder Module Settings"
+```shell title="Модуль шаблонных сообщений — обязательные настройки для Rotary Encoder"
 meshtastic --set canned_message.inputbroker_pin_a GPIO
 meshtastic --set canned_message.inputbroker_pin_b GPIO
 meshtastic --set canned_message.inputbroker_pin_press GPIO
@@ -351,4 +351,4 @@ meshtastic --set canned_message.inputbroker_event_press SELECT
 meshtastic --set canned_message.rotary1_enabled True
 ```
 
-That's it! With a functioning and enabled rotary encoder, you're ready to begin configuring the Canned Message Module.
+Готово! Когда rotary encoder подключён и включён, можно настраивать модуль шаблонных сообщений.

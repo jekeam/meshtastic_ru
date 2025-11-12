@@ -1,41 +1,41 @@
 ---
 id: ambient-lighting
-title: Ambient Lighting Module Usage
+title: Использование модуля Ambient Lighting
 sidebar_label: Ambient Lighting
-description: Configuration details to manage LEDs on your Meshtastic device.
+description: Настройки управления светодиодами на вашем устройстве Meshtastic.
 ---
 
 import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 import { Icon } from "@iconify/react";
 
-The Ambient Lighting Module has settings for control of onboard LEDs and allows users to adjust the brightness levels and respective color levels. Initially created for the RAK14001 RGB LED module using the NCP5623 with I2C. Config options are: LED State, Current, Red Level, Green Level, and Blue Level.
+Модуль Ambient Lighting позволяет управлять встроенными LED и настраивать яркость и цвета. Изначально создан для RAK14001 RGB LED на NCP5623 по I2C. Параметры: LED State, Current, Red, Green, Blue.
 
-In order to use this module, make sure your devices have firmware version 2.2.5 or higher.
+Для работы модуля требуется Firmware версии 2.2.5 или новее.
 
-## Ambient Lighting Config Values
+## Параметры Ambient Lighting {#ambient-lighting-config-values}
 
-### LED State
+### LED State {#led-state}
 
-Sets the LED to on or Off
+Включить/выключить LED.
 
-### Current
+### Current {#current}
 
-Sets the current for the LED output. Default is 10.
+Ток выхода LED. По умолчанию 10.
 
-### Red
+### Red {#red}
 
-Sets the red LED level. Values are 0-255.
+Уровень красного. Диапазон 0–255.
 
-### Green
+### Green {#green}
 
-Sets the green LED level. Values are 0-255.
+Уровень зеленого. Диапазон 0–255.
 
-### Blue
+### Blue {#blue}
 
-Sets the blue LED level. Values are 0-255.
+Уровень синего. Диапазон 0–255.
 
-## Ambient Lighting Module Client Availability
+## Доступность модуля Ambient Lighting в клиентах {#ambient-lighting-module-client-availability}
 
 <Tabs
   groupId="settings"
@@ -79,20 +79,20 @@ Sets the blue LED level. Values are 0-255.
 
 #### Android
 
-:::info
-All Ambient Lighting Module config options are available for Android in app version 2.2.3 and higher.
+:::note заметка
+Все параметры модуля Ambient Lighting доступны в Android-приложении версии 2.2.3 и новее.
 
-1. Open the Meshtastic App
-2. Navigate to: **Vertical Ellipsis (3 dots top right) > Radio Configuration > Ambient Lighting**
-   :::
+1. Откройте приложение Meshtastic
+2. Перейдите: Вертикальное многоточие (3 точки справа вверху) > Radio Configuration > Ambient Lighting
+:::
 
 </TabItem>
 <TabItem value="apple">
 
 #### Apple
 
-:::info
-All Ambient Lighting Module config options are available on iOS, iPadOS and macOS app versions 2.2.3 and higher at Settings > Module Configuration > Ambient Lighting
+:::note заметка
+Все параметры модуля Ambient Lighting доступны в iOS, iPadOS и macOS, версии приложения 2.2.3 и новее: Settings > Module Configuration > Ambient Lighting
 :::
 
 </TabItem>
@@ -100,36 +100,36 @@ All Ambient Lighting Module config options are available on iOS, iPadOS and macO
 
 #### CLI
 
-:::info
+:::note заметка
 
-All Ambient Lighting Module config options are available in the python CLI version 2.2.3 and higher.
+Все параметры модуля Ambient Lighting доступны в Python CLI версии 2.2.3 и новее.
 
 :::
 
-Example commands are below:
+Примеры команд:
 
-```shell title="Set the LED to on or off"
+```shell title="Включить/выключить LED"
 meshtastic --set ambient_lighting.led_state 1
 meshtastic --set ambient_lighting.led_state 0
 ```
 
-```shell title="Set the led current to 5"
+```shell title="Установить ток LED: 5"
 meshtastic --set ambient_lighting.current 5
 ```
 
-```shell title="Set the red LED brightness to 103"
+```shell title="Установить яркость красного LED: 103"
 meshtastic --set ambient_lighting.red 103
 ```
 
-```shell title="Set the green brightness to 234"
+```shell title="Установить яркость зеленого: 234"
 meshtastic --set ambient_lighting.green 234
 ```
 
-```shell title="Set the blue LED brightness to 148"
+```shell title="Установить яркость синего LED: 148"
 meshtastic --set ambient_lighting.blue 148
 ```
 
-```shell title="Get the Ambient Lighting Module Configuration"
+```shell title="Получить конфиг модуля Ambient Lighting"
 meshtastic --get ambient_lighting
 ```
 
@@ -138,9 +138,9 @@ meshtastic --get ambient_lighting
 
 #### Web
 
-:::info
+:::note заметка
 
-All Ambient Lighting module config options are available in the Web UI.
+Все параметры модуля Ambient Lighting доступны в Web UI.
 
 :::
 

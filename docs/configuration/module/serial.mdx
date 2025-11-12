@@ -1,8 +1,8 @@
 ---
 id: serial
-title: Serial Module Configuration
+title: Настройки модуля Serial
 sidebar_label: Serial
-description: This module is an interface to talk to and control your Meshtastic device over a serial port.
+description: Модуль даёт интерфейс для общения и управления устройством Meshtastic через Serial‑порт.
 ---
 
 import Tabs from "@theme/Tabs";
@@ -10,9 +10,9 @@ import TabItem from "@theme/TabItem";
 import { Icon } from "@iconify/react";
 import ReactPlayer from "react-player";
 
-The serial module config options are: Enabled, Echo, Mode, Receive GPIO, Transmit GPIO, Baud Rate, Timeout, and Override Console Serial Port. Serial Module config uses an admin message sending a `ConfigModule.Serial` protobuf.
+Опции конфигурации модуля Serial: Enabled, Echo, Mode, Receive GPIO, Transmit GPIO, Baud Rate, Timeout и Override Console Serial Port. Конфиг модуля Serial отправляется админ-сообщением `ConfigModule.Serial` (protobuf).
 
-This is an interface to talk to and control your Meshtastic device over a serial port. The module can be set to different [modes](#mode), each fulfilling a different use-case.
+Это интерфейс для общения и управления устройством Meshtastic через Serial‑порт. Модуль можно перевести в разные [режимы](#mode), каждый под свою задачу.
 
 ![image](/img/modules/Serial/jet.webp)
 
@@ -25,67 +25,67 @@ This is an interface to talk to and control your Meshtastic device over a serial
   />
 </div>
 
-## Serial Module Config Values
+## Значения конфигурации модуля Serial {#serial-module-config-values}
 
-### Enabled
+### Включено {#enabled}
 
-Enables the serial module.
+Включает модуль Serial.
 
-### Echo
+### Echo {#echo}
 
-If set, any packets you send will be echoed back to your device.
+Если включено, любые отправленные вами пакеты будут приходить обратно на устройство.
 
-### Mode
+### Режим {#mode}
 
-Defaults to 'Simple'.
+По умолчанию — 'Simple'.
 
-Available Values:
+Доступные значения:
 
-- `DEFAULT` equals `SIMPLE`.
-- `SIMPLE` operates as a dumb UART tunnel. What goes in will come out, requires a channel named 'serial'.
-- `PROTO` exposes the Protobuf Client API on this serial port. You can use this to connect from another device, see the [Arduino client library](https://github.com/meshtastic/Meshtastic-arduino) and the [API Reference](/docs/development/device/client-api).
-- `TEXTMSG` will allow you to send a string over the serial port to the device, which will be broadcasted as a text message to the default channel. Any text message received from the mesh will be sent to the serial port as follows: `<Short Name>: <text>`.
-- `NMEA` will output a NMEA 0183 Data stream containing the internal GPS or fixed position and other node locations as Waypoints (WPL).
-- `CALTOPO` will output NMEA 0183 Waypoints (WPL) every 10 seconds for all valid node locations, to be consumed by [CalTopo / SARTopo](/docs/software/integrations/caltopo.mdx).
-- `WS85` will parse and compute wind speed data received over serial from the Ecowitt WS85. Transmits values via telemetry packet every 5 minutes. Modification of the WS85 weather sensor is required (https://hackaday.io/project/196990-meshtastic-ultrasonic-anemometer-wx-station). If option is not available in app then enable with cli command "meshtastic --set serial.mode 6"
+- `DEFAULT` равен `SIMPLE`.
+- `SIMPLE` работает как простой туннель UART. Что вошло — то вышло, требует Channel с именем 'serial'.
+- `PROTO` открывает Protobuf Client API на этом порту. Можно подключаться с другого устройства, см. [Arduino client library](https://github.com/meshtastic/Meshtastic-arduino) и [API Reference](/docs/development/device/client-api).
+- `TEXTMSG` позволяет отправить строку в Serial‑порт на устройство — она будет отправлена как текстовое сообщение в Channel по умолчанию. Любое текстовое сообщение из Mesh будет послано в Serial в виде: `<Short Name>: <text>`.
+- `NMEA` выводит поток NMEA 0183 с внутренним GPS/фиксированной позицией и местоположениями других узлов как Waypoints (WPL).
+- `CALTOPO` выводит NMEA 0183 Waypoints (WPL) каждые 10 секунд для всех валидных местоположений узлов для [CalTopo / SARTopo](/docs/software/integrations/caltopo.mdx).
+- `WS85` парсит и вычисляет скорость ветра, получаемую по Serial от Ecowitt WS85. Отправляет значения через telemetry‑пакет каждые 5 минут. Требуется модификация датчика WS85 (https://hackaday.io/project/196990-meshtastic-ultrasonic-anemometer-wx-station). Если опции нет в приложении — включите через CLI командой "meshtastic --set serial.mode 6"
 
-:::tip
-`PROTO` mode will show no obvious output when passively observed by a serial monitor. When testing, consider using the [Python CLI](https://github.com/meshtastic/python) with the `--listen` option, to view the stream of protobufs.
+:::tip совет
+Режим `PROTO` не даёт очевидного вывода при пассивном просмотре через Serial‑монитор. Для теста используйте [Python CLI](https://github.com/meshtastic/python) с опцией `--listen`, чтобы видеть поток protobuf‑ов.
 :::
 
-### Receive GPIO Pin
+### Пин Receive GPIO {#receive-gpio-pin}
 
-Set the GPIO pin to the RXD pin you have set up.
+Укажите GPIO‑пин, подключённый к RXD.
 
-:::tip
-With the RAK4631 on the RAK19007 and some versions of the RAK19003 baseboards, the default pins are TXD1 (16) and RXD1 (15). For this device, setting [GPS Mode](/docs/configuration/radio/position/#gps-mode) to `Not_Present` is necessary. For other versions of the RAK19003 baseboard, the pins TXD0 (20) and RXD0 (19) are accessible.
+:::tip совет
+Для RAK4631 на RAK19007 и некоторых версиях базовой платы RAK19003 пины по умолчанию — TXD1 (16) и RXD1 (15). Для этого устройства нужно выставить [GPS Mode](/docs/configuration/radio/position/#gps-mode) в `Not_Present`. Для других версий RAK19003 доступны пины TXD0 (20) и RXD0 (19).
 :::
 
-### Transmit GPIO Pin
+### Пин Transmit GPIO {#transmit-gpio-pin}
 
-Set the GPIO pin to the TXD pin you have set up.
+Укажите GPIO‑пин, подключённый к TXD.
 
-:::tip
-Connect the TX pin to the other device's RX pin, and vice versa. Connect their grounds to each other (not necessary if they're both plugged into the same USB power source.)
+:::tip совет
+Подключайте TX одного устройства к RX другого и наоборот. Соедините их GND (не нужно, если оба питаются от одного USB‑источника).
 :::
 
-### Baud Rate
+### Baud Rate {#baud-rate}
 
-The serial baud rate.
+Скорость Serial.
 
-### Timeout
+### Timeout {#timeout}
 
-The amount of time to wait before we consider your packet as "done".
+Время ожидания, после которого пакет считается «готов».
 
-### Override Console Serial Port
+### Override Console Serial Port {#override-console-serial-port}
 
-If set to true, this will allow Serial Module to control (set baud rate) and use the primary USB serial bus for output. This is only useful for NMEA and CalTopo modes and may behave strangely or not work at all in other modes. Setting TX/RX pins in the Serial Module config will cause this setting to be ignored.
+Если true, позволит модулю Serial управлять (задавать baud rate) и использовать основной USB‑Serial для вывода. Полезно только для режимов NMEA и CalTopo, в других режимах может работать странно или не работать вовсе. Если заданы TX/RX пины в настройках модуля Serial — этот параметр игнорируется.
 
-:::tip
-Once module settings are changed, a **reset** is required for them to take effect.
+:::tip совет
+После изменения настроек модуля нужна **перезагрузка**, чтобы они вступили в силу.
 :::
 
-## Serial Module Config Client Availability
+## Доступность настроек модуля Serial в клиентах {#serial-module-config-client-availability}
 
 <Tabs
   groupId="settings"
@@ -128,12 +128,12 @@ Once module settings are changed, a **reset** is required for them to take effec
 
 #### Android
 
-:::info
+:::info информация
 
-Serial Module Config options are available for Android.
+Опции конфигурации модуля Serial доступны на Android.
 
-1. Open the Meshtastic App
-2. Navigate to: **Vertical Ellipsis (3 dots top right) > Radio Configuration > Serial**
+1. Откройте приложение Meshtastic
+2. Перейдите: **Вертикальное многоточие (3 точки справа сверху) > Radio Configuration > Serial**
 
 :::
 
@@ -142,8 +142,8 @@ Serial Module Config options are available for Android.
 
 #### Apple
 
-:::info
-All serial module config options are available on iOS, iPadOS and macOS at Settings > Module Configuration > Serial.
+:::info информация
+Все настройки модуля Serial доступны на iOS, iPadOS и macOS: Settings > Module Configuration > Serial.
 :::
 
 </TabItem>
@@ -151,9 +151,9 @@ All serial module config options are available on iOS, iPadOS and macOS at Setti
 
 #### CLI
 
-:::info
+:::info информация
 
-All serial module config options are available in the python CLI. Example commands are below:
+Все опции конфигурации доступны в python CLI. Примеры команд ниже:
 
 :::
 
@@ -168,45 +168,45 @@ All serial module config options are available in the python CLI. Example comman
 |           serial.timeout            |                                                                                          `integer` (milli seconds)                                                                                           | Default of `0` corresponds to 250 ms |
 | serial.override_console_serial_port |                                                                                               `true`, `false`                                                                                                |               `false`                |
 
-:::tip
+:::tip совет
 
-Because the device will reboot after each command is sent via CLI, it is recommended when setting multiple values in a config section that commands be chained together as one.
+Так как устройство перезагружается после каждой команды из CLI, при настройке нескольких значений в одном разделе лучше объединять их в одну команду.
 
-```shell title="Example:"
+```shell title="Пример:"
 meshtastic --set serial.enabled true --set serial.echo true
 ```
 
 :::
 
-```shell title="Enable / Disable Module"
+```shell title="Включить / выключить модуль"
 meshtastic --set serial.enabled true
 meshtastic --set serial.enabled false
 ```
 
-```shell title="Enable / Disable Echo"
+```shell title="Включить / выключить Echo"
 meshtastic --set serial.echo true
 meshtastic --set serial.echo false
 ```
 
-```shell title="Set Mode"
+```shell title="Выбрать режим"
 meshtastic --set serial.mode DEFAULT
 meshtastic --set serial.mode PROTO
 ```
 
-```shell title="Set RXD to GPIO pin number 7"
+```shell title="Назначить RXD на GPIO 7"
 meshtastic --set serial.rxd 7
 ```
 
-```shell title="Set TXD to GPIO pin number 28"
+```shell title="Назначить TXD на GPIO 28"
 meshtastic --set serial.txd 28
 ```
 
-```shell title="Set Baud Rate"
+```shell title="Выбрать Baud Rate"
 meshtastic --set serial.baud BAUD_DEFAULT
 meshtastic --set serial.baud BAUD_576000
 ```
 
-```shell title="Set Timeout to 15 milli seconds"
+```shell title="Установить Timeout 15 мс"
 meshtastic --set serial.timeout 15
 ```
 
@@ -215,69 +215,69 @@ meshtastic --set serial.timeout 15
 
 #### Web
 
-:::info
-All serial module config options are available in the Web UI.
+:::info информация
+Все опции конфигурации модуля Serial доступны в Web UI.
 :::
 
 </TabItem>
 </Tabs>
 
-:::warning
-GPIO access is fundamentally dangerous because invalid options can physically damage or destroy your hardware. Ensure that you fully understand the schematic for your particular device before trying this as we do not offer a warranty. Use at your own risk.
+:::warning предупреждение
+Доступ к GPIO потенциально опасен: неверные настройки могут повредить или вывести из строя ваше железо. Перед экспериментами убедитесь, что вы понимаете схему именно вашего устройства. Гарантию мы не даём. Используйте на свой страх и риск.
 
-This module requires attaching a peripheral accessory to your device. It will not work without one.
+Для работы этого модуля требуется подключаемая периферия. Без неё он не будет работать.
 :::
 
-## Examples
+## Примеры {#examples}
 
-Default is to use RX GPIO 16 and TX GPIO 17.
+По умолчанию используются RX GPIO 16 и TX GPIO 17.
 
-### Basic Usage
+### Базовое использование {#basic-usage}
 
-1. Enable the module by setting `serial.enabled` to `1`.
-2. Set the pins (`serial.rxd` / `serial.txd`) for your preferred RX and TX GPIO pins. On tbeam boards it is recommended to use:
+1. Включите модуль, установив `serial.enabled` в `1`.
+2. Задайте пины (`serial.rxd` / `serial.txd`) для ваших RX и TX GPIO. Для плат tbeam рекомендуется:
    - RXD 13
    - TXD 14
-3. Set `serial.timeout` to the amount of time to wait before we consider your packet as "done".
-4. (Optional) set serial.mode to `TEXTMSG` if you want to send messages to/from the general text message channel. For more specific control, use the `PROTO` mode, e.g. in combination with the [Arduino client library](https://github.com/meshtastic/Meshtastic-arduino/blob/master/examples/SendReceiveClient/SendReceiveClient.ino).
-5. Connect to your device over the serial interface at `38400 8N1`.
+3. Установите `serial.timeout` — время ожидания, после которого пакет считается завершённым.
+4. (Опционально) установите serial.mode в `TEXTMSG`, если хотите отправлять/получать сообщения из общего текстового канала. Для более тонкого контроля используйте режим `PROTO`, например вместе с [Arduino client library](https://github.com/meshtastic/Meshtastic-arduino/blob/master/examples/SendReceiveClient/SendReceiveClient.ino).
+5. Подключитесь к устройству по Serial с параметрами `38400 8N1`.
 
-   With [tio](https://github.com/tio/tio) &ndash; `tio -e -b 38400 -f none /dev/myserialport`
+   С [tio](https://github.com/tio/tio) — `tio -e -b 38400 -f none /dev/myserialport`
 
-6. Send a packet up to 237 bytes in length. This will get broadcasted over the default channel.
-7. (Optional) Set `serial.echo` to `1` and any message you send out will be echoed back to your device.
+6. Отправьте пакет длиной до 237 байт. Он будет транслирован по Channel по умолчанию.
+7. (Опционально) установите `serial.echo` в `1` — и любое отправленное сообщение вернётся на устройство.
 
-### Interfacing PIR Sensor With External Microcontroller
+### Подключение PIR‑датчика к внешнему МК {#interfacing-pir-sensor-with-external-microcontroller}
 
-The following are examples of using either a Raspberry Pi Pico or Arduino Mini Pro connected to a PIR sensor to detect motion. When motion is detected, a message is sent via serial to the T-Beam. The T-Beam transmits the message as text over the default channel by utilizing the serial module in TXTMSG mode.
+Ниже примеры с Raspberry Pi Pico или Arduino Mini Pro, подключёнными к PIR‑датчику движения. При детекции движения сообщение отправляется по Serial на T‑Beam. T‑Beam транслирует его как текст по каналу по умолчанию, используя модуль Serial в режиме TXTMSG.
 
-#### Meshtastic Software Configuration
+#### Конфигурация ПО Meshtastic {#meshtastic-software-configuration}
 
-- Serial module enabled, mode: TEXTMSG
-- GPIO Pins (For T-Beam) RX 13, TX 14
+- Модуль Serial включён, режим: TEXTMSG
+- GPIO‑пины (для T‑Beam) RX 13, TX 14
 - 38400 Baud
 
-#### Raspberry Pi Pico BOM
+#### Raspberry Pi Pico BOM {#raspberry-pi-pico-bom}
 
-- A Raspberry Pi Pico running [CircuitPython](https://learn.adafruit.com/getting-started-with-raspberry-pi-pico-circuitpython)
-- T-Beam V1.1 running Meshtastic
-- PIR Sensor ([Adafruit Breadboard Model](https://www.adafruit.com/product/4871))
+- Raspberry Pi Pico с [CircuitPython](https://learn.adafruit.com/getting-started-with-raspberry-pi-pico-circuitpython)
+- T‑Beam V1.1 с Meshtastic
+- PIR‑датчик ([модель Adafruit для макетки](https://www.adafruit.com/product/4871))
 
-#### Raspberry Pi Pico Wiring
+#### Схема подключения Raspberry Pi Pico {#raspberry-pi-pico-wiring}
 
 ![image](/img/modules/Serial/pico-pir-wiring.webp)
 
-- TX pin 14 on the T-Beam to RX pin 2 on the Pico
-- RX pin 13 on the T-Beam to TX pin 1 on the Pico
-- PIR sensor Vcc and GND pins to Vcc/GND on breadboard respectively
-- PIR sensor trigger line to Pico GPIO28 (Pico pin 34)
-- GND pin on T-Beam to GND pin 38 on the Pico
-- GND pin 38 on the Pico to breadboard ground rail
-- 3V3 pin 36 on the Pico to the breadboard positive voltage rail
-- Optional, to power the Pico off of the T-Beam instead of USB:
-  - Connect 5V pin on T-Beam to Vbus pin 40 on the Pico
+- TX пин 14 на T‑Beam к RX пину 2 на Pico
+- RX пин 13 на T‑Beam к TX пину 1 на Pico
+- Vcc и GND PIR на Vcc/GND шины макетной платы
+- Линия триггера PIR к Pico GPIO28 (пин 34 Pico)
+- GND пин T‑Beam к GND пину 38 на Pico
+- GND пин 38 на Pico к земле макетной платы
+- 3V3 пин 36 на Pico к плюсовой шине питания макетной платы
+- Опционально, чтобы питать Pico от T‑Beam вместо USB:
+  - Подключите 5V пин T‑Beam к Vbus пину 40 на Pico
 
-#### Circuit Python Code
+#### Код на CircuitPython {#circuit-python-code}
 
 ```python
 import time
@@ -299,25 +299,25 @@ while True:
     time.sleep(0.5)
 ```
 
-#### Arduino Mini Pro BOM
+#### Arduino Mini Pro BOM {#arduino-mini-pro-bom}
 
-- An Arduino Mini Pro with example sketch from below uploaded to it.
-- T-Beam V1.1 running Meshtastic
-- PIR Sensor ([Adafruit Breadboard Model](https://www.adafruit.com/product/4871))
+- Arduino Mini Pro с загруженным примером из раздела ниже
+- T‑Beam V1.1 с Meshtastic
+- PIR‑датчик ([модель Adafruit для макетки](https://www.adafruit.com/product/4871))
 
-#### Arduino Mini Pro Wiring
+#### Схема подключения Arduino Mini Pro {#arduino-mini-pro-wiring}
 
 ![image](/img/modules/Serial/arduino-mini-pro-pir-wiring.webp)
 
-- T-BEAM RX PIN 13 to TX PIN on the ARDUINO MINI
-- T-BEAM TX PIN 14 to RX PINon the ARDUINO MINI
-- T-BEAM PIN 3.3V to 3.3V PIN on the ARDUINO MINI
-- T-BEAM PIN GND to GND PIN on the ARDUINO MINI
-- ARDUINO MINI PIN 2 to OUT PIN on the PIR SENSOR
-- ARDUINO MINI PIN 3.3V to 3.3V on the PIR SENSOR
-- ARDUINO MINI PIN GND to GND PIN on the PIR SENSOR
+- T‑BEAM RX PIN 13 к TX PIN на ARDUINO MINI
+- T‑BEAM TX PIN 14 к RX PIN на ARDUINO MINI
+- T‑BEAM PIN 3.3V к 3.3V PIN на ARDUINO MINI
+- T‑BEAM PIN GND к GND PIN на ARDUINO MINI
+- ARDUINO MINI PIN 2 к OUT PIN на PIR‑датчике
+- ARDUINO MINI PIN 3.3V к 3.3V на PIR‑датчике
+- ARDUINO MINI PIN GND к GND PIN на PIR‑датчике
 
-#### Arduino Mini Pro Code
+#### Код для Arduino Mini Pro {#arduino-mini-pro-code}
 
 ```cpp
 int LED = 13; // the pin to which the LED is connected

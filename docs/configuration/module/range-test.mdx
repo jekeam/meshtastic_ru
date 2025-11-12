@@ -1,64 +1,64 @@
 ---
 id: range-test
-title: Range Test Module Configuration
-sidebar_label: Range Test
-description: Learn to configure the range test module to create reports, maps, and more.
+title: Настройка модуля теста дальности
+sidebar_label: Тест дальности
+description: Как настроить модуль теста дальности для отчётов, карт и т.д.
 ---
 
 import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 
-This module lets you test the communication range between two Meshtastic nodes. Only nodes with the module enabled will show range test messages on their connected clients.
+Этот модуль позволяет тестировать дальность связи между двумя узлами Meshtastic. Сообщения теста дальности видны только на клиентах узлов, где модуль включён.
 
-- Sender: fixed node that sends sequential packets ("Sender message interval" between 30-60s);
-- Receiver: mobile node (typically you) optionally with onboard or phone GPS.
+- Передатчик: стационарный узел, отправляет последовательные пакеты (интервал «Sender message interval» 30–60 с);
+- Приёмник: мобильный узел (обычно вы) с GPS на борту или в телефоне.
 
-Nodes are in range as long as the sequential packets can be received.
+Узлы считаются в зоне приёма, пока принимаются последовательные пакеты.
 
-The receiving node can be used to save the messages along with the GPS coordinates at which they were received into a .csv file. This .csv file can then be integrated into [Google Earth](https://earth.google.com), [Google Maps - My Maps](https://mymaps.google.com), or any other program capable of processing .csv files. This can enable you to visualize your mesh. Ensure you have [position precision](https://meshtastic.org/docs/configuration/radio/channels/#position-precision) in the default channel set to high, otherwise the collected data will not record your true location.
+Принимающий узел может сохранять сообщения вместе с GPS‑координатами места приёма в файл .csv. Этот .csv‑файл можно загрузить в [Google Earth](https://earth.google.com), [Google Maps - My Maps](https://mymaps.google.com) или другую программу, которая умеет работать с .csv. Это позволит визуализировать ваш Mesh. Убедитесь, что [position precision](https://meshtastic.org/docs/configuration/radio/channels/#position-precision) в канале по умолчанию установлена на high, иначе данные не будут соответствовать вашему реальному местоположению.
 
-:::info
+:::info информация
 
-Be sure to turn off the module or disable sending when not in use. This will use a lot of time on air, slow down your mesh, and spam your channel. The module will automatically turn off after 8 hours.
-
-:::
-
-The range test module config options are: Enabled, Sender, and Save. Range Test Module config uses an admin message sending a `ModuleConfig.RangeTestConfig` protobuf.
-
-## Range Test Module Config Values
-
-### Enabled
-
-Enables the range test module. **Both Sender and Receiver must have the module enabled.** On the Apple and Android apps to receive any range test messages the module must be enabled. The device screen may continue to show range test packets from older firmware versions even if the module is disabled.
-
-### Sender Interval
-
-How long to wait between sending sequential test packets. 0 is default which disables sending messages.
-
-### Recommended Sender Settings
-
-| Radio Setting | `range_test.sender` |
-| :-----------: | :-----------------: |
-|   Long Slow   |         60          |
-|   Long Fast   |         30          |
-|    Medium     |         15          |
-|  Short Fast   |         15          |
-
-### Save CSV File
-
-:::info
-
-**Leave disabled when using the Android or Apple apps.** Saves directly to the device's flash memory (without the need for a smartphone), and is only available on ESP32-based devices.
+Не забудьте выключить модуль или остановить отправку, когда он не нужен. Это сильно занимает эфир, замедляет Mesh и засоряет Channel. Модуль автоматически выключается через 8 часов.
 
 :::
 
-If enabled, all received messages are saved to the device's flash memory in a file named `rangetest.csv`.
+Параметры модуля: Enabled, Sender и Save. Конфиг модуля отправляется админ‑сообщением с protobuf `ModuleConfig.RangeTestConfig`.
 
-To access this file, first turn on the WiFi on your device and connect to your network. Once you can connect to your device, navigate to `meshtastic.local/rangetest.csv` (or your_device_ip/rangetest.csv) and the file will be downloaded automatically. This file will only be created after receiving initial messages.
+## Параметры модуля теста дальности {#range-test-module-config-values}
 
-To prevent filling up the storage, the device will abort writing if there is less than 50kb of space on the filesystem.
+### Включение {#enabled}
 
-## Range Test Module Config Client Availability
+Включает модуль теста дальности. И у передатчика, и у приёмника модуль должен быть включён. В приложениях Apple и Android для приёма сообщений теста дальности модуль тоже должен быть включён. Экран устройства может продолжать показывать пакеты теста дальности от старых версий прошивки, даже если модуль выключен.
+
+### Интервал отправки {#sender-interval}
+
+Задержка между отправкой последовательных тестовых пакетов. 0 — значение по умолчанию, отключает отправку.
+
+### Рекомендованные настройки передатчика {#recommended-sender-settings}
+
+| Настройка радио | `range_test.sender` |
+| :-------------: | :-----------------: |
+|    Long Slow    |         60          |
+|    Long Fast    |         30          |
+|     Medium      |         15          |
+|   Short Fast    |         15          |
+
+### Сохранять CSV {#save-csv-file}
+
+:::info информация
+
+Оставьте выключенным при работе с Android или Apple‑приложениями. Сохраняет прямо во flash‑память устройства (без смартфона), доступно только на устройствах на ESP32.
+
+:::
+
+Если включено, все принятые сообщения сохраняются во flash‑память устройства в файл `rangetest.csv`.
+
+Чтобы получить этот файл, включите Wi‑Fi на устройстве и подключите его к своей сети. Затем откройте `meshtastic.local/rangetest.csv` (или your_device_ip/rangetest.csv) — файл скачается автоматически. Файл создаётся после получения первых сообщений.
+
+Чтобы не забить память, запись прекращается, если на файловой системе осталось меньше 50 КБ.
+
+## Доступность настроек модуля в клиентах {#range-test-module-config-client-availability}
 
 <Tabs
 groupId="settings"
@@ -73,70 +73,70 @@ values={[
 
 #### Android
 
-:::info
+:::info информация
 
-Range Test Config options are available for Android.
+Опции конфигурации Range Test доступны в Android.
 
-1. Open the Meshtastic App
-2. Navigate to: **Vertical Ellipsis (3 dots top right) > Radio Configuration > Range Test**
+1. Откройте приложение Meshtastic
+2. Перейдите: **Вертикальное многоточие (3 точки сверху справа) > Radio Configuration > Range Test**
 
 :::
 
-Android exports a rangetest.csv file from packets in the Debug Log. To clear old packet history data: `Debug Panel > Clear`
+Android экспортирует файл rangetest.csv из пакетов в `Debug Log`. Чтобы очистить старую историю пакетов: `Debug Panel > Clear`
 
 </TabItem>
 <TabItem value="apple">
 
 #### Apple
 
-:::info
-All range test module config options are available on iOS, iPadOS and macOS at Settings > Module Configuration > Range Test.
+:::info информация
+Все настройки модуля теста дальности доступны в iOS, iPadOS и macOS: Settings > Module Configuration > Range Test.
 :::
 
-Apple apps also have the option to download logged position data which is stored on your iPhone/iPad/Mac.  Access this by clicking on the Nodes tab, selecting a node, then select Position Log and click Save.  This data file does not require the Range Test module to be active.
+В приложениях Apple можно скачать журнал позиций, который хранится на вашем iPhone/iPad/Mac. Откройте вкладку Nodes, выберите узел, затем выберите Position Log и нажмите Save. Для этого файл Range Test не обязан быть активен.
 
 </TabItem>
 <TabItem value="cli">
 
 #### CLI
 
-:::info
+:::info информация
 
-Range Test module config options are available in the python CLI. Example commands are below:
+Настройки модуля Range Test доступны в Python CLI. Ниже примеры команд:
 
 :::
 
-|      Setting       |  Acceptable Values  | Default |
-| :----------------: | :-----------------: | :-----: |
-| range_test.enabled |   `true`, `false`   | `false` |
-|  range_test.save   |   `true`, `false`   | `false` |
-| range_test.sender  | `integer` (Seconds) |   `0`   |
+|    Параметр     | Допустимые значения | По умолчанию |
+| :-------------: | :-----------------: | :----------: |
+| range_test.enabled |   `true`, `false`   |   `false`    |
+|  range_test.save   |   `true`, `false`   |   `false`    |
+| range_test.sender  | `integer` (Seconds) |     `0`      |
 
-:::tip
+:::tip подсказка
 
-Because the device will reboot after each command is sent via CLI, it is recommended when setting multiple values in a config section that commands be chained together as one.
+Так как устройство перезагружается после каждой команды из CLI, при настройке нескольких значений в одном разделе лучше отправить их одной связанной командой.
 
-```shell title="Example:"
+```shell title="Пример:"
 meshtastic --set range_test.enabled true --set range_test.save false
 ```
 
 :::
 
-```shell title="Enable / Disable the range test"
+```shell title="Включить / выключить тест дальности"
 meshtastic --set range_test.enabled true
 meshtastic --set range_test.enabled false
 ```
 
-```shell title="Enable / Disable range test save"
+```shell title="Включить / выключить сохранение результатов"
 meshtastic --set range_test.save true
 meshtastic --set range_test.save false
 ```
 
-```shell title="Enable range test sender (send every 60 seconds)"
+```shell title="Включить отправку (каждые 60 секунд)"
 meshtastic --set range_test.sender 60
 ```
 
-```shell title="Disable range test sender"
+```shell title="Отключить отправку"
 meshtastic --set range_test.sender 0
 ```
 
@@ -145,9 +145,9 @@ meshtastic --set range_test.sender 0
 
 #### Web
 
-:::info
+:::info информация
 
-All range test module config options are available in the Web UI.
+Все настройки модуля теста дальности доступны в Web UI.
 
 :::
 
@@ -155,38 +155,38 @@ All range test module config options are available in the Web UI.
 </Tabs>
 
 
-## Application Examples
+## Примеры использования {#application-examples}
 
-### Google Earth Integration
+### Интеграция с Google Earth {#google-earth-integration}
 
-Steps:
+Шаги:
 
-1. [Download](https://www.google.com/earth/versions/#download-pro) and open Google Earth
-   1. Select File > Import
-   2. Select CSV
-   3. Select Delimited, Comma
-   4. Make sure the button that states “This dataset does not contain latitude/longitude information, but street addresses” is unchecked
-   5. Select “rx lat” & “rx long” for the appropriate lat/lng fields
-   6. Click finish
-2. When it prompts you to create a style template, click yes.
-   1. Set the name field to whichever column you want to be displayed on the map (don’t worry about this too much, when you click on an icon, all the relevant data appears)
-   2. Select a color, icon, etc. and hit OK.
+1. [Скачайте](https://www.google.com/earth/versions/#download-pro) и откройте Google Earth
+   1. File > Import
+   2. Выберите CSV
+   3. Выберите Delimited, Comma
+   4. Убедитесь, что кнопка “This dataset does not contain latitude/longitude information, but street addresses” НЕ отмечена
+   5. Выберите “rx lat” и “rx long” для полей широты/долготы
+   6. Нажмите Finish
+2. Когда появится предложение создать шаблон стиля, нажмите Yes.
+   1. Установите поле name на столбец, который хотите показывать на карте (не критично — при клике по значку будет видно все данные)
+   2. Выберите цвет, значок и т.д., затем OK.
 
-Your data will load onto the map, make sure to click the checkbox next to your dataset in the sidebar to view it.
+Данные загрузятся на карту. Поставьте галочку рядом с вашим набором данных в боковой панели, чтобы отобразить его.
 
-### My Maps
+### My Maps {#my-maps}
 
-You can use [My Maps](http://mymaps.google.com). It takes CSVs and the whole interface is much easier to work with.
+Можно использовать [My Maps](http://mymaps.google.com). Он принимает CSV, а интерфейс проще.
 
-Google has instructions on how to do that [here](https://support.google.com/mymaps/answer/3024836?co=GENIE.Platform%3DDesktop&hl=en#zippy=%2Cstep-prepare-your-info%2Cstep-import-info-into-the-map).
+Инструкции от Google — [здесь](https://support.google.com/mymaps/answer/3024836?co=GENIE.Platform%3DDesktop&hl=en#zippy=%2Cstep-prepare-your-info%2Cstep-import-info-into-the-map).
 
-You can style the ranges differently based on the values, so you can have the pins be darker the if the SNR or RSSI (if that gets added) is higher.
+Можно стилизовать дальности по значениям, например, делать метки темнее при большем SNR или RSSI (если он будет добавлен).
 
-### OpenStreetMap - uMap
+### OpenStreetMap — uMap {#openstreetmap-umap}
 
-For an open source solution you could use [uMap](https://umap.openstreetmap.de/en/). A service based on the popular OpenStreetMap project.
+В качестве open source‑решения можно использовать [uMap](https://umap.openstreetmap.de/en/) — сервис на базе OpenStreetMap.
 
-Visit [uMap](https://umap.openstreetmap.de/en/) in your preferred language. 
-1. Click on "Create a map"
-2. Click on the "Import data"-Icon or press CTRL + I.
-3. Choose your rangetest.csv and click "Import". The dataformat is recognized and the locations are imported onto the map.
+Зайдите на [uMap](https://umap.openstreetmap.de/en/) на удобном вам языке.
+1. Нажмите "Create a map"
+2. Нажмите на иконку "Import data" или CTRL + I.
+3. Выберите ваш rangetest.csv и нажмите "Import". Формат данных будет распознан, и точки загрузятся на карту.

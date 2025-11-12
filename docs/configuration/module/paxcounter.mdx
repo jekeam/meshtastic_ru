@@ -1,33 +1,33 @@
 ---
 id: paxcounter
-title: Paxcounter Module Usage
+title: Использование модуля Paxcounter
 sidebar_label: Paxcounter
-description: This module uses WiFi and BLE to count people or devices passing by your Meshtastic device. Used in retail, museums, etc.
+description: Модуль использует Wi‑Fi и BLE для подсчёта людей или устройств, проходящих мимо вашего устройства Meshtastic. Используется в ритейле, музеях и т. п.
 ---
 
 import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 import { Icon } from "@iconify/react";
 
-The Paxcounter module counts the number of people passing by a specific area by scanning for WiFi and BLE MAC addresses. It is commonly used in retail stores, museums, and other public spaces to monitor foot traffic and gather valuable data for analysis.
+Модуль Paxcounter считает количество людей, проходящих мимо, сканируя MAC‑адреса Wi‑Fi и BLE. Часто используется в магазинах, музеях и других публичных местах для мониторинга трафика и анализа данных.
 
-In order to use this module, make sure your devices have firmware version 2.2.17 or higher.
+Для работы модуля используйте прошивку версии 2.2.17 или выше.
 
-:::info
-This module can only be used with ESP32 devices. To operate the Paxcounter Module, it is mandatory to switch off both WiFi and Bluetooth in your Network and Bluetooth settings.
+:::note заметка
+Модуль работает только на ESP32. Для работы Paxcounter нужно выключить Wi‑Fi и Bluetooth в Settings > Network и Bluetooth.
 :::
 
-## Paxcounter Module Config Values
+## Параметры модуля Paxcounter {#paxcounter-module-config-values}
 
-### Enabled
+### Включено {#enabled}
 
-Whether the Module is enabled.
+Включает/выключает модуль.
 
-### Update Interval
+### Интервал обновления {#update-interval}
 
-The interval in seconds of how often we can send a message to the mesh when a state change is detected.
+Интервал (сек.) между отправками в Mesh при изменении состояния.
 
-## Paxcounter Module Client Availability
+## Доступность модуля Paxcounter в клиентах {#paxcounter-module-client-availability}
 
 <Tabs
   groupId="settings"
@@ -71,11 +71,11 @@ The interval in seconds of how often we can send a message to the mesh when a st
 
 #### Android
 
-:::info
-Paxcounter Config options are available for Android.
+:::note заметка
+Настройки Paxcounter доступны на Android.
 
-1. Open the Meshtastic App
-2. Navigate to: **Vertical Ellipsis (3 dots top right) > Radio Configuration > Paxcounter**
+1. Откройте приложение Meshtastic
+2. Перейдите: **Vertical Ellipsis (3 dots top right) > Radio Configuration > Paxcounter**
 
 :::
 
@@ -84,9 +84,9 @@ Paxcounter Config options are available for Android.
 
 #### Apple
 
-:::info
+:::note заметка
 
-All Paxcounter config options are available on iOS, iPadOS and macOS at Settings > Module Configuration > Paxcounter.
+Все параметры Paxcounter доступны на iOS, iPadOS и macOS: Settings > Module Configuration > Paxcounter.
 
 :::
 
@@ -95,24 +95,24 @@ All Paxcounter config options are available on iOS, iPadOS and macOS at Settings
 
 #### CLI
 
-:::info
+:::note заметка
 
-All Paxcounter Module config options are available in the python CLI version 2.2.16 and higher.
+Все параметры модуля Paxcounter доступны в Python CLI версии 2.2.16 и выше.
 
 :::
 
-Example commands are below:
+Примеры команд:
 
-```shell title="Enable/Disable the Paxcounter Module"
+```shell title="Включить/выключить модуль Paxcounter"
 meshtastic --set paxcounter.enabled true
 meshtastic --set paxcounter.enabled false
 ```
 
-```shell title="Set the Minimum Broadcast Interval to 900 seconds"
+```shell title="Задать минимальный интервал отправки 900 секунд"
 meshtastic --set paxcounter.paxcounter_update_interval 900
 ```
 
-```shell title="Get the Paxcounter Module Configuration"
+```shell title="Показать конфиг модуля Paxcounter"
 meshtastic --get paxcounter
 ```
 
@@ -121,9 +121,9 @@ meshtastic --get paxcounter
 
 #### Web
 
-:::info
+:::note заметка
 
-All Paxcounter module config options are available in the Web UI.
+Все параметры модуля Paxcounter доступны в Web UI.
 
 :::
 

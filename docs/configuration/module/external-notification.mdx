@@ -1,8 +1,8 @@
 ---
 id: external-notification
-title: External Notification Module Configuration
-sidebar_label: External Notification
-description: This module will allow you to connect a buzzer, speaker, LED, or other similar accessory to your Meshtastic device.
+title: Настройка модуля External Notification
+sidebar_label: Внешние уведомления
+description: Этот модуль позволяет подключить зуммер, динамик, LED или другой аксессуар к устройству Meshtastic.
 ---
 
 import Tabs from "@theme/Tabs";
@@ -10,9 +10,9 @@ import TabItem from "@theme/TabItem";
 import { Icon } from "@iconify/react";
 import ReactPlayer from "react-player";
 
-The External Notification Module will allow you to connect a buzzer, speaker, LED, or other device to notify you when a message has been received from the mesh network. You can enable up to 3 pins independently from each other.
+Модуль External Notification позволяет подключить зуммер, динамик, LED или другое устройство, чтобы оповещать о новых сообщениях из Mesh. Можно включить до 3 пинов независимо друг от друга.
 
-The External Notification Module config options are: Enabled, Active, Alert Bell (General),Alert Bell Vibra, Alert Bell Buzzer, Alert Message (General), Alert Message Vibra, Alert Message Buzzer, Output (General), Output Vibra, Output Buzzer, Output Milliseconds, Use PWM, and Nag Timeout. External Notification config uses an admin message sending a `ConfigModule.ExternalNotificationConfig` protobuf.
+Опции конфигурации External Notification: Enabled, Active, Alert Bell (General), Alert Bell Vibra, Alert Bell Buzzer, Alert Message (General), Alert Message Vibra, Alert Message Buzzer, Output (General), Output Vibra, Output Buzzer, Output Milliseconds, Use PWM и Nag Timeout. Настройка External Notification отправляется админ‑сообщением с protobuf `ConfigModule.ExternalNotificationConfig`.
 
 <div style={{ maxWidth: "800px", margin: "auto" }}>
   <ReactPlayer
@@ -23,44 +23,43 @@ The External Notification Module config options are: Enabled, Active, Alert Bell
   />
 </div>
 
-## External Notification Module Config Values
+## Параметры модуля внешних уведомлений {#external-notification-module-config-values}
 
-### Enabled
+### Включено {#enabled}
 
-Enables the external notification module.
+Включает модуль внешних уведомлений.
 
-### Active (general / LED only)
+### Активность (общие / только LED) {#active-general-led-only}
 
-Specifies whether the external circuit is active when the device's GPIO is low or high. If this is set true, the pin will be pulled active high, false means active low.
+Задает, активна ли внешняя цепь при низком или высоком уровне GPIO. Если true — пин активен при high, false — активен при low.
 
-### Alert when receiving a bell (general / LED, Vibra and Buzzer)
+### Оповещение при bell (общие / LED, Vibra и Buzzer) {#alert-when-receiving-a-bell-general-led-vibra-and-buzzer}
 
-Specifies if an alert should be triggered when receiving an incoming bell.
+Нужно ли срабатывать при получении входящего bell.
 
-### Alert when receiving a message (general / LED, Vibra and Buzzer)
+### Оповещение при сообщении (общие / LED, Vibra и Buzzer) {#alert-when-receiving-a-message-general-led-vibra-and-buzzer}
 
-Specifies if an alert should be triggered when receiving an incoming message.
+Нужно ли срабатывать при получении входящего сообщения.
 
-### GPIO Pins (general / LED, Vibra and Buzzer)
+### Пины GPIO (общие / LED, Vibra и Buzzer) {#gpio-pins-general-led-vibra-and-buzzer}
 
-Specifies the GPIO that your external circuit is attached to on the device. On devices that have a PWM buzzer, you can use the buzzer for notifications by setting the use_pwm property to TRUE. The Buzzer Pin will be ignored and the device.buzzer_gpio is used instead. If you enable PWM mode, the device will use
-so-called RTTTL ring tones for notification. You can find examples of RTTTL ring tones [here](https://www.laub-home.de/wiki/RTTTL_Songs) and upload them to the device via a client application.
+Указывает GPIO, к которому подключена ваша внешняя цепь. На устройствах с PWM‑зуммером можно использовать его для оповещений, установив свойство use_pwm в TRUE. Пин Buzzer будет игнорироваться, вместо него используется device.buzzer_gpio. Если включить режим PWM, устройство будет использовать рингтоны RTTTL для оповещений. Примеры RTTTL можно найти [здесь](https://www.laub-home.de/wiki/RTTTL_Songs) и загрузить в устройство через клиентское приложение.
 
-:::info
-On ESP32 based boards, GPIOs 34 to 39 are GPIs – input only pins. These pins do not have internal pull-up or pull-down resistors. They can not be used as outputs, so you can NOT use these pins as outputs.
+:::info заметка
+На платах на базе ESP32 GPIO 34–39 — это только входы (GPI). У них нет внутренних pull‑up/pull‑down резисторов и их нельзя использовать как выходы, то есть эти пины НЕ подойдут для выходов.
 :::
 
-### How long monitored GPIO is triggered
+### Длительность активации GPIO {#how-long-monitored-gpio-is-triggered}
 
-Specifies how long in milliseconds you would like your GPIOs to be active. In case of the repeat option, this is the duration of every tone and pause.
+Как долго, в миллисекундах, GPIO должен быть активен. Для режима повтора — это длительность каждого тона и паузы.
 
-Default of 0 is 1000ms
+По умолчанию 0 = 1000 мс.
 
-### Repeat (Nag Timeout) (general / LED, Vibra and Buzzer)
+### Повтор (Nag Timeout) (общие / LED, Vibra и Buzzer) {#repeat-nag-timeout-general-led-vibra-and-buzzer}
 
-Specifies if the alert should be repeated. If set to a value greater than zero, the alert will be repeated until the user button is pressed or 'value' number of seconds have past.
+Нужно ли повторять оповещение. Если значение больше нуля, оповещение будет повторяться, пока не нажата кнопка пользователя или не пройдет указанное число секунд.
 
-## External Notification Module Config Client Availability
+## Где доступна настройка модуля External Notification {#external-notification-module-config-client-availability}
 
 <Tabs
   groupId="settings"
@@ -101,89 +100,89 @@ Specifies if the alert should be repeated. If set to a value greater than zero, 
   ]}>
 <TabItem value="android">
 
-#### Android
+#### Android {#android}
 
-:::info
+:::info заметка
 
-External Notification Config options are available for Android.
+Опции External Notification доступны на Android.
 
-1. Open the Meshtastic App
-2. Navigate to: **Vertical Ellipsis (3 dots top right) > Radio Configuration > External Notification**
+1. Откройте приложение Meshtastic
+2. Перейдите: **Vertical Ellipsis (3 точки, справа вверху) > Radio Configuration > External Notification**
 
 :::
 
 </TabItem>
 <TabItem value="apple">
 
-#### Apple
+#### Apple {#apple}
 
-:::info
-All external notification module config options are available on iOS, iPadOS and macOS at Settings > Module Configuration > External Notification.
+:::info заметка
+Все опции модуля внешних уведомлений доступны на iOS, iPadOS и macOS: Settings > Module Configuration > External Notification.
 :::
 
 </TabItem>
 <TabItem value="cli">
 
-#### CLI
+#### CLI {#cli}
 
-:::info
+:::info заметка
 
-All external notification module config options are available in the python CLI. Example commands are below:
+Все опции модуля внешних уведомлений доступны в Python CLI. Примеры команд ниже:
 
 :::
 
-|                  Setting                   |    Acceptable Values     | Default |
-| :----------------------------------------: | :----------------------: | :-----: |
-|       external_notification.enabled        |     `true`, `false`      | `false` |
-|        external_notification.active        |     `true`, `false`      | `false` |
-|      external_notification.alert_bell      |     `true`, `false`      | `false` |
-|   external_notification.alert_bell_vibra   |     `true`, `false`      | `false` |
-|  external_notification.alert_bell_buzzer   |     `true`, `false`      | `false` |
-|    external_notification.alert_message     |     `true`, `false`      | `false` |
-| external_notification.alert_message_vibra  |     `true`, `false`      | `false` |
-| external_notification.alert_message_buzzer |     `true`, `false`      | `false` |
-|        external_notification.output        |        `integer`         |   `0`   |
-|     external_notification.output_vibra     |        `integer`         |   `0`   |
-|    external_notification.output_buzzer     |        `integer`         |   `0`   |
-|      external_notification.output_ms       | `integer` (milliseconds) |   `0`   |
-|       external_notification.use_pwm        |     `true`, `false`      | `false` |
-|     external_notification.nag_timeout      |   `integer` (seconds)    |   `0`   |
+|               Параметр               |     Допустимые значения     | По умолчанию |
+| :----------------------------------: | :--------------------------: | :----------: |
+|     external_notification.enabled    |      `true`, `false`         |   `false`    |
+|      external_notification.active    |      `true`, `false`         |   `false`    |
+|    external_notification.alert_bell  |      `true`, `false`         |   `false`    |
+| external_notification.alert_bell_vibra |    `true`, `false`         |   `false`    |
+| external_notification.alert_bell_buzzer |   `true`, `false`        |   `false`    |
+|  external_notification.alert_message |      `true`, `false`         |   `false`    |
+| external_notification.alert_message_vibra | `true`, `false`         |   `false`    |
+| external_notification.alert_message_buzzer | `true`, `false`        |   `false`    |
+|      external_notification.output    |          `integer`           |     `0`      |
+|   external_notification.output_vibra |          `integer`           |     `0`      |
+|  external_notification.output_buzzer |          `integer`           |     `0`      |
+|    external_notification.output_ms   | `integer` (миллисекунды)     |     `0`      |
+|     external_notification.use_pwm    |      `true`, `false`         |   `false`    |
+|   external_notification.nag_timeout  |  `integer` (секунды)         |     `0`      |
 
-:::tip
+:::tip подсказка
 
-Because the device will reboot after each command is sent via CLI, it is recommended when setting multiple values in a config section that commands be chained together as one.
+Так как устройство перезагружается после каждой команды из CLI, при настройке нескольких значений лучше отправить их одной связкой.
 
-```shell title="Example:"
+```shell title="Пример:"
 meshtastic --set external_notification.enabled true --set external_notification.alert_bell true
 ```
 
 :::
 
-```shell title="Enable/Disable External Notification Module"
+```shell title="Включить/выключить модуль External Notification"
 meshtastic --set external_notification.enabled true
 meshtastic --set external_notification.enabled false
 ```
 
-```shell title="Enable/Disable alert on incoming bell"
+```shell title="Включить/выключить оповещение на bell"
 meshtastic --set external_notification.alert_bell true
 meshtastic --set external_notification.alert_bell false
 ```
 
-```shell title="Set GPIO active high / low (default of false is low)"
+```shell title="Установить активный уровень GPIO: high/low (по умолчанию false = low)"
 meshtastic --set external_notification.active false
 meshtastic --set external_notification.active true
 ```
 
-```shell title="Enable/Disable alert on incoming message"
+```shell title="Включить/выключить оповещение на входящее сообщение"
 meshtastic --set external_notification.alert_message true
 meshtastic --set external_notification.alert_message false
 ```
 
-```shell title="Set GPIO to monitor to 21"
+```shell title="Задать GPIO для мониторинга: 21"
 meshtastic --set external_notification.output 21
 ```
 
-```shell title="Set monitored GPIO output duration (default of 0 is 1000ms)"
+```shell title="Задать длительность сигнала на GPIO (0 = 1000 мс по умолчанию)"
 meshtastic --set external_notification.output_ms 0
 meshtastic --set external_notification.output_ms 1500
 ```
@@ -191,47 +190,47 @@ meshtastic --set external_notification.output_ms 1500
 </TabItem>
 <TabItem value="web">
 
-#### Web
+#### Web {#web}
 
-:::info
-All External Notification module config is available for the Web UI.
+:::info заметка
+Все настройки модуля External Notification доступны в Web UI.
 :::
 
 </TabItem>
 </Tabs>
 
-:::warning
-GPIO access is fundamentally dangerous because invalid options can physically damage or destroy your hardware. Ensure that you fully understand the schematic for your particular device before trying this as we do not offer a warranty. Use at your own risk.
+:::warning предупреждение
+Доступ к GPIO потенциально опасен: неверные параметры могут повредить или вывести из строя ваше железо. Перед началом убедитесь, что вы понимаете схему именно вашего устройства — гарантию мы не предоставляем. Используйте на свой риск.
 
-This module requires attaching a peripheral accessory to your device. It will not work without one.
+Для работы модуля нужно подключить внешнее устройство. Без него он не работает.
 :::
 
-## Examples
+## Примеры {#examples}
 
-### Alert Types
+### Типы оповещений {#alert-types}
 
-We support being alerted on two events:
+Поддерживаются два события:
 
-1. Incoming Text Message
+1. Входящее текстовое сообщение
 
-2. Incoming Text Message that contains the ASCII bell character. At present, only the Python API can send an ASCII bell character, but more support may be added in the future.
+2. Входящее текстовое сообщение, содержащее символ ASCII bell. Сейчас отправить ASCII bell может только Python API, в будущем поддержка может расшириться.
 
-:::info
-The bell character is ASCII 0x07. Include 0x07 anywhere in the text message and with ext_notification.alert_bell enabled, we will issue an external notification.
+:::info заметка
+Символ bell — это ASCII 0x07. Вставьте 0x07 в любое место текстового сообщения и при включенном ext_notification.alert_bell будет выдано внешнее оповещение.
 :::
 
-## External Hardware
+## Внешняя периферия {#external-hardware}
 
-Be mindful of the max current sink and source of the ESP32 GPIO. The easiest devices to interface with would be either an LED or Active Buzzer.
+Учитывайте максимальные токи sink/source для GPIO ESP32. Проще всего подключить LED или активный зуммер.
 
-Ideas for external hardware:
+Идеи для внешней периферии:
 
 - LED
-- Active Buzzer
-- Flame thrower
-- Strobe Light
-- Siren
+- Активный зуммер
+- Огнемёт
+- Стробоскоп
+- Сирена
 
-## Known Limitations
+## Известные ограничения {#known-limitations}
 
-- This module only monitors text messages. We won't trigger on any other packet types.
+- Модуль отслеживает только текстовые сообщения. На другие типы пакетов не реагирует.

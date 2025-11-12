@@ -1,54 +1,53 @@
 ---
 id: detection-sensor
-title: Detection Sensor Module Usage
+title: Использование модуля Detection Sensor
 sidebar_label: Detection Sensor
-description: Configuration details for the Detection Sensor Module of your Meshtastic device. Used for motion, reed, and other open/closed gate systems.
+description: Параметры конфигурации модуля Detection Sensor для вашего устройства Meshtastic. Подходит для датчиков движения, герконов и других систем открыто/закрыто.
 ---
 
 import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 import { Icon } from "@iconify/react";
 
-The Detection Sensor module allows you to configure a GPIO pin to be monitored for a specified high/low status and send text alerts over the Detection Sensor portnum when an event is detected. This is particularly useful for motion detection sensors, reed switches, and other open / closed state systems in which notifications over the mesh are desired. Config options are: Enabled, Minimum Broadcast Interval, State Broadcast Interval, Send Bell, Name, Monitor Pin, Detection Triggered High, and Use Pull-up.
+Модуль Detection Sensor позволяет настроить GPIO‑пин для мониторинга уровня HIGH/LOW и отправлять текстовые оповещения через portnum Detection Sensor при обнаружении события. Полезно для датчиков движения, герконов и других систем со состоянием открыто/закрыто, где нужны уведомления по Mesh. Параметры: Enabled, Minimum Broadcast Interval, State Broadcast Interval, Send Bell, Name, Monitor Pin, Detection Triggered High и Use Pull-up.
 
-In order to use this module, make sure your devices have firmware version 2.2.2 or higher.
+Для работы модуля прошивка устройства должна быть версии 2.2.2 или новее.
 
-## Detection Sensor Module Config Values
+## Параметры модуля Detection Sensor {#detection-sensor-module-config-values}
 
-### Enabled
+### Enabled {#enabled}
 
-Whether the Module is enabled.
+Включает модуль.
 
-### Minimum Broadcast Interval
+### Minimum Broadcast Interval {#minimum-broadcast-interval}
 
-The interval in seconds of how often we can send a message to the mesh when a state change is detected.
+Минимальный интервал (сек), как часто можно отправлять сообщение в Mesh при изменении состояния.
 
-### State Broadcast Interval
+### State Broadcast Interval {#state-broadcast-interval}
 
-The interval in seconds of how often we should send a message to the mesh with the current state regardless of changes, When set to 0, only state changes will be broadcasted, Works as a sort of status heartbeat for peace of mind.
+Интервал (сек), как часто отправлять текущее состояние в Mesh независимо от изменений. Если 0 — отправляются только изменения. Работает как heartbeat статуса.
 
-### Send Bell
+### Send Bell {#send-bell}
 
-Send ASCII bell with alert message. Useful for triggering ext. notification on bell
-name.
+Добавлять ASCII bell к сообщению тревоги. Полезно для триггера внешних уведомлений по bell.
 
-### Friendly Name
+### Friendly Name {#friendly-name}
 
-Used to format the message sent to mesh. Example: A name "Motion" would result in a message "Motion detected". Maximum length of 20 characters.
+Используется для форматирования сообщения в Mesh. Пример: имя «Motion» даст «Motion detected». До 20 символов.
 
-### Monitor Pin
+### Monitor Pin {#monitor-pin}
 
-The GPIO pin to monitor for state changes.
+GPIO‑пин для мониторинга изменений.
 
-### Detection Triggered High
+### Detection Triggered High {#detection-triggered-high}
 
-Whether or not the GPIO pin state detection is triggered on HIGH (1), otherwise LOW (0).
+Триггер при уровне HIGH (1). Если выключено — при LOW (0).
 
-### Use Pull-up
+### Use Pull-up {#use-pull-up}
 
-Whether or not use INPUT_PULLUP mode for GPIO pin. Only applicable if the board uses pull-up resistors on the pin.
+Включить режим INPUT_PULLUP для GPIO‑пина. Актуально только если на плате есть подтяжка вверх на этом пине.
 
-## Detection Sensor Module Client Availability
+## Где доступен модуль Detection Sensor {#detection-sensor-module-client-availability}
 
 <Tabs
   groupId="settings"
@@ -90,87 +89,87 @@ Whether or not use INPUT_PULLUP mode for GPIO pin. Only applicable if the board 
 
 <TabItem value="android">
 
-#### Android
+#### Android {#android}
 
-:::info
-All Detection Sensor Module config options are available for Android in app version 2.2.2 and higher.
+:::note заметка
+Все параметры модуля Detection Sensor доступны на Android в версии приложения 2.2.2 и новее.
 
-1. Open the Meshtastic App
-2. Navigate to: **Vertical Ellipsis (3 dots top right) > Radio Configuration > Detection Sensor**
-   :::
+1. Откройте приложение Meshtastic
+2. Перейдите: **Vertical Ellipsis (3 dots top right) > Radio Configuration > Detection Sensor**
+:::
 
 </TabItem>
 <TabItem value="apple">
 
-#### Apple
+#### Apple {#apple}
 
-:::info
-All Detection Sensor Module config options are available on iOS, iPadOS and macOS app versions 2.2.2 and higher at Settings > Module Configuration > Detection Sensor
+:::note заметка
+Все параметры модуля Detection Sensor доступны в iOS, iPadOS и macOS, версии 2.2.2 и новее: Settings > Module Configuration > Detection Sensor
 :::
 
 </TabItem>
 <TabItem value="cli">
 
-#### CLI
+#### CLI {#cli}
 
-:::info
+:::note заметка
 
-All Detection Sensor Module config options are available in the python CLI version 2.2.2 and higher.
+Все параметры модуля Detection Sensor доступны в python CLI версии 2.2.2 и новее.
 
 :::
 
-Example commands are below:
+Примеры команд ниже:
 
-```shell title="Enable/Disable the Detection Sensor Module"
+```shell title="Включить/выключить модуль Detection Sensor"
 meshtastic --set detection_sensor.enabled true
 meshtastic --set detection_sensor.enabled false
 ```
 
-```shell title="Set the Minimum Broadcast Interval to 90 seconds"
+```shell title="Задать Minimum Broadcast Interval = 90 сек"
 meshtastic --set detection_sensor.minimum_broadcast_secs 90
 ```
 
-```shell title="Set the State Broadcast Interval to 5 minutes"
+```shell title="Задать State Broadcast Interval = 5 минут"
 meshtastic --set detection_sensor.state_broadcast_secs 300
 ```
 
-```shell title="Enable/Disable Send Bell"
+```shell title="Включить/выключить Send Bell"
 meshtastic --set detection_sensor.send_bell true
 meshtastic --set detection_sensor.send_bell false
 ```
 
-```shell title="Set the friendly name to 'motion'"
+```shell title="Задать Friendly Name = 'motion'"
 meshtastic --set detection_sensor.name "motion"
 ```
 
-```shell title="Set the Monitor Pin to 7"
+```shell title="Задать Monitor Pin = 7"
 meshtastic --set detection_sensor.monitor_pin 7
 ```
 
-```shell title="Enable Notifications when the Monitor Pin goes HIGH"
+```shell title="Включить уведомления при HIGH на Monitor Pin"
 meshtastic --set detection_sensor.detection_triggered_high true
 ```
 
-```shell title="Enable Notifications when the Monitor Pin goes LOW"
+```shell title="Включить уведомления при LOW на Monitor Pin"
 meshtastic --set detection_sensor.detection_triggered_high false
 ```
 
-```shell title="Enable the use INPUT_PULLUP mode"
+```shell title="Включить режим INPUT_PULLUP"
 meshtastic --set detection_sensor.use_pullup true
 ```
 
-```shell title="Get the Detection Sensor Module Configuration"
+```shell title="Показать конфиг модуля Detection Sensor"
 meshtastic --get detection_sensor
 ```
 
 </TabItem>
 <TabItem value="web">
 
-#### Web
+#### Web {#web}
 
-:::info
+:::note заметка
 
-All Detection Sensor module config options are available in the Web UI.
+Все параметры модуля Detection Sensor доступны в Web UI.
 
 :::
 
