@@ -1,7 +1,7 @@
 ---
 id: paxcounter
-title: Использование модуля Paxcounter
-sidebar_label: Paxcounter
+title: Использование модуля Подсчёт Посетителей
+sidebar_label: Подсчёт Посетителей
 description: Модуль использует Wi‑Fi и BLE для подсчёта людей или устройств, проходящих мимо вашего устройства Meshtastic. Используется в ритейле, музеях и т. п.
 ---
 
@@ -9,15 +9,15 @@ import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 import { Icon } from "@iconify/react";
 
-Модуль Paxcounter считает количество людей, проходящих мимо, сканируя MAC‑адреса Wi‑Fi и BLE. Часто используется в магазинах, музеях и других публичных местах для мониторинга трафика и анализа данных.
+Модуль Подсчёт Посетителей считает количество людей, проходящих мимо, сканируя MAC‑адреса Wi‑Fi и BLE. Часто используется в магазинах, музеях и других публичных местах для мониторинга трафика и анализа данных.
 
 Для работы модуля используйте прошивку версии 2.2.17 или выше.
 
 :::note заметка
-Модуль работает только на ESP32. Для работы Paxcounter нужно выключить Wi‑Fi и Bluetooth в Settings > Network и Bluetooth.
+Модуль работает только на ESP32. Для работы Подсчёт Посетителей нужно выключить Wi‑Fi и Bluetooth в Settings > Network и Bluetooth.
 :::
 
-## Параметры модуля Paxcounter {#paxcounter-module-config-values}
+## Параметры модуля Подсчёт Посетителей {#paxcounter-module-config-values}
 
 ### Включено {#enabled}
 
@@ -27,7 +27,7 @@ import { Icon } from "@iconify/react";
 
 Интервал (сек.) между отправками в Mesh при изменении состояния.
 
-## Доступность модуля Paxcounter в клиентах {#paxcounter-module-client-availability}
+## Доступность модуля Подсчёт Посетителей в клиентах {#paxcounter-module-client-availability}
 
 <Tabs
   groupId="settings"
@@ -72,10 +72,10 @@ import { Icon } from "@iconify/react";
 #### Android
 
 :::note заметка
-Настройки Paxcounter доступны на Android.
+Настройки Подсчёт Посетителей доступны на Android.
 
 1. Откройте приложение Meshtastic
-2. Перейдите: **Vertical Ellipsis (3 dots top right) > Radio Configuration > Paxcounter**
+2. Перейдите: **Вертикальное многоточие (3 dots top right) > Конфигурация радио > Подсчёт Посетителей**
 
 :::
 
@@ -86,7 +86,7 @@ import { Icon } from "@iconify/react";
 
 :::note заметка
 
-Все параметры Paxcounter доступны на iOS, iPadOS и macOS: Settings > Module Configuration > Paxcounter.
+Все параметры Подсчёт Посетителей доступны на iOS, iPadOS и macOS: Настройки > Конфигурация модуля > Подсчёт Посетителей.
 
 :::
 
@@ -97,13 +97,13 @@ import { Icon } from "@iconify/react";
 
 :::note заметка
 
-Все параметры модуля Paxcounter доступны в Python CLI версии 2.2.16 и выше.
+Все параметры модуля Подсчёт Посетителей доступны в Python CLI версии 2.2.16 и выше.
 
 :::
 
 Примеры команд:
 
-```shell title="Включить/выключить модуль Paxcounter"
+```shell title="Включить/выключить модуль Подсчёт Посетителей"
 meshtastic --set paxcounter.enabled true
 meshtastic --set paxcounter.enabled false
 ```
@@ -112,7 +112,7 @@ meshtastic --set paxcounter.enabled false
 meshtastic --set paxcounter.paxcounter_update_interval 900
 ```
 
-```shell title="Показать конфиг модуля Paxcounter"
+```shell title="Показать конфиг модуля Подсчёт Посетителей"
 meshtastic --get paxcounter
 ```
 
@@ -123,7 +123,7 @@ meshtastic --get paxcounter
 
 :::note заметка
 
-Все параметры модуля Paxcounter доступны в Web UI.
+Все параметры модуля Подсчёт Посетителей доступны в Web UI.
 
 :::
 

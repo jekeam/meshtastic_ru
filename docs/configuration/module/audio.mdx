@@ -9,7 +9,7 @@ import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 import { Icon } from "@iconify/react";
 
-Варианты настроек аудио: Codec2 Enabled, PTT GPIO, Audio Bitrate/Codec Mode, I2S Word Select, I2S Data IN, I2S Data OUT и I2S Clock. Настройка аудиомодуля отправляется как admin message с protobuf `ConfigModule.Audio`.
+Варианты настроек аудио: Codec2 Enabled, PTT GPIO, Аудио Bitrate/Codec Mode, I2S Word Select, I2S Data IN, I2S Data OUT и I2S Clock. Настройка аудиомодуля отправляется как admin message с protobuf `ConfigModule.Audio`.
 
 С этим **экспериментальным** модулем можно добавить цифровой I2S‑микрофон и динамик к любому устройству ESP32 с радио SX128x, работающему в ISM‑диапазоне 2.4 ГГц. Диапазоны Sub‑1GHz слишком узкие для непрерывной передачи аудио по Mesh, даже в режимах `Short` и `Fast`. На данный момент поддерживаются только платы LilyGo TLora 2.1-1.8 и TLora T3S3. Модуль рассчитан на каналы с полосой 2 кбит/с и выше.
 
@@ -110,7 +110,7 @@ GPIO для сигнала SCK интерфейса I2S.
 Настройки аудио доступны на Android.
 
 1. Откройте приложение Meshtastic
-2. Перейдите: **Вертикальное многоточие (3 точки справа вверху) > Radio Configuration > Audio**
+2. Перейдите: **Вертикальное многоточие (3 точки справа вверху) > Конфигурация радио > Аудио**
 
 :::
 

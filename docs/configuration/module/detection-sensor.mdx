@@ -1,19 +1,19 @@
 ---
 id: detection-sensor
-title: Использование модуля Detection Sensor
-sidebar_label: Detection Sensor
-description: Параметры конфигурации модуля Detection Sensor для вашего устройства Meshtastic. Подходит для датчиков движения, герконов и других систем открыто/закрыто.
+title: Использование модуля датчик движения
+sidebar_label: Датчик движения
+description: Параметры конфигурации модуля датчик движения для вашего устройства Meshtastic. Подходит для датчиков движения, герконов и других систем открыто/закрыто.
 ---
 
 import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 import { Icon } from "@iconify/react";
 
-Модуль Detection Sensor позволяет настроить GPIO‑пин для мониторинга уровня HIGH/LOW и отправлять текстовые оповещения через portnum Detection Sensor при обнаружении события. Полезно для датчиков движения, герконов и других систем со состоянием открыто/закрыто, где нужны уведомления по Mesh. Параметры: Enabled, Minimum Broadcast Interval, State Broadcast Interval, Send Bell, Name, Monitor Pin, Detection Triggered High и Use Pull-up.
+Модуль датчик движения позволяет настроить GPIO‑пин для мониторинга уровня HIGH/LOW и отправлять текстовые оповещения через portnum датчик движения при обнаружении события. Полезно для датчиков движения, герконов и других систем со состоянием открыто/закрыто, где нужны уведомления по Mesh. Параметры: Enabled, Minimum Broadcast Interval, State Broadcast Interval, Send Bell, Name, Monitor Pin, Detection Triggered High и Use Pull-up.
 
 Для работы модуля прошивка устройства должна быть версии 2.2.2 или новее.
 
-## Параметры модуля Detection Sensor {#detection-sensor-module-config-values}
+## Параметры модуля датчик движения {#detection-sensor-module-config-values}
 
 ### Enabled {#enabled}
 
@@ -47,7 +47,7 @@ GPIO‑пин для мониторинга изменений.
 
 Включить режим INPUT_PULLUP для GPIO‑пина. Актуально только если на плате есть подтяжка вверх на этом пине.
 
-## Где доступен модуль Detection Sensor {#detection-sensor-module-client-availability}
+## Где доступен модуль датчик движения {#detection-sensor-module-client-availability}
 
 <Tabs
   groupId="settings"
@@ -92,10 +92,10 @@ GPIO‑пин для мониторинга изменений.
 #### Android {#android}
 
 :::note заметка
-Все параметры модуля Detection Sensor доступны на Android в версии приложения 2.2.2 и новее.
+Все параметры модуля датчик движения доступны на Android в версии приложения 2.2.2 и новее.
 
 1. Откройте приложение Meshtastic
-2. Перейдите: **Vertical Ellipsis (3 dots top right) > Radio Configuration > Detection Sensor**
+2. Перейдите: **Вертикальное многоточие (3 точки вверху справа) > Конфигурация радио > датчик движения**
 :::
 
 </TabItem>
@@ -104,7 +104,7 @@ GPIO‑пин для мониторинга изменений.
 #### Apple {#apple}
 
 :::note заметка
-Все параметры модуля Detection Sensor доступны в iOS, iPadOS и macOS, версии 2.2.2 и новее: Settings > Module Configuration > Detection Sensor
+Все параметры модуля датчик движения доступны в iOS, iPadOS и macOS, версии 2.2.2 и новее: Настройки > Конфигурация модуля > датчик движения
 :::
 
 </TabItem>
@@ -114,13 +114,13 @@ GPIO‑пин для мониторинга изменений.
 
 :::note заметка
 
-Все параметры модуля Detection Sensor доступны в python CLI версии 2.2.2 и новее.
+Все параметры модуля датчик движения доступны в python CLI версии 2.2.2 и новее.
 
 :::
 
 Примеры команд ниже:
 
-```shell title="Включить/выключить модуль Detection Sensor"
+```shell title="Включить/выключить модуль датчик движения"
 meshtastic --set detection_sensor.enabled true
 meshtastic --set detection_sensor.enabled false
 ```
@@ -158,7 +158,7 @@ meshtastic --set detection_sensor.detection_triggered_high false
 meshtastic --set detection_sensor.use_pullup true
 ```
 
-```shell title="Показать конфиг модуля Detection Sensor"
+```shell title="Показать конфиг модуля датчик движения"
 meshtastic --get detection_sensor
 ```
 
@@ -169,7 +169,7 @@ meshtastic --get detection_sensor
 
 :::note заметка
 
-Все параметры модуля Detection Sensor доступны в Web UI.
+Все параметры модуля датчик движения доступны в Web UI.
 
 :::
 

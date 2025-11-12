@@ -1,15 +1,15 @@
 ---
 id: remote-hardware
-title: Использование модуля Remote Hardware
-sidebar_label: Remote Hardware
-description: Модуль Remote Hardware позволяет читать, писать и отслеживать GPIO на удалённом Node.
+title: Использование модуля Удаленное оборудование
+sidebar_label: Удаленное оборудование
+description: Модуль Удаленное оборудование позволяет читать, писать и отслеживать GPIO на удалённом Node.
 ---
 
 import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 import { Icon } from "@iconify/react";
 
-Модуль Remote Hardware позволяет читать, писать и отслеживать GPIO на удалённом Node. Параметры: Enabled.
+Модуль Удаленное оборудование позволяет читать, писать и отслеживать GPIO на удалённом Node. Параметры: Enabled.
 
 :::info заметка
 
@@ -18,13 +18,13 @@ import { Icon } from "@iconify/react";
 
 :::
 
-## Параметры Remote Hardware {#remote-hardware-config-values}
+## Параметры Удаленное оборудование {#remote-hardware-config-values}
 
 ### Включено {#enabled}
 
 Включен ли модуль.
 
-## Доступность модуля Remote Hardware в клиентах {#remote-hardware-module-client-availability}
+## Доступность модуля Удаленное оборудование в клиентах {#remote-hardware-module-client-availability}
 
 <Tabs
   groupId="settings"
@@ -69,10 +69,10 @@ import { Icon } from "@iconify/react";
 #### Android
 
 :::info заметка
-Все параметры модуля Remote Hardware доступны в приложении для Android.
+Все параметры модуля Удаленное оборудование доступны в приложении для Android.
 
 1. Откройте приложение Meshtastic
-2. Перейдите: **Вертикальное многоточие (3 точки вверху справа) > Radio Configuration > Remote Hardware**
+2. Перейдите: **Вертикальное многоточие (3 точки вверху справа) > Конфигурация радио > Удаленное оборудование**
    :::
 
 </TabItem>
@@ -81,7 +81,7 @@ import { Icon } from "@iconify/react";
 #### Apple
 
 :::info заметка
-Все параметры модуля Remote Hardware доступны в приложении для iOS, iPadOS и macOS: Settings > Module Configuration > Remote Hardware
+Все параметры модуля Удаленное оборудование доступны в приложении для iOS, iPadOS и macOS: Настройки > Конфигурация модуля > Удаленное оборудование
 :::
 
 </TabItem>
@@ -91,7 +91,7 @@ import { Icon } from "@iconify/react";
 
 :::info заметка
 
-Все параметры модуля Remote Hardware доступны в Python CLI.
+Все параметры модуля Удаленное оборудование доступны в Python CLI.
 
 :::
 
@@ -105,7 +105,7 @@ import { Icon } from "@iconify/react";
 </TabItem>
 </Tabs>
 
-## Использование модуля Remote Hardware {#remote-hardware-module-usage}
+## Использование модуля Удаленное оборудование {#remote-hardware-module-usage}
 
 :::warning осторожно
 Доступ к GPIO потенциально опасен: неверные настройки могут физически повредить или вывести из строя устройство. Перед началом разберитесь в схеме именно вашего устройства. Гарантия не предоставляется. Используйте на свой риск.
@@ -116,7 +116,7 @@ import { Icon } from "@iconify/react";
 - Установить состояние любого GPIO
 - Прочитать любой GPIO
 - Получать уведомление по Mesh при изменении состояния любого GPIO.
-  Учтите, быстрые изменения (например, короткие нажатия кнопки) не обнаруживаются. Для этого используйте модуль [Detection Sensor](/docs/configuration/module/detection-sensor).
+  Учтите, быстрые изменения (например, короткие нажатия кнопки) не обнаруживаются. Для этого используйте модуль [датчик движения](/docs/configuration/module/detection-sensor).
 
 Результаты чтения GPIO и уведомления об изменениях также отправляются в MQTT (если включено) в формате JSON (если включено).
 
@@ -129,7 +129,7 @@ import { Icon } from "@iconify/react";
 Процедура через python CLI:
 
 1. Подключите локальное устройство по USB
-2. Включите модуль Remote Hardware:
+2. Включите модуль Удаленное оборудование:
    ```shell
    meshtastic --set remote_hardware.enabled true
    ```
@@ -142,7 +142,7 @@ import { Icon } from "@iconify/react";
    meshtastic --info
    ```
 5. Подключите удалённое устройство по USB (или используйте [Remote Admin](/docs/configuration/remote-admin), чтобы добраться до него через Mesh)
-6. Включите модуль Remote Hardware:
+6. Включите модуль Удаленное оборудование:
    ```shell
    meshtastic --set remote_hardware.enabled true
    ```

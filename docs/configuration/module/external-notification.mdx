@@ -1,6 +1,6 @@
 ---
 id: external-notification
-title: Настройка модуля External Notification
+title: Настройка модуля Внешние уведомления
 sidebar_label: Внешние уведомления
 description: Этот модуль позволяет подключить зуммер, динамик, LED или другой аксессуар к устройству Meshtastic.
 ---
@@ -10,9 +10,9 @@ import TabItem from "@theme/TabItem";
 import { Icon } from "@iconify/react";
 import ReactPlayer from "react-player";
 
-Модуль External Notification позволяет подключить зуммер, динамик, LED или другое устройство, чтобы оповещать о новых сообщениях из Mesh. Можно включить до 3 пинов независимо друг от друга.
+Модуль Внешние уведомления позволяет подключить зуммер, динамик, LED или другое устройство, чтобы оповещать о новых сообщениях из Mesh. Можно включить до 3 пинов независимо друг от друга.
 
-Опции конфигурации External Notification: Enabled, Active, Alert Bell (General), Alert Bell Vibra, Alert Bell Buzzer, Alert Message (General), Alert Message Vibra, Alert Message Buzzer, Output (General), Output Vibra, Output Buzzer, Output Milliseconds, Use PWM и Nag Timeout. Настройка External Notification отправляется админ‑сообщением с protobuf `ConfigModule.ExternalNotificationConfig`.
+Опции конфигурации Внешние уведомления: Enabled, Active, Alert Bell (General), Alert Bell Vibra, Alert Bell Buzzer, Alert Message (General), Alert Message Vibra, Alert Message Buzzer, Output (General), Output Vibra, Output Buzzer, Output Milliseconds, Use PWM и Nag Timeout. Настройка Внешние уведомления отправляется админ‑сообщением с protobuf `ConfigModule.ExternalNotificationConfig`.
 
 <div style={{ maxWidth: "800px", margin: "auto" }}>
   <ReactPlayer
@@ -59,7 +59,7 @@ import ReactPlayer from "react-player";
 
 Нужно ли повторять оповещение. Если значение больше нуля, оповещение будет повторяться, пока не нажата кнопка пользователя или не пройдет указанное число секунд.
 
-## Где доступна настройка модуля External Notification {#external-notification-module-config-client-availability}
+## Где доступна настройка модуля Внешние уведомления {#external-notification-module-config-client-availability}
 
 <Tabs
   groupId="settings"
@@ -104,10 +104,10 @@ import ReactPlayer from "react-player";
 
 :::info заметка
 
-Опции External Notification доступны на Android.
+Опции Внешние уведомления доступны на Android.
 
 1. Откройте приложение Meshtastic
-2. Перейдите: **Vertical Ellipsis (3 точки, справа вверху) > Radio Configuration > External Notification**
+2. Перейдите: **Вертикальное многоточие (3 точки, справа вверху) > Конфигурация радио > Внешние уведомления**
 
 :::
 
@@ -117,7 +117,7 @@ import ReactPlayer from "react-player";
 #### Apple {#apple}
 
 :::info заметка
-Все опции модуля внешних уведомлений доступны на iOS, iPadOS и macOS: Settings > Module Configuration > External Notification.
+Все опции модуля внешних уведомлений доступны на iOS, iPadOS и macOS: Настройки > Конфигурация модуля > Внешние уведомления.
 :::
 
 </TabItem>
@@ -158,7 +158,7 @@ meshtastic --set external_notification.enabled true --set external_notification.
 
 :::
 
-```shell title="Включить/выключить модуль External Notification"
+```shell title="Включить/выключить модуль Внешние уведомления"
 meshtastic --set external_notification.enabled true
 meshtastic --set external_notification.enabled false
 ```
@@ -193,7 +193,7 @@ meshtastic --set external_notification.output_ms 1500
 #### Web {#web}
 
 :::info заметка
-Все настройки модуля External Notification доступны в Web UI.
+Все настройки модуля Внешние уведомления доступны в Web UI.
 :::
 
 </TabItem>

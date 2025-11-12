@@ -1,7 +1,7 @@
 ---
 id: ambient-lighting
-title: Использование модуля Ambient Lighting
-sidebar_label: Ambient Lighting
+title: Использование модуля Окружающее освещение
+sidebar_label: Окружающее освещение
 description: Настройки управления светодиодами на вашем устройстве Meshtastic.
 ---
 
@@ -9,11 +9,11 @@ import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 import { Icon } from "@iconify/react";
 
-Модуль Ambient Lighting позволяет управлять встроенными LED и настраивать яркость и цвета. Изначально создан для RAK14001 RGB LED на NCP5623 по I2C. Параметры: LED State, Current, Red, Green, Blue.
+Модуль Окружающее освещение позволяет управлять встроенными LED и настраивать яркость и цвета. Изначально создан для RAK14001 RGB LED на NCP5623 по I2C. Параметры: LED State, Current, Red, Green, Blue.
 
 Для работы модуля требуется Firmware версии 2.2.5 или новее.
 
-## Параметры Ambient Lighting {#ambient-lighting-config-values}
+## Параметры Окружающее освещение {#ambient-lighting-config-values}
 
 ### LED State {#led-state}
 
@@ -35,7 +35,7 @@ import { Icon } from "@iconify/react";
 
 Уровень синего. Диапазон 0–255.
 
-## Доступность модуля Ambient Lighting в клиентах {#ambient-lighting-module-client-availability}
+## Доступность модуля Окружающее освещение в клиентах {#ambient-lighting-module-client-availability}
 
 <Tabs
   groupId="settings"
@@ -80,10 +80,10 @@ import { Icon } from "@iconify/react";
 #### Android
 
 :::note заметка
-Все параметры модуля Ambient Lighting доступны в Android-приложении версии 2.2.3 и новее.
+Все параметры модуля Окружающее освещение доступны в Android-приложении версии 2.2.3 и новее.
 
 1. Откройте приложение Meshtastic
-2. Перейдите: Вертикальное многоточие (3 точки справа вверху) > Radio Configuration > Ambient Lighting
+2. Перейдите: Вертикальное многоточие (3 точки справа вверху) > Конфигурация радио > Окружающее освещение
 :::
 
 </TabItem>
@@ -92,7 +92,7 @@ import { Icon } from "@iconify/react";
 #### Apple
 
 :::note заметка
-Все параметры модуля Ambient Lighting доступны в iOS, iPadOS и macOS, версии приложения 2.2.3 и новее: Settings > Module Configuration > Ambient Lighting
+Все параметры модуля Окружающее освещение доступны в iOS, iPadOS и macOS, версии приложения 2.2.3 и новее: Настройки > Конфигурация модуля > Окружающее освещение
 :::
 
 </TabItem>
@@ -102,7 +102,7 @@ import { Icon } from "@iconify/react";
 
 :::note заметка
 
-Все параметры модуля Ambient Lighting доступны в Python CLI версии 2.2.3 и новее.
+Все параметры модуля Окружающее освещение доступны в Python CLI версии 2.2.3 и новее.
 
 :::
 
@@ -129,7 +129,7 @@ meshtastic --set ambient_lighting.green 234
 meshtastic --set ambient_lighting.blue 148
 ```
 
-```shell title="Получить конфиг модуля Ambient Lighting"
+```shell title="Получить конфиг модуля Окружающее освещение"
 meshtastic --get ambient_lighting
 ```
 
@@ -140,7 +140,7 @@ meshtastic --get ambient_lighting
 
 :::note заметка
 
-Все параметры модуля Ambient Lighting доступны в Web UI.
+Все параметры модуля Окружающее освещение доступны в Web UI.
 
 :::
 

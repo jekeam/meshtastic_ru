@@ -1,6 +1,6 @@
 ---
 id: telemetry
-title: Настройка модуля Telemetry
+title: Настройка модуля Телеметрия
 sidebar_label: Телеметрия
 description: Этот модуль позволяет передавать метрики устройства, окружения, здоровья и качества воздуха с вашего устройства Meshtastic.
 ---
@@ -10,9 +10,9 @@ import TabItem from "@theme/TabItem";
 import { Icon } from "@iconify/react";
 import ReactPlayer from "react-player";
 
-Модуль Telemetry передает по Mesh четыре типа данных: метрики устройства (уровень батареи, напряжение, загрузка канала и airtime) с вашего Meshtastic-устройства, метрики окружения, метрики качества воздуха и метрики здоровья (пульс, сатурация, температура тела).
+Модуль Телеметрия передает по Mesh четыре типа данных: метрики устройства (уровень батареи, напряжение, загрузка канала и airtime) с вашего Meshtastic-устройства, метрики окружения, метрики качества воздуха и метрики здоровья (пульс, сатурация, температура тела).
 
-Поддерживаемые датчики на I2C определяются при старте автоматически. Чтобы собирать показания и отправлять их по Mesh, включите модули Telemetry: Environment, Air Quality и Health.
+Поддерживаемые датчики на I2C определяются при старте автоматически. Чтобы собирать показания и отправлять их по Mesh, включите модули Телеметрия: Environment, Air Quality и Health.
 
 <div style={{ maxWidth: "800px", margin: "auto" }}>
   <ReactPlayer
@@ -63,7 +63,7 @@ import ReactPlayer from "react-player";
 
 ### Включить телеметрию окружения {#environment-telemetry-enabled}
 
-Включить Environment Telemetry (Sensors).
+Включить Environment Телеметрия (Датчики).
 
 ### Интервал обновления метрик окружения {#environment-metrics-update-interval}
 
@@ -170,10 +170,10 @@ import ReactPlayer from "react-player";
 
 :::note заметка
 
-Настройки Telemetry доступны в Android.
+Настройки Телеметрия доступны в Android.
 
 1. Откройте Meshtastic App
-2. Перейдите: **Vertical Ellipsis (3 dots top right) > Radio Configuration > Telemetry**
+2. Перейдите: **Вертикальное многоточие (3 dots top right) > Конфигурация радио > Телеметрия**
 
 :::
 
@@ -183,7 +183,7 @@ import ReactPlayer from "react-player";
 #### Apple
 
 :::note заметка
-Все настройки модуля telemetry доступны на iOS, iPadOS и macOS: Settings > Module Configuration > Telemetry (Sensors).
+Все настройки модуля Телеметрия доступны на iOS, iPadOS и macOS: Настройки > Конфигурация модуля > Телеметрия (Датчики).
 
 :::
 
@@ -194,7 +194,7 @@ import ReactPlayer from "react-player";
 
 :::note заметка
 
-Все настройки модуля telemetry доступны в python CLI. Примеры команд ниже:
+Все настройки модуля Телеметрия доступны в python CLI. Примеры команд ниже:
 
 :::
 
@@ -255,7 +255,7 @@ meshtastic --set telemetry.environment_display_fahrenheit false
 
 :::note заметка
 
-Все настройки модуля telemetry доступны в Web UI.
+Все настройки модуля Телеметрия доступны в Web UI.
 
 :::
 
@@ -290,14 +290,14 @@ meshtastic --set telemetry.environment_measurement_enabled true --set telemetry.
 :::
 
 - После отправки команды устройство перезагрузится.
-- После следующей загрузки устройство должно показать "Telemetry" и, возможно, данные датчика.
+- После следующей загрузки устройство должно показать "Телеметрия" и, возможно, данные датчика.
 - Если эффекта нет — выполните:
 
 ```shell
 meshtastic --noproto
 ```
 
-И посмотрите Serial-логи для диагностики Telemetry.
+И посмотрите Serial-логи для диагностики Телеметрии.
 
 ## Поддержка дополнительных датчиков {#supporting-additional-sensors}
 

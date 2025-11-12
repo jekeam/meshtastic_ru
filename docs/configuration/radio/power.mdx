@@ -15,7 +15,7 @@ import calculateADC from "/src/utils/calculateADC";
 Питание — продвинутая настройка. Большинству пользователей достаточно выбрать роль в [Device Config](/docs/configuration/radio/device) для управления питанием и не менять эти параметры.
 :::
 
-Опции питания: Экономия энергии, Выключение после потери питания, Переопределение ADC Multiplier, Таймаут ожидания Bluetooth, Интервал Light Sleep, Минимальный интервал бодрствования и Адрес INA2xx батареи устройства. Power config использует админ-сообщение `Config.Power` protobuf.
+Опции питания: Экономия энергии, Выключение после потери питания, Переопределение ADC Multiplier, Таймаут ожидания Bluetooth, Интервал Light Sleep, Минимальный интервал бодрствования и Адрес INA2xx батареи устройства. Питание config использует админ-сообщение `Config.Power` protobuf.
 
 ## Параметры питания {#power-config-values}
 
@@ -202,10 +202,10 @@ import calculateADC from "/src/utils/calculateADC";
 
 :::info заметка
 
-Опции Power Config доступны на Android.
+Опции Настройка Питания доступны на Android.
 
 1. Откройте приложение Meshtastic
-2. Перейдите: **Вертикальное многоточие (3 точки вверху справа) > Radio Configuration > Power**
+2. Перейдите: **Вертикальное многоточие (3 точки вверху справа) > Конфигурация радио > Power**
 
 :::
 
@@ -216,7 +216,7 @@ import calculateADC from "/src/utils/calculateADC";
 
 :::info заметка
 
-Часть опций Power доступна на iOS, iPadOS и macOS: Settings > Device Configuration > Power.
+Часть опций Питание доступна на iOS, iPadOS и macOS: Настройки > Настрйка Устройства > Питание.
 
 :::
 
@@ -227,7 +227,7 @@ import calculateADC from "/src/utils/calculateADC";
 
 :::info заметка
 
-Все опции Power доступны в python CLI.
+Все опции Питание доступны в python CLI.
 
 :::
 
