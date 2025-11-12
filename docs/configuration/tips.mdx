@@ -1,124 +1,124 @@
 ---
 id: tips
-title: Configuration Tips
-description: Tips and Solutions to help you get the most out of your Meshtastic device and network.
-sidebar_label: Tips
+title: Советы по настройке
+description: Советы и решения, чтобы выжать максимум из устройства и сети Meshtastic.
+sidebar_label: Советы
 sidebar_position: 4
 ---
 
 import QRCode from "@site/docs/blocks/_qr-code.mdx";
 
-## Roles
+## Роли {#roles}
 
-It is strongly recommended to keep your [ROLE](/docs/configuration/radio/device#roles) set to `CLIENT`, `CLIENT_MUTE`, or `CLIENT_BASE`. Only use other roles if you have a specific, well-understood reason to do so. Read our [blog post about choosing the best role](/blog/choosing-the-right-device-role/).
+Настоятельно рекомендуем держать вашу [ROLE](/docs/configuration/radio/device#roles) в значении `CLIENT`, `CLIENT_MUTE` или `CLIENT_BASE`. Другие роли используйте только при чётком понимании, зачем это нужно. Прочитайте наш [пост о выборе роли](/blog/choosing-the-right-device-role/).
 
-### Recommended Roles
+### Рекомендуемые роли {#recommended-roles}
 
-- `CLIENT` nodes receive, send, and intelligently repeat messages to help the mesh network.
-  - **This is the right choice for most situations.**
-  - Automatically adds smart delays when rebroadcasting to keep the network stable.
-  - Perfect for nodes that can help others: rooftop installations, high-visibility locations, or nodes that extend network coverage.
-  - Use when in remote areas (hiking, skiing, biking) where every node helps maintain connectivity.
+- Ноды (Node) с ролью `CLIENT` принимают, отправляют и умно повторяют сообщения, помогая Mesh-сети.
+  - Это правильный выбор в большинстве случаев.
+  - Автоматически добавляет смарт‑задержки при ретрансляции для стабильности сети.
+  - Отлично подходит для нод, которые могут помогать другим: на крыше, в видимых местах, либо для расширения покрытия.
+  - Используйте в удалённых местах (походы, лыжи, вело), где каждая нода помогает держать связь.
 
-- `CLIENT_MUTE` nodes can send and receive messages but never repeat them.
-  - Use with a personal handheld device when located near a more powerful node (such as a rooftop node) in a congested network.
-  - Use when multiple nodes are in close proximity. Set the best-positioned node to `CLIENT` and the others to `CLIENT_MUTE`.
-  - Perfect for indoor nodes that only talk to one outdoor node - since they can't reach other nodes anyway, repeating messages would just waste bandwidth.
+- Ноды `CLIENT_MUTE` могут отправлять и принимать сообщения, но никогда их не повторяют.
+  - Подходит для личного портативного устройства рядом с более мощной нодой (например, на крыше) в перегруженной сети.
+  - Используйте, когда несколько нод находятся близко: лучшую по расположению поставьте `CLIENT`, остальные — `CLIENT_MUTE`.
+  - Идеальны для нод в помещении, общающихся только с одной уличной нодой — повторение всё равно не достанет до других и лишь забьёт эфир.
 
-- `CLIENT_BASE` nodes prioritize rebroadcasting messages from your other personal nodes.
-  - Use for a stronger or well-positioned attic/roof “base station” node to distribute messages more widely from your own weaker, indoor, or less-well-positioned nodes.
-  - Set one node to `CLIENT_BASE`. Set your other nodes (typically `CLIENT` or `CLIENT_MUTE`) as favorites on the `CLIENT_BASE`.
-  - Perfect for ensuring all your nearby nodes take full advantage of your stronger, well-positioned attic/roof node.
+- Ноды `CLIENT_BASE` приоритезируют ретрансляцию сообщений от ваших других личных нод.
+  - Используйте для более мощной или удачно расположенной ноды на чердаке/крыше, чтобы шире раздавать сообщения от ваших слабых, внутренних или плохо расположенных нод.
+  - Одну ноду назначьте `CLIENT_BASE`. Остальные ноды (обычно `CLIENT` или `CLIENT_MUTE`) добавьте в избранное на `CLIENT_BASE`.
+  - Отлично, чтобы все близкие ноды по максимуму использовали вашу сильную ноду на чердаке/крыше.
 
-![Client Node Example](/img/configuration/client.webp)
-*One example of a 'Client' node.  Photo credit: Cully@KBOXLABS*
+![Пример ноды CLIENT](/img/configuration/client.webp)
+*Один из примеров ноды «Client». Фото: Cully@KBOXLABS*
 
-### Avoid `ROUTER`and `REPEATER`
+### Избегайте `ROUTER` и `REPEATER` {#avoid-router-and-repeater}
 
-Using `ROUTER` or `REPEATER` roles unnecessarily can cause serious network issues:
+Необоснованное использование ролей `ROUTER` или `REPEATER` может вызвать серьёзные проблемы в сети:
 
-- Increased risk of packet collision.
-- Reduced message delivery rates.
-- Decreased effective network range due to unnecessary hop consumption.
+- Больше риска коллизий пакетов.
+- Ниже доля доставленных сообщений.
+- Меньше эффективная дальность сети из‑за лишних переходов (hop).
 
-These roles are for very specific applications. Before changing from `CLIENT`, carefully [review the documentation](/docs/configuration/radio/device#roles) to understand the implications. Additionally, coordinating this with your local community to ensure its impact is a positive one rather than a negative one.
+Эти роли предназначены для узких задач. Перед сменой с `CLIENT` внимательно [изучите документацию](/docs/configuration/radio/device#roles), чтобы понять последствия. Также согласуйте изменения с вашим локальным сообществом, чтобы эффект был положительным, а не отрицательным.
 
-Remember: A network of `CLIENT` nodes with a small number of well-placed `ROUTERS` is usually the most efficient and stable configuration.
+Помните: сеть из нод `CLIENT` с небольшим числом хорошо размещённых `ROUTER` обычно самая эффективная и стабильная.
 
-![Router Node Example](/img/configuration/router.webp)
-*One example of a 'Router' node.  Photo credit: Cully@KBOXLABS*
+![Пример ноды ROUTER](/img/configuration/router.webp)
+*Один из примеров ноды «Router». Фото: Cully@KBOXLABS*
 
-## (Not) Sharing Your Location
+## Как (не) делиться локацией {#not-sharing-your-location}
 
-Telemetry is shared over your [PRIMARY channel](/docs/configuration/radio/channels#role). This means that if your node has acquired GPS coordinates from an integrated GPS chip, or from your mobile device, your coordinates will be sent to the mesh over this channel, using its defined encryption (if any).
+Телеметрия отправляется в ваш [PRIMARY Channel](/docs/configuration/radio/channels#role). Это означает, что если нода получила координаты от встроенного GPS или от телефона, ваши координаты уйдут в Mesh по этому каналу, с его шифрованием (если включено).
 
-By default the PRIMARY channel's name is LongFast with the encryption key "AQ==" (Base64 equivalent of Hex 0x01). If this is left unchanged, your location will be shared with all nodes in range that are also using the default channel.
+По умолчанию PRIMARY называется LongFast с ключом шифрования "AQ==" (Base64 эквивалент Hex 0x01). Если это не менять, вашу локацию увидят все ноды в радиусе, которые тоже используют канал по умолчанию.
 
-### Using Position Precision
+### Точность позиции {#using-position-precision}
 
-Meshtastic now supports the ability to control the precision of location data sent over a particular channel.
+Meshtastic поддерживает управление точностью данных локации, отправляемых в конкретный канал.
 
-The `position_precision` setting allows control of the level of precision for location data that is sent over a particular channel. This can be useful for privacy reasons, where obfuscating the exact location may be desired when sending position data over certain channels.
+Настройка `position_precision` позволяет контролировать точность координат, отправляемых по каналу. Полезно для приватности, когда не хочется раскрывать точное местоположение на некоторых каналах.
 
-For detailed information on position precision settings and how to configure them, please refer to the [Position Precision documentation](/docs/configuration/radio/channels/#position-precision).
+Подробнее о настройках точности и их конфигурации читайте в разделе [Position Precision](/docs/configuration/radio/channels/#position-precision).
 
-### Sharing Location on a Private Secondary Channel
-> This is a newer feature that only works for firmware 2.7.1+
+### Локация в приватном вторичном канале {#sharing-location-on-a-private-secondary-channel}
+> Это новая функция, работает только с Firmware 2.7.1+
 
-To share your location on a private secondary channel while keeping the default primary channel unencrypted, follow these steps:
+Чтобы делиться локацией в приватном вторичном канале и оставить основной канал без шифрования:
 
-1. Disable location sharing on the primary channel (Channel 0) to prevent broadcasting your position to all users.
-2. Select a secondary channel where you want to share your location. Enable position sharing and choose your desired precision level.
-3. Understand automatic location updates:
-   - Only one channel receives your automatic, live location updates.
-   - This is the lowest-indexed secondary channel (excluding Channel 0) with location sharing enabled.
-   - If multiple secondary channels have location sharing enabled, only the one with the lowest index will receive automatic position broadcasts.
-   - Channels with location sharing enabled but not receiving automatic broadcasts can still be used for manual position requests.
+1. Выключите отправку локации в основном канале (Channel 0), чтобы не вещать позицию всем.
+2. Выберите вторичный канал, где хотите делиться локацией. Включите отправку позиции и задайте нужную точность.
+3. Как работают автообновления локации:
+   - Только один канал получает ваши автоматические «живые» обновления.
+   - Это вторичный канал с наименьшим индексом (кроме Channel 0) с включённой отправкой локации.
+   - Если таких каналов несколько, автообновления пойдут только в канал с самым низким индексом.
+   - Каналы с включённой отправкой локации, но без автообновлений, всё равно можно использовать для ручных запросов позиции.
 
-#### Example Scenario
+#### Пример {#example-scenario}
 
-Imagine you’re in the following channels:
+Допустим, вы в следующих каналах:
 
 - Channel 0: “Everyone” (location OFF)
 - Channel 1: “CampChat” (location ON)
 - Channel 2: “Friends” (location ON)
 - Channel 3: “TutuTuesdayGroup” (location OFF)
 
-##### How It Works
-- CampChat (Channel 1) receives your live, automatic location updates because it’s the lowest-indexed channel with location sharing enabled.
-- Friends (Channel 2) can request your location manually, but it won’t receive automatic updates.
-- TutuTuesdayGroup (Channel 3) allows chatting but does not share or receive location data.
+##### Как это работает {#how-it-works}
+- CampChat (Channel 1) получает ваши «живые» автообновления, потому что это канал с самым низким индексом с включённой отправкой локации.
+- Friends (Channel 2) может запрашивать вашу позицию вручную, но автообновления не получает.
+- TutuTuesdayGroup (Channel 3) — только чат, без отправки/получения локации.
 
-## Rebroadcast "Public" Traffic
+## Ретрансляция «публичного» трафика {#rebroadcast-public-traffic}
 
-Meshtastic nodes will rebroadcast all packets if they share [LoRa modem settings](/docs/configuration/radio/lora#lora-config-values), regardless of encryption (unless [Rebroadcast mode](/docs/configuration/radio/device#rebroadcast-mode) is set to `LOCAL_ONLY`).
+Ноды Meshtastic ретранслируют все пакеты, если совпадают [настройки модема LoRa](/docs/configuration/radio/lora#lora-config-values), независимо от шифрования (если только [Rebroadcast mode](/docs/configuration/radio/device#rebroadcast-mode) не установлен в `LOCAL_ONLY`).
 
-:::info
-If you would like your nodes to include/expand the "public" mesh, you must use the default [modem preset](/docs/configuration/radio/lora#modem-preset) `LONG_FAST`. If you change your PRIMARY channel name, you must manually set the LoRa channel to the default for your region (see above).
+:::note заметка
+Если вы хотите, чтобы ваши ноды включались в «публичный» Mesh, используйте пресет модема по умолчанию — [modem preset](/docs/configuration/radio/lora#modem-preset) `LONG_FAST`. Если вы меняли имя PRIMARY канала, вручную выставьте канал LoRa по умолчанию для вашего региона (см. выше).
 :::
 
-### Hop Count
+### Количество переходов (Hop Count) {#hop-count}
 
-It is **strongly** recommended to leave your [MAX HOPS](/docs/configuration/radio/lora#max-hops) set to 3 unless you're sure you need more (or less) to reach your destination node. Unnecessarily high hop counts often lead to network issues. If you need to increase the hop count, apply changes only to nodes at the network’s edges, not those near the middle.
+Мы настоятельно рекомендуем оставить [MAX HOPS](/docs/configuration/radio/lora#max-hops) равным 3, если только вы не уверены, что нужно больше (или меньше), чтобы достичь целевой ноды. Излишне большой hop count часто приводит к проблемам в сети. Если повышаете его, делайте это только на нодах на «краях» сети, не в центре.
 
-![Hop Count Image](/img/configuration/max-hops.webp)
+![Иллюстрация Hop Count](/img/configuration/max-hops.webp)
 
-## Chat Channels and LoRa Frequency Slots
+## Чат‑каналы и слоты частоты LoRa {#chat-channels-and-lora-frequency-slots}
 
-Previously, Meshtastic used the word "channels" to define two different configuration properties: Messaging Channels & LoRa Channel Numbers. However, this could lead to confusion since "channels" was being used to refer to two distinct concepts. To clarify the distinction, the decision was made to change "LoRa Channel Number" to "LoRa Frequency Slot".
+Раньше в Meshtastic слово «channels» использовалось для двух разных настроек: Messaging Channels и LoRa Channel Numbers. Это путало, ведь речь шла о разных вещах. Чтобы прояснить, «LoRa Channel Number» переименовали в «LoRa Frequency Slot» (слот частоты LoRa).
 
-### Radio Config: Channels
+### Radio Config: Channels (Настройки радио: Каналы) {#radio-config-channels}
 
-These configure "message groups" and include your PRIMARY and SECONDARY channels. All SECONDARY channels use the same LoRa modem config as your PRIMARY channel (including LoRa frequency slot).
+Задают «группы сообщений» и включают ваш PRIMARY и SECONDARY каналы. Все SECONDARY используют те же настройки модема LoRa, что и PRIMARY (включая слот частоты LoRa).
 
-There are 8 total messaging channels. Channel 0 is your PRIMARY channel, with channels 1-7 available for private group messaging and/or special channels such as [`admin`](/docs/configuration/remote-admin).
+Всего 8 каналов для сообщений. Channel 0 — ваш PRIMARY, каналы 1–7 доступны для приватных групп и/или спецканалов, таких как [`admin`](/docs/configuration/remote-admin).
 
-### Radio Config: LoRa Frequency Slot
+### Radio Config: LoRa Frequency Slot (Настройки радио: слот частоты LoRa) {#radio-config-lora-frequency-slot}
 
-This property, formerly known as "LoRa Channel Number", configures the frequency the radio is set to. Check out the [frequency calculator](/docs/overview/radio-settings#frequency-slot-calculator) to view the relationship between "frequency slot" and radio frequency.
+Эта настройка (раньше — «LoRa Channel Number») задаёт рабочую частоту радиомодуля. Посмотрите [калькулятор частот](/docs/overview/radio-settings#frequency-slot-calculator), чтобы понять соответствие «frequency slot» и радиочастоты.
 
-## Best Practices
+## Рекомендации {#best-practices}
 
-- If you are part of a large mesh and don't know what a setting does, don't change it (unless you're super curious).
-- TEST your settings and hardware before you install in hard-to-reach locations.
-- Connecting a node to the [public MQTT server](/docs/configuration/module/mqtt#connect-to-the-default-public-server) may publish the locations of all nodes in your mesh to the internet.
+- Если вы в большой Mesh и не знаете, что делает настройка — не меняйте её (если только очень не любопытно).
+- ТЕСТИРУЙТЕ настройки и железо перед установкой в труднодоступных местах.
+- Подключение ноды к [публичному MQTT‑серверу](/docs/configuration/module/mqtt#connect-to-the-default-public-server) может опубликовать локации всех нод вашей сети в интернет.

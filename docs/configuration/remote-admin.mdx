@@ -1,36 +1,36 @@
 ---
 id: remote-admin
-title: Remote Node Administration
-sidebar_label: Remote Nodes
+title: Удалённое администрирование нод
+sidebar_label: Удалённые ноды
 sidebar_position: 3
-description: An advanced feature for securely administering remote devices over the mesh network instead of via Bluetooth, Serial, or IPv4.
+description: Продвинутая функция для безопасного администрирования удалённых устройств по Mesh‑сети вместо Bluetooth, Serial или IPv4.
 ---
 
 import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 import { Icon } from "@iconify/react";
 
-:::caution Disclaimer
-This is an advanced feature intended for experienced users. It’s possible (if not done carefully) to apply settings to a remote node that could cause it to disconnect from the mesh. Network admins are advised to use a test node to trial settings before applying changes to a remote node to prevent this.
+:::caution осторожно
+Это функция для опытных пользователей. Если действовать неаккуратно, можно применить такие настройки к удалённой ноде (Node), что она отключится от Mesh. Админам сети рекомендуется сперва проверить настройки на тестовой ноде, прежде чем применять их на удалённой.
 :::
 
-This feature allows secure remote administration of Meshtastic nodes over the mesh network.
+Эта функция позволяет безопасно администрировать ноды Meshtastic по Mesh‑сети.
 
-By default, nodes will only respond to administrative commands via the local USB, Bluetooth, or TCP interfaces. This basic security measure prevents unauthorized access and defines how standard administration and settings changes are managed. The only difference with remote administration is that commands are sent securely as Admin Messages over the mesh.
+По умолчанию ноды отвечают на административные команды только через локальные интерфейсы USB, Bluetooth или TCP. Это базовая мера безопасности, которая предотвращает несанкционированный доступ и определяет, как выполняется стандартное администрирование и изменение настроек. Разница с удалённым администрированием в том, что команды отправляются по Mesh как защищённые Admin Messages.
 
-## Prerequisites
+## Требования {#prerequisites}
 
-For firmware versions 2.5 and later, remote administration is achieved by storing the public key of the local node in one of the Admin Key fields within the remote node’s Security Config. Each remote node can store up to three unique Admin Keys, providing flexibility for managing nodes across the network.
+Для прошивок 2.5 и новее удалённое администрирование работает за счёт хранения публичного ключа локальной ноды в одном из полей Admin Key в Security Config (Настройки безопасности) удалённой ноды. Каждая удалённая нода может хранить до трёх уникальных Admin Key, что упрощает управление нодами в сети.
 
-For firmware versions 2.4.x and earlier, this is achieved by creating a secondary channel named `admin` with a shared PSK. In this setup, messages exchanged on this channel are encrypted only with the channel’s PSK, allowing any node in the channel to administer others.
+Для прошивок 2.4.x и старее используется вторичный Channel с именем `admin` и общим PSK. Сообщения в этом канале шифруются только PSK канала, поэтому любая нода в этом канале может администрировать другие.
 
-This `admin` channel method is still supported in firmware versions 2.5 and later, but must be specifically enabled via the "Legacy Admin channel" setting and is only for managing pre-2.5 nodes. A firmware version 2.5 and later node cannot be managed in this way.
+Метод с `admin`‑каналом всё ещё поддерживается в прошивках 2.5 и новее, но его нужно явно включить настройкой "Legacy Admin channel" и использовать только для нод с прошивкой до 2.5. Ноду на 2.5+ таким способом администрировать нельзя.
 
-:::info
-Remote Admin is complemented by setting [Managed Mode](/docs/configuration/radio/security/#managed-mode) on the remote node, which restricts radio configurations on that node. It is not necessary to set Managed Mode for Remote Admin to function.
+:::note заметка
+Remote Admin хорошо сочетается с включением [Managed Mode](/docs/configuration/radio/security/#managed-mode) на удалённой ноде, который ограничивает радио‑настройки на ней. Для работы Remote Admin включать Managed Mode не обязательно.
 :::
 
-## Remote Admin Config Client Availability
+## Где доступна настройка Remote Admin {#remote-admin-config-client-availability}
 
 <Tabs
   groupId="settings"
@@ -75,97 +75,97 @@ Remote Admin is complemented by setting [Managed Mode](/docs/configuration/radio
 
 #### Android
 
-#### Setting up Remote Admin Using the PKC Method
+#### Настройка Remote Admin через PKC
 
-1. Connect to the local node that will be administering the remote node.
-2. Go to **⋮ > Конфигурация радио > [Security](/docs/configuration/radio/security/#public-key)** to find its public key.
-3. Copy the public key to use for configuring the remote node.
-4. Connect to the node that will be the remotely administered node.
-5. Go to the same **Security** menu as in Step 2, and press **"Add"** to paste the public key of the local node into an Admin Key field.
-6. Up to 3 Admin Keys may be supplied, one per field, allowing up to 3 controlling nodes.
+1. Подключитесь к локальной ноде (Node), которая будет администрировать удалённую.
+2. Откройте **⋮ > Радио‑настройка > Security** или **⋮ > Radio Configuration > [Security](/docs/configuration/radio/security/#public-key)** и найдите публичный ключ.
+3. Скопируйте публичный ключ для настройки удалённой ноды.
+4. Подключитесь к ноде, которую будете администрировать удалённо.
+5. Откройте тот же раздел **Security** из шага 2 и нажмите **«Добавить» (Add)**, чтобы вставить публичный ключ локальной ноды в поле Admin Key.
+6. Можно добавить до 3 Admin Key — по одному на поле — для управления с трёх разных нод.
 
-#### Setting up Remote Admin using the Legacy method
+#### Настройка Remote Admin устаревшим методом
 
-An Admin channel is set up by entering a secondary channel with the name `admin` using the method described in [Channels](/docs/configuration/radio/channels/)
+Admin‑канал настраивается как вторичный Channel с именем `admin` по инструкции в разделе [Channels](/docs/configuration/radio/channels/).
 
-Legacy admin is enabled using the Legacy Admin channel option in [Security Config](/docs/configuration/radio/security/#admin-channel-enabled).
+Legacy admin включается опцией Legacy Admin channel в [Security Config](/docs/configuration/radio/security/#admin-channel-enabled).
 
-#### Carrying out Remote Admin tasks
+#### Выполнение задач Remote Admin
 
-1. Open the Meshtastic App, connect to the local controlling node.
-2. In the node list pane, select a node by tapping the Short Name in the colored bubble, then select More details.
-3. In the more details screen, select Remote Administration, next to a gear icon.
-4. From the Remote Administration screen, all Radio and Module configuration options are available.
+1. Откройте приложение Meshtastic и подключитесь к локальной управляющей ноде.
+2. В списке нод тапните по Short Name в цветном кружке и выберите «Подробнее» (More details).
+3. На экране «Подробнее» выберите «Удалённое администрирование» (Remote Administration) рядом с иконкой шестерёнки.
+4. На экране Remote Administration доступны все параметры Radio и Module.
 
 </TabItem>
 <TabItem value="apple">
 
 #### Apple
 
-#### Setting up Remote Admin Using the PKC Method
+#### Настройка Remote Admin через PKC
 
-1. Connect to the node that will be used to administer the remote node.
-2. Go to **Settings > App Settings** on this node and enable **Administration**.
-3. Navigate to **Settings > Конфигурация радио > [Security](/docs/configuration/radio/security/#public-key)** to find its public key.
-4. Copy the public key to use for configuring the remote node.
-5. Connect to the remote node.
-6. In **Settings > Конфигурация радио > Security**, add the public key of the local node as an Admin Key.
-7. Up to 3 Admin Keys may be supplied, allowing up to 3 controlling nodes.
+1. Подключитесь к ноде, с которой будете администрировать удалённую.
+2. Перейдите в **Настройки > Настройки приложения** или **Settings > App Settings** и включите **Администрирование (Administration)**.
+3. Перейдите в **Настройки > Радио‑настройка > [Security](/docs/configuration/radio/security/#public-key)** или **Settings > Radio Configuration > [Security](/docs/configuration/radio/security/#public-key)** и найдите публичный ключ.
+4. Скопируйте публичный ключ для настройки удалённой ноды.
+5. Подключитесь к удалённой ноде.
+6. В **Настройки > Радио‑настройка > Security** или **Settings > Radio Configuration > Security** добавьте публичный ключ локальной ноды как Admin Key.
+7. Можно добавить до 3 Admin Key — до трёх управляющих нод.
 
-#### Setting up Remote Admin using the Legacy method
+#### Настройка Remote Admin устаревшим методом
 
-An Admin channel is set up by entering a secondary channel with the name `admin` using the method described in [Channels](/docs/configuration/radio/channels/)
+Admin‑канал настраивается как вторичный Channel с именем `admin` по инструкции в разделе [Channels](/docs/configuration/radio/channels/).
 
-Legacy admin is enabled using the Legacy Admin channel option in [Security Config](/docs/configuration/radio/security/#admin-channel-enabled).
+Legacy admin включается опцией Legacy Admin channel в [Security Config](/docs/configuration/radio/security/#admin-channel-enabled).
 
-#### Carrying out Remote Admin tasks
+#### Выполнение задач Remote Admin
 
-1. Open the Meshtastic App and connect to the local node you’re using to administer the remote node.
-2. Go to **Settings**.
-3. Select the node you want to manage under **Settings > Configure Node**.
-4. Supported Radio and Module settings for the remote node will be accessible from the **Settings** screen.
-5. When finished administering the remote node, select your own node again in Settings > Configure Node.
+1. Откройте приложение Meshtastic и подключитесь к локальной ноде, с которой администрируете удалённую.
+2. Откройте **Настройки (Settings)**.
+3. Выберите нужную ноду в **Настройки > Настроить ноду** или **Settings > Configure Node**.
+4. Поддерживаемые настройки Radio и Module для удалённой ноды будут доступны на экране **Настройки (Settings)**.
+5. Закончив администрирование удалённой ноды, снова выберите свою ноду в Настройки > Настроить ноду или Settings > Configure Node.
 
 </TabItem>
 <TabItem value="cli">
 
 #### CLI
 
-#### Setting up Remote Admin Using the PKC Method
+#### Настройка Remote Admin через PKC
 
-1. Connect via USB to the node that will be administering the remote node.
-2. Retrieve its Public Key by running:
+1. Подключитесь по USB к ноде, которая будет администрировать удалённую.
+2. Получите её публичный ключ командой:
    ```bash
    meshtastic --get security.public_key
    ```
-3. Copy the public key to use when configuring the remote node.
-4. Connect to the remote node via USB.
-5. Set the Admin Key on the remote node by running:
+3. Скопируйте публичный ключ для настройки удалённой ноды.
+4. Подключитесь по USB к удалённой ноде.
+5. Задайте Admin Key на удалённой ноде:
    ```bash
    meshtastic --set security.admin_key "base64:PASTEPUBLICKEYHERE"
    ```
-6. You may add up to 3 Admin Keys, enabling control from up to 3 different nodes.
+6. Можно добавить до 3 Admin Key и управлять нодой с трёх разных нод.
 
-#### Setting up Remote Admin Using the Legacy Method
+#### Настройка Remote Admin устаревшим методом
 
-To use the legacy method, set up an Admin channel as a secondary channel with the name `admin` by following the instructions in the [Channels](/docs/configuration/radio/channels/) section.
+Чтобы использовать устаревший метод, создайте вторичный Admin‑канал с именем `admin` по инструкции в разделе [Channels](/docs/configuration/radio/channels/).
 
-Enable Legacy Admin in the [Security Config](/docs/configuration/radio/security/#admin-channel-enabled) by running the following CLI command:
+Включите Legacy Admin в [Security Config](/docs/configuration/radio/security/#admin-channel-enabled) командой:
 
 ```bash
 meshtastic --set security.admin_channel_enabled
 ```
 
-#### Carrying Out Remote Admin Tasks
+#### Выполнение задач Remote Admin
 
-Remote admin commands are issued using the `--dest` argument with the `!nodeid` of the target node. Only the `--set` and `--get` commands are supported for remote administration. You can use these commands to modify parameters, add channels, or retrieve settings from the remote node. For example:
+Команды удалённого администрирования отправляются с аргументом `--dest` и `!nodeid` целевой ноды. Для удалённого администрирования поддерживаются только команды `--set` и `--get`. Ими можно менять параметры, добавлять каналы или читать настройки с удалённой ноды. Например:
 
 ```bash
 meshtastic --set security.admin_key "PASTEPUBLICKEYHERE" --dest '!28979058'
 ```
 
-:::info
-For Linux/Mac, enclose the `nodeid` value in single quotes: `--dest '!28979058'`. For Windows, quotes are not required: `--dest !28979058`.
+:::note заметка
+В Linux/Mac заключайте значение `nodeid` в одиночные кавычки: `--dest '!28979058'`. В Windows кавычки не нужны: `--dest !28979058`.
 :::
 
 </TabItem>
@@ -173,17 +173,17 @@ For Linux/Mac, enclose the `nodeid` value in single quotes: `--dest '!28979058'`
 
 #### Web
 
-1. Connect to the node that will be used to administer the remote node.
-2. Navigate to **⚙ Config > ⚙ Настройки Раидо >[Security](/docs/configuration/radio/security/#public-key)** to find its public key.
-3. Copy the public key to use for configuring the remote node.
-4. Connect to the remote node.
-5. In **⚙ Config > ⚙ Настройки Раидо >Security**, add the public key of the local node as an Admin Key.
-6. Only one Admin Keys may be supplied through the Web interface at present.
-7. Save the configuration.
+1. Подключитесь к ноде, с которой будете администрировать удалённую.
+2. Откройте **⚙ Config > ⚙ Radio Config > [Security](/docs/configuration/radio/security/#public-key)** или **⚙ Настройки > ⚙ Радио‑настройка > [Security](/docs/configuration/radio/security/#public-key)** и найдите публичный ключ.
+3. Скопируйте публичный ключ для настройки удалённой ноды.
+4. Подключитесь к удалённой ноде.
+5. В **⚙ Config > ⚙ Radio Config > Security** или **⚙ Настройки > ⚙ Радио‑настройка > Security** добавьте публичный ключ локальной ноды как Admin Key.
+6. Через Web‑интерфейс сейчас можно добавить только один Admin Key.
+7. Сохраните настройки.
 
-#### Carrying out Remote Admin tasks
+#### Выполнение задач Remote Admin
 
-The Meshtastic Web Client does not support sending remote administration commands at this time.
+В Web‑клиенте Meshtastic отправка команд Remote Admin пока не поддерживается.
 
 </TabItem>
 </Tabs>
