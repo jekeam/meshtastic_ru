@@ -43,23 +43,23 @@ const config = {
           to: "downloads",
         },
         {
-          label: "About",
+          label: "Об Meshtastic",
           position: "right",
           items: [
             {
-              label: "Introduction",
+              label: "Введение",
               to: "docs/introduction",
             },
             {
-              label: "Getting Started",
+              label: "Быстрый старт",
               to: "docs/getting-started",
             },
             {
-              label: "Contributing",
+              label: "Разработка",
               to: "docs/contributing",
             },
             {
-              label: "Legal",
+              label: "Закон",
               to: "docs/legal",
             },
             {
@@ -71,8 +71,7 @@ const config = {
         {
           href: "https://github.com/jekeam/meshtastic_ru",
           position: "right",
-          className: "header-github-link",
-          "aria-label": "GitHub repository",
+          className: "header-github-link", "aria-label": "GitHub repository",
         },
       ],
     },
