@@ -1,0 +1,135 @@
+---
+id: getting-started
+title: Начало работы
+sidebar_label: Начало работы
+slug: /getting-started
+sidebar_position: 2
+description: Официальное руководство по началу работы с Meshtastic. Описывает все устройства и конфигурации.
+---
+
+import Link from "@docusaurus/Link";
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+
+## Определение оборудования {#identify-hardware}
+
+:::note
+
+Это руководство предполагает, что вы уже приобрели устройства для использования с Meshtastic. Если нет, ознакомьтесь со списком [поддерживаемого оборудования](/docs/hardware/devices/index.mdx) чтобы увидеть доступные варианты.
+:::
+
+Перед началом работы важно определить, какое оборудование вы используете. Meshtastic работает с устройствами, имеющими следующие типы микроконтроллеров (MCU):
+
+### ESP32
+
+Чип ESP32 более старый и потребляет больше энергии, чем чип nRF52, но оснащен как Wi-Fi, так и Bluetooth. Поддерживаемые устройства ESP32 включают:
+
+- LILYGO® TTGO T-Beam (рекомендуется >V1.1)
+- LILYGO® TTGO Lora (рекомендуется >V2.1)
+- Nano G1
+- Station G1
+- Heltec V3 и Wireless Stick Lite V3
+- Модуль RAK11200 Core для модульных плат RAK WisBlock
+
+### nRF52
+
+Чип nRF52 значительно более энергоэффективен, чем чип ESP32, и проще в обновлении, но оснащен только Bluetooth. Поддерживаемые устройства nRF52 включают:
+
+- Модуль RAK4631 Core для модульных плат RAK WisBlock
+- LILYGO® TTGO T-Echo
+
+### RP2040
+
+RP2040 — это двухъядерный ARM-чип, разработанный Raspberry Pi. Поддерживаемые устройства RP2040 включают:
+
+ - Raspberry Pi Pico + Модуль Waveshare LoRa (Примечание: **Bluetooth на Pico W пока не поддерживается Meshtastic**)
+ - Модуль RAK11310 Core для модульных плат RAK WisBlock
+
+:::info
+
+Если вашего устройства нет в списке выше, ознакомьтесь с нашим списком [поддерживаемых устройств](/docs/hardware/devices/index.mdx) чтобы определить, какой MCU используется в вашем устройстве, или свяжитесь с нами в [Discord](https://discord.gg/ktMAKGBnBs) с любыми вопросами.
+
+:::
+
+:::danger СТОП! Отложите кабель питания!
+
+Никогда не включайте рацию без подключения антенны, так как это может повредить радиомодуль!
+
+:::
+
+Перед подключением устройства Meshtastic к компьютеру следует выполнить следующие базовые проверки.
+
+### Проверка кабеля для передачи данных {#verify-data-cable}
+
+Некоторые кабели предназначены только для *зарядки*. Убедитесь, что ваш кабель также способен *передавать данные*, прежде чем продолжить. Чтобы проверить, может ли ваш кабель передавать данные, попробуйте подключить его к другому устройству (например, телефону) и посмотрите, можно ли скопировать файл на него или с него. Если передача файла работает, значит ваш кабель также способен передавать данные, и вы можете продолжить.
+
+### Установка Serial-драйверов {#install-serial-drivers}
+
+:::caution
+
+Устройства nRF52/RP2040 обычно не требуют установки serial-драйверов. Они используют загрузчик UF2, который делает устройства видимыми как флеш-накопители. *НЕ* загружайте драйверы USB-устройств, если это не требуется для установки поддержки UF2.
+
+:::
+
+Если на вашем компьютере требуются serial-драйверы, выберите один из вариантов ниже и установите его перед продолжением.
+
+<div className="indexCtasBody">
+  <div className="split-container">
+    <div className="split-item">
+      <Link
+        className={'button button--outline button--lg cta--button'}
+        to={'/docs/getting-started/serial-drivers/esp32'}
+      >
+        Установка драйверов ESP32
+      </Link>
+    </div>
+
+  <div className="split-item">
+      <Link
+        className={'button button--outline button--lg cta--button'}
+        to={'/docs/getting-started/serial-drivers/nrf52'}
+      >
+        Установка драйверов nRF52/RP2040
+      </Link>
+    </div>
+  </div>
+</div>
+
+### Запись прошивки {#flash-firmware}
+
+После выполнения предыдущих шагов вы можете записать прошивку Meshtastic на ваше устройство. Для продолжения выберите соответствующий тип устройства.
+
+<div className="indexCtasBody">
+  <div className="split-container">
+    <div className="split-item">
+      <Link
+        className={"button button--outline button--lg cta--button"}
+        to={"/docs/getting-started/flashing-firmware/esp32/"}
+      >
+        Запись прошивки ESP32
+      </Link>
+    </div>
+
+  <div className="split-item">
+      <Link
+        className={"button button--outline button--lg cta--button"}
+        to={"/docs/getting-started/flashing-firmware/nrf52/"}
+      >
+        Запись прошивки nRF52/RP2040
+      </Link>
+    </div>
+  </div>
+</div>
+
+### Подключение и настройка устройства {#connect-and-configure-device}
+
+После записи прошивки Meshtastic на ваше устройство вы можете перейти к первоначальной конфигурации.
+
+<div className="indexCtasBody">
+  <Link
+    className={"button button--outline button--lg cta--button"}
+    to={"/docs/getting-started/initial-config"}
+  >
+    Подключение и настройка устройства
+  </Link>
+</div>
