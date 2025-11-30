@@ -24,11 +24,11 @@
     "description": "The label for category 'Getting Started' in sidebar 'Sidebar'"
   },
   "sidebar.Sidebar.category.Install Serial Drivers": {
-    "message": "Установка Serial драйверов",
+    "message": "Установка Serial-драйвера",
     "description": "The label for category 'Install Serial Drivers' in sidebar 'Sidebar'"
   },
   "sidebar.Sidebar.category.Install Serial Drivers.link.generated-index.title": {
-    "message": "Установка Serial драйверов",
+    "message": "Установка Serial-драйвера",
     "description": "The generated-index page title for category 'Install Serial Drivers' in sidebar 'Sidebar'"
   },
   "sidebar.Sidebar.category.Flash Firmware": {
