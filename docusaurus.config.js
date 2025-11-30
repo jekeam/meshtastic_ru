@@ -94,7 +94,7 @@ const config = {
       respectPrefersColorScheme: true,
     },
     mermaid: {
-      theme: { light: "base", dark: "base" },
+      theme: {light: "base", dark: "base"},
       options: {
         themeVariables: {
           primaryColor: "#67EA94",
@@ -125,11 +125,11 @@ const config = {
   scripts: [
     ...(process.env.COOKIEYES_CLIENT_ID
       ? [
-          {
-            src: `https://cdn-cookieyes.com/client_data/${process.env.COOKIEYES_CLIENT_ID}/script.js`,
-            async: true,
-          },
-        ]
+        {
+          src: `https://cdn-cookieyes.com/client_data/${process.env.COOKIEYES_CLIENT_ID}/script.js`,
+          async: true,
+        },
+      ]
       : []),
   ],
   presets: [
@@ -159,8 +159,8 @@ const config = {
     API_URL: process.env.API_URL,
   },
   i18n: {
-    defaultLocale: "en",
-    locales: ["en", "cs-CZ", "de", "pl-PL", "sk-SK", "tr-TR", "zh-CN", "zh-TW"],
+    defaultLocale: 'en',
+    locales: ['ru', 'en'],
   },
   markdown: {
     mermaid: true,

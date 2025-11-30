@@ -1,0 +1,350 @@
+{
+  "version.label": {
+    "message": "Следующая",
+    "description": "The label for version current"
+  },
+  "sidebar.Sidebar.category.About": {
+    "message": "О проекте",
+    "description": "The label for category 'About' in sidebar 'Sidebar'"
+  },
+  "sidebar.Sidebar.category.About.link.generated-index.title": {
+    "message": "О Meshtastic",
+    "description": "The generated-index page title for category 'About' in sidebar 'Sidebar'"
+  },
+  "sidebar.Sidebar.category.Overview": {
+    "message": "Обзор",
+    "description": "The label for category 'Overview' in sidebar 'Sidebar'"
+  },
+  "sidebar.Sidebar.category.Encryption": {
+    "message": "Шифрование",
+    "description": "The label for category 'Encryption' in sidebar 'Sidebar'"
+  },
+  "sidebar.Sidebar.category.Getting Started": {
+    "message": "Начало работы",
+    "description": "The label for category 'Getting Started' in sidebar 'Sidebar'"
+  },
+  "sidebar.Sidebar.category.Install Serial Drivers": {
+    "message": "Установка Serial драйверов",
+    "description": "The label for category 'Install Serial Drivers' in sidebar 'Sidebar'"
+  },
+  "sidebar.Sidebar.category.Install Serial Drivers.link.generated-index.title": {
+    "message": "Установка Serial драйверов",
+    "description": "The generated-index page title for category 'Install Serial Drivers' in sidebar 'Sidebar'"
+  },
+  "sidebar.Sidebar.category.Flash Firmware": {
+    "message": "Прошивка",
+    "description": "The label for category 'Flash Firmware' in sidebar 'Sidebar'"
+  },
+  "sidebar.Sidebar.category.Flash Firmware.link.generated-index.title": {
+    "message": "Прошивка",
+    "description": "The generated-index page title for category 'Flash Firmware' in sidebar 'Sidebar'"
+  },
+  "sidebar.Sidebar.category.ESP32 Device": {
+    "message": "Устройства ESP32",
+    "description": "The label for category 'ESP32 Device' in sidebar 'Sidebar'"
+  },
+  "sidebar.Sidebar.category.nRF52/RP2040 Device": {
+    "message": "Устройства nRF52/RP2040",
+    "description": "The label for category 'nRF52/RP2040 Device' in sidebar 'Sidebar'"
+  },
+  "sidebar.Sidebar.category.Configuration": {
+    "message": "Конфигурация",
+    "description": "The label for category 'Configuration' in sidebar 'Sidebar'"
+  },
+  "sidebar.Sidebar.category.Configuration.link.generated-index.title": {
+    "message": "Конфигурация",
+    "description": "The generated-index page title for category 'Configuration' in sidebar 'Sidebar'"
+  },
+  "sidebar.Sidebar.category.Radio Config": {
+    "message": "Настройки радио",
+    "description": "The label for category 'Radio Config' in sidebar 'Sidebar'"
+  },
+  "sidebar.Sidebar.category.Module Config": {
+    "message": "Настройки модулей",
+    "description": "The label for category 'Module Config' in sidebar 'Sidebar'"
+  },
+  "sidebar.Sidebar.category.Hardware": {
+    "message": "Аппаратное обеспечение",
+    "description": "The label for category 'Hardware' in sidebar 'Sidebar'"
+  },
+  "sidebar.Sidebar.category.Hardware.link.generated-index.title": {
+    "message": "Поддерживаемое оборудование",
+    "description": "The generated-index page title for category 'Hardware' in sidebar 'Sidebar'"
+  },
+  "sidebar.Sidebar.category.Devices": {
+    "message": "Устройства",
+    "description": "The label for category 'Devices' in sidebar 'Sidebar'"
+  },
+  "sidebar.Sidebar.category.RAK®": {
+    "message": "RAK®",
+    "description": "The label for category 'RAK®' in sidebar 'Sidebar'"
+  },
+  "sidebar.Sidebar.category.WisBlock": {
+    "message": "WisBlock",
+    "description": "The label for category 'WisBlock' in sidebar 'Sidebar'"
+  },
+  "sidebar.Sidebar.category.WisMesh": {
+    "message": "WisMesh",
+    "description": "The label for category 'WisMesh' in sidebar 'Sidebar'"
+  },
+  "sidebar.Sidebar.category.LILYGO®": {
+    "message": "LILYGO®",
+    "description": "The label for category 'LILYGO®' in sidebar 'Sidebar'"
+  },
+  "sidebar.Sidebar.category.LoRa32": {
+    "message": "LoRa32",
+    "description": "The label for category 'LoRa32' in sidebar 'Sidebar'"
+  },
+  "sidebar.Sidebar.category.T-Beam": {
+    "message": "T-Beam",
+    "description": "The label for category 'T-Beam' in sidebar 'Sidebar'"
+  },
+  "sidebar.Sidebar.category.T-Echo": {
+    "message": "T-Echo",
+    "description": "The label for category 'T-Echo' in sidebar 'Sidebar'"
+  },
+  "sidebar.Sidebar.category.Seeed Studio®": {
+    "message": "Seeed Studio®",
+    "description": "The label for category 'Seeed Studio®' in sidebar 'Sidebar'"
+  },
+  "sidebar.Sidebar.category.SenseCAP": {
+    "message": "SenseCAP",
+    "description": "The label for category 'SenseCAP' in sidebar 'Sidebar'"
+  },
+  "sidebar.Sidebar.category.Wio Series": {
+    "message": "Серия Wio",
+    "description": "The label for category 'Wio Series' in sidebar 'Sidebar'"
+  },
+  "sidebar.Sidebar.category.HELTEC®": {
+    "message": "HELTEC®",
+    "description": "The label for category 'HELTEC®' in sidebar 'Sidebar'"
+  },
+  "sidebar.Sidebar.category.LoRa 32": {
+    "message": "LoRa 32",
+    "description": "The label for category 'LoRa 32' in sidebar 'Sidebar'"
+  },
+  "sidebar.Sidebar.category.Vision Master": {
+    "message": "Vision Master",
+    "description": "The label for category 'Vision Master' in sidebar 'Sidebar'"
+  },
+  "sidebar.Sidebar.category.Mesh Node": {
+    "message": "Mesh нода",
+    "description": "The label for category 'Mesh Node' in sidebar 'Sidebar'"
+  },
+  "sidebar.Sidebar.category.b-and-q-consulting-community-supported": {
+    "message": "B&Q Consulting",
+    "description": "The label for category 'B&Q Consulting' in sidebar 'Sidebar'"
+  },
+  "sidebar.Sidebar.category.Nano Series": {
+    "message": "Серия Nano",
+    "description": "The label for category 'Nano Series' in sidebar 'Sidebar'"
+  },
+  "sidebar.Sidebar.category.station-series-community-supported": {
+    "message": "Серия Station",
+    "description": "The label for category 'Station Series' in sidebar 'Sidebar'"
+  },
+  "sidebar.Sidebar.category.Elecrow": {
+    "message": "Elecrow",
+    "description": "The label for category 'Elecrow' in sidebar 'Sidebar'"
+  },
+  "sidebar.Sidebar.category.Raspberry Pi": {
+    "message": "Raspberry Pi",
+    "description": "The label for category 'Raspberry Pi' in sidebar 'Sidebar'"
+  },
+  "sidebar.Sidebar.category.Raspberry Pi Pico": {
+    "message": "Raspberry Pi Pico",
+    "description": "The label for category 'Raspberry Pi Pico' in sidebar 'Sidebar'"
+  },
+  "sidebar.Sidebar.category.Community Supported": {
+    "message": "Поддерживаемые сообществом",
+    "description": "The label for category 'Community Supported' in sidebar 'Sidebar'"
+  },
+  "sidebar.Sidebar.category.lilygo-community-supported": {
+    "message": "LILYGO®",
+    "description": "The label for category 'LILYGO®' in sidebar 'Sidebar'"
+  },
+  "sidebar.Sidebar.category.tbeam-community-supported": {
+    "message": "T-Beam",
+    "description": "The label for category 'T-Beam' in sidebar 'Sidebar'"
+  },
+  "sidebar.Sidebar.category.rak-community-supported": {
+    "message": "RAK®",
+    "description": "The label for category 'RAK®' in sidebar 'Sidebar'"
+  },
+  "sidebar.Sidebar.category.seeed-studios-community-supported": {
+    "message": "Seeed Studio®",
+    "description": "The label for category 'Seeed Studio®' in sidebar 'Sidebar'"
+  },
+  "sidebar.Sidebar.category.wio-series-community-supported": {
+    "message": "Серия Wio",
+    "description": "The label for category 'Wio Series' in sidebar 'Sidebar'"
+  },
+  "sidebar.Sidebar.category.B&Q Consulting": {
+    "message": "B&Q Consulting",
+    "description": "The label for category 'B&Q Consulting' in sidebar 'Sidebar'"
+  },
+  "sidebar.Sidebar.category.nano-series-community-supported": {
+    "message": "Серия Nano",
+    "description": "The label for category 'Nano Series' in sidebar 'Sidebar'"
+  },
+  "sidebar.Sidebar.category.Station Series": {
+    "message": "Серия Station",
+    "description": "The label for category 'Station Series' in sidebar 'Sidebar'"
+  },
+  "sidebar.Sidebar.category.heltec-automation-community-supported": {
+    "message": "HELTEC®",
+    "description": "The label for category 'HELTEC®' in sidebar 'Sidebar'"
+  },
+  "sidebar.Sidebar.category.Sensors": {
+    "message": "Датчики",
+    "description": "The label for category 'Sensors' in sidebar 'Sidebar'"
+  },
+  "sidebar.Sidebar.category.Chatter": {
+    "message": "Чат",
+    "description": "The label for category 'Chatter' in sidebar 'Sidebar'"
+  },
+  "sidebar.Sidebar.category.Antennas": {
+    "message": "Антенны",
+    "description": "The label for category 'Antennas' in sidebar 'Sidebar'"
+  },
+  "sidebar.Sidebar.category.Solar Powered": {
+    "message": "Солнечная энергия",
+    "description": "The label for category 'Solar Powered' in sidebar 'Sidebar'"
+  },
+  "sidebar.Sidebar.category.Solar Powered.link.generated-index.title": {
+    "message": "Солнечная энергия",
+    "description": "The generated-index page title for category 'Solar Powered' in sidebar 'Sidebar'"
+  },
+  "sidebar.Sidebar.category.Software": {
+    "message": "Программное обеспечение",
+    "description": "The label for category 'Software' in sidebar 'Sidebar'"
+  },
+  "sidebar.Sidebar.category.Software.link.generated-index.title": {
+    "message": "Программное обеспечение",
+    "description": "The generated-index page title for category 'Software' in sidebar 'Sidebar'"
+  },
+  "sidebar.Sidebar.category.Android App": {
+    "message": "Android приложение",
+    "description": "The label for category 'Android App' in sidebar 'Sidebar'"
+  },
+  "sidebar.Sidebar.category.Android App.link.generated-index.title": {
+    "message": "Android приложение",
+    "description": "The generated-index page title for category 'Android App' in sidebar 'Sidebar'"
+  },
+  "sidebar.Sidebar.category.Apple Apps": {
+    "message": "Apple приложения",
+    "description": "The label for category 'Apple Apps' in sidebar 'Sidebar'"
+  },
+  "sidebar.Sidebar.category.Apple Apps.link.generated-index.title": {
+    "message": "Приложения Apple",
+    "description": "The generated-index page title for category 'Apple Apps' in sidebar 'Sidebar'"
+  },
+  "sidebar.Sidebar.category.Python CLI": {
+    "message": "Python CLI",
+    "description": "The label for category 'Python CLI' in sidebar 'Sidebar'"
+  },
+  "sidebar.Sidebar.category.Integrations": {
+    "message": "Интеграции",
+    "description": "The label for category 'Integrations' in sidebar 'Sidebar'"
+  },
+  "sidebar.Sidebar.category.MQTT": {
+    "message": "MQTT",
+    "description": "The label for category 'MQTT' in sidebar 'Sidebar'"
+  },
+  "sidebar.Sidebar.category.Meshtasticator (Simulator)": {
+    "message": "Meshtasticator (Симулятор)",
+    "description": "The label for category 'Meshtasticator (Simulator)' in sidebar 'Sidebar'"
+  },
+  "sidebar.Sidebar.category.Linux": {
+    "message": "Linux",
+    "description": "The label for category 'Linux' in sidebar 'Sidebar'"
+  },
+  "sidebar.Sidebar.category.Linux.link.generated-index.title": {
+    "message": "Linux",
+    "description": "The generated-index page title for category 'Linux' in sidebar 'Sidebar'"
+  },
+  "sidebar.Sidebar.category.InkHUD": {
+    "message": "InkHUD",
+    "description": "The label for category 'InkHUD' in sidebar 'Sidebar'"
+  },
+  "sidebar.Sidebar.category.Community": {
+    "message": "Сообщество",
+    "description": "The label for category 'Community' in sidebar 'Sidebar'"
+  },
+  "sidebar.Sidebar.category.Community.link.generated-index.title": {
+    "message": "Сообщество Meshtastic",
+    "description": "The generated-index page title for category 'Community' in sidebar 'Sidebar'"
+  },
+  "sidebar.Sidebar.category.Community Apps": {
+    "message": "Приложения сообщества",
+    "description": "The label for category 'Community Apps' in sidebar 'Sidebar'"
+  },
+  "sidebar.Sidebar.category.Enclosures": {
+    "message": "Корпуса",
+    "description": "The label for category 'Enclosures' in sidebar 'Sidebar'"
+  },
+  "sidebar.Sidebar.category.Enclosures.link.generated-index.title": {
+    "message": "Корпуса от сообщества Meshtastic",
+    "description": "The generated-index page title for category 'Enclosures' in sidebar 'Sidebar'"
+  },
+  "sidebar.Sidebar.category.RAK WisBlock": {
+    "message": "RAK WisBlock",
+    "description": "The label for category 'RAK WisBlock' in sidebar 'Sidebar'"
+  },
+  "sidebar.Sidebar.category.Development": {
+    "message": "Разработка",
+    "description": "The label for category 'Development' in sidebar 'Sidebar'"
+  },
+  "sidebar.Sidebar.category.Development.link.generated-index.title": {
+    "message": "Разработчикам",
+    "description": "The generated-index page title for category 'Development' in sidebar 'Sidebar'"
+  },
+  "sidebar.Sidebar.category.Device": {
+    "message": "Устройство",
+    "description": "The label for category 'Device' in sidebar 'Sidebar'"
+  },
+  "sidebar.Sidebar.category.Device.link.generated-index.title": {
+    "message": "Устройство",
+    "description": "The generated-index page title for category 'Device' in sidebar 'Sidebar'"
+  },
+  "sidebar.Sidebar.category.Firmware": {
+    "message": "Прошивка",
+    "description": "The label for category 'Firmware' in sidebar 'Sidebar'"
+  },
+  "sidebar.Sidebar.category.Firmware.link.generated-index.title": {
+    "message": "Прошивка",
+    "description": "The generated-index page title for category 'Firmware' in sidebar 'Sidebar'"
+  },
+  "sidebar.Sidebar.category.Python": {
+    "message": "Python",
+    "description": "The label for category 'Python' in sidebar 'Sidebar'"
+  },
+  "sidebar.Sidebar.category.Javascript": {
+    "message": "Javascript",
+    "description": "The label for category 'Javascript' in sidebar 'Sidebar'"
+  },
+  "sidebar.Sidebar.category.Docs": {
+    "message": "Документация",
+    "description": "The label for category 'Docs' in sidebar 'Sidebar'"
+  },
+  "sidebar.Sidebar.category.Style Guides": {
+    "message": "Гайды по стилю",
+    "description": "The label for category 'Style Guides' in sidebar 'Sidebar'"
+  },
+  "sidebar.Sidebar.category.Style Guides.link.generated-index.title": {
+    "message": "Гайды по стилю",
+    "description": "The generated-index page title for category 'Style Guides' in sidebar 'Sidebar'"
+  },
+  "sidebar.Sidebar.category.Reference Material": {
+    "message": "Справочные материалы",
+    "description": "The label for category 'Reference Material' in sidebar 'Sidebar'"
+  },
+  "sidebar.Sidebar.category.Reference Material.link.generated-index.title": {
+    "message": "Справочные материалы",
+    "description": "The generated-index page title for category 'Reference Material' in sidebar 'Sidebar'"
+  },
+  "sidebar.Sidebar.category.Legal": {
+    "message": "Правовая информация",
+    "description": "The label for category 'Legal' in sidebar 'Sidebar'"
+  }
+}

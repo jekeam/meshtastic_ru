@@ -1,0 +1,14 @@
+{
+  "title": {
+    "message": "Блог Мештастик (Meshtastic)",
+    "description": "The title for the blog used in SEO"
+  },
+  "description": {
+    "message": "Погрузитесь в глубокие инсайты от разработчиков и мейнтейнеров, включая обновления проекта и изменения. Узнайте от комьюнити об их проектах и идеях.",
+    "description": "The description for the blog used in SEO"
+  },
+  "sidebar.title": {
+    "message": "Последние посты",
+    "description": "The label for the left sidebar"
+  }
+}

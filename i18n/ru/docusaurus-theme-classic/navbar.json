@@ -1,0 +1,42 @@
+{
+  "logo.alt": {
+    "message": "Логотип Meshtastic",
+    "description": "The alt text of navbar logo"
+  },
+  "item.label.Blog": {
+    "message": "Блог",
+    "description": "Navbar item with label Blog"
+  },
+  "item.label.Docs": {
+    "message": "Документация",
+    "description": "Navbar item with label Docs"
+  },
+  "item.label.Downloads": {
+    "message": "Загрузки",
+    "description": "Navbar item with label Downloads"
+  },
+  "item.label.About": {
+    "message": "О проекте",
+    "description": "Navbar item with label About"
+  },
+  "item.label.Introduction": {
+    "message": "Введение",
+    "description": "Navbar item with label Introduction"
+  },
+  "item.label.Getting Started": {
+    "message": "Начало работы",
+    "description": "Navbar item with label Getting Started"
+  },
+  "item.label.Contributing": {
+    "message": "Участие в разработке",
+    "description": "Navbar item with label Contributing"
+  },
+  "item.label.Legal": {
+    "message": "Юридическая информация",
+    "description": "Navbar item with label Legal"
+  },
+  "item.label.FAQs": {
+    "message": "ЧаВо (FAQ)",
+    "description": "Navbar item with label FAQs"
+  }
+}
