@@ -112,7 +112,7 @@
   },
   "theme.common.editThisPage": {
     "message": "Отредактировать эту страницу",
-    "description": "The link label to edit the current page"
+    "description": "The link label to edit the current page todo сделать ссылку на русскую версию",
   },
   "theme.common.headingLinkTitle": {
     "message": "Прямая ссылка на {heading}",
